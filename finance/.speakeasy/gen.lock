@@ -5,8 +5,12 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.326.0
   generationVersion: 2.359.0
-  releaseVersion: 0.0.1
-  configChecksum: 88e28591b8e18ae35129dbeee7231d60
+  releaseVersion: 0.0.2
+  configChecksum: d665f3bd4368f0decdfac47c7ed775ed
+  repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
+  repoSubDirectory: finance
+  installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/finance
+  published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
