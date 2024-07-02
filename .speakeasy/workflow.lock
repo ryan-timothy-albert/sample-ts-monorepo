@@ -1,0 +1,48 @@
+speakeasyVersion: 1.326.0
+sources:
+    source1:
+        sourceNamespace: source-1
+        sourceRevisionDigest: sha256:2bfffa2fd38a20929d4b2071f818a41a714d970fe55940f5f7cef5dbac56b568
+        sourceBlobDigest: sha256:9d00ce8818847d31f07d18c89f59b21b5f28344502415f0faace4bcdd28966dd
+        tags:
+            - latest
+targets:
+    accounting:
+        source: source1
+        sourceNamespace: source-1
+        sourceRevisionDigest: sha256:43d9d3d838fac17eddc84d2acb5dcb0b499fd6e5bff338951c547b24d496da97
+        sourceBlobDigest: sha256:5ac74c70fd06c09876fd12094a844951d898b9c3aead02a8d50b3db56ed4f135
+        outLocation: accounting
+    finance:
+        source: source1
+        sourceNamespace: source-1
+        sourceRevisionDigest: sha256:f100eaafb92633051e63bee357af1e82546949737cc9d68ac9b8c575f67bb966
+        sourceBlobDigest: sha256:c62ec65f07cb916b2c155f9eda284c560104f8f2033d997e9711db3b15361517
+        outLocation: finance
+    lending:
+        source: source1
+        sourceNamespace: source-1
+        sourceRevisionDigest: sha256:2bfffa2fd38a20929d4b2071f818a41a714d970fe55940f5f7cef5dbac56b568
+        sourceBlobDigest: sha256:9d00ce8818847d31f07d18c89f59b21b5f28344502415f0faace4bcdd28966dd
+        outLocation: lending
+workflow:
+    workflowVersion: 1.0.0
+    sources:
+        source1:
+            inputs:
+                - location: https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.yaml
+            registry:
+                location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1
+    targets:
+        accounting:
+            target: typescript
+            source: source1
+            output: accounting
+        finance:
+            target: typescript
+            source: source1
+            output: finance
+        lending:
+            target: typescript
+            source: source1
+            output: lending

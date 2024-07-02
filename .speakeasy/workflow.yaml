@@ -1,0 +1,29 @@
+workflowVersion: 1.0.0
+sources:
+    source1:
+        inputs:
+            - location: https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.yaml
+        registry:
+            location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1
+targets:
+    accounting:
+        target: typescript
+        source: source1
+        output: accounting
+        publish:
+            npm:
+                token: $npm_token
+    finance:
+        target: typescript
+        source: source1
+        output: finance
+        publish:
+            npm:
+                token: $npm_token
+    lending:
+        target: typescript
+        source: source1
+        output: lending
+        publish:
+            npm:
+                token: $npm_token

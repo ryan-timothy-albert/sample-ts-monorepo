@@ -1,0 +1,67 @@
+lockVersion: 2.0.0
+id: de44aa14-d51e-4f37-b22e-356d78ca0ebc
+management:
+  docChecksum: 1bdb7a6f8bf3995d4b40475228403253
+  docVersion: 1.0.0
+  speakeasyVersion: 1.326.0
+  generationVersion: 2.359.0
+  releaseVersion: 0.0.1
+  configChecksum: a855a32d4cdc76e6341a97559e3b249f
+features:
+  typescript:
+    additionalDependencies: 0.1.0
+    core: 3.11.0
+    globalSecurityCallbacks: 0.1.0
+    globalServerURLs: 2.82.4
+    responseFormat: 0.2.3
+    sdkHooks: 0.1.0
+generatedFiles:
+  - src/sdk/pets.ts
+  - src/sdk/sdk.ts
+  - .eslintrc.cjs
+  - .npmignore
+  - RUNTIMES.md
+  - jsr.json
+  - package.json
+  - src/index.ts
+  - src/lib/base64.ts
+  - src/lib/config.ts
+  - src/lib/encodings.ts
+  - src/lib/http.ts
+  - src/lib/is-plain-object.ts
+  - src/lib/primitives.ts
+  - src/lib/retries.ts
+  - src/lib/schemas.ts
+  - src/lib/sdks.ts
+  - src/lib/security.ts
+  - src/lib/url.ts
+  - src/sdk/index.ts
+  - src/models/errors/sdkerror.ts
+  - src/models/errors/sdkvalidationerror.ts
+  - src/types/blobs.ts
+  - src/types/enums.ts
+  - src/types/index.ts
+  - src/types/operations.ts
+  - src/types/rfcdate.ts
+  - tsconfig.json
+  - src/models/operations/listpets.ts
+  - src/models/operations/showpetbyid.ts
+  - src/models/components/pet.ts
+  - src/models/components/error.ts
+  - src/models/errors/index.ts
+  - src/models/operations/index.ts
+  - src/models/components/index.ts
+  - docs/models/operations/listpetsrequest.md
+  - docs/models/operations/listpetsresponseresult.md
+  - docs/models/operations/listpetsresponse.md
+  - docs/models/operations/showpetbyidrequest.md
+  - docs/models/operations/showpetbyidresponse.md
+  - docs/models/components/pet.md
+  - docs/models/components/errort.md
+  - docs/sdks/accountingsdk/README.md
+  - docs/sdks/pets/README.md
+  - USAGE.md
+  - .gitattributes
+  - src/hooks/hooks.ts
+  - src/hooks/types.ts
+  - src/hooks/index.ts
