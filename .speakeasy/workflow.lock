@@ -2,8 +2,8 @@ speakeasyVersion: 1.326.0
 sources:
     source1:
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:cf4cbe27dcca0c2d8423321c2c5fe7553b178059ff1e30c20254a7b3b37d81fa
-        sourceBlobDigest: sha256:0511e1fee511618557c5284839ba253b5d281eed2a75f265df30f050558dafa0
+        sourceRevisionDigest: sha256:6855eead2e4dc7b681302295d5e685ee1a3a375230a97ac5a7b197b2bb4954ee
+        sourceBlobDigest: sha256:155a07c8b292a688917c67d3388fd2bbcf9bfbfaaaac80f0e7b3357bb9d17d48
         tags:
             - latest
             - main
@@ -11,8 +11,8 @@ targets:
     accounting:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:43d9d3d838fac17eddc84d2acb5dcb0b499fd6e5bff338951c547b24d496da97
-        sourceBlobDigest: sha256:5ac74c70fd06c09876fd12094a844951d898b9c3aead02a8d50b3db56ed4f135
+        sourceRevisionDigest: sha256:6855eead2e4dc7b681302295d5e685ee1a3a375230a97ac5a7b197b2bb4954ee
+        sourceBlobDigest: sha256:155a07c8b292a688917c67d3388fd2bbcf9bfbfaaaac80f0e7b3357bb9d17d48
         outLocation: accounting
     finance:
         source: source1
