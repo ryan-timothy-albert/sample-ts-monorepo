@@ -22,25 +22,25 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add ryan-lending
 ```
 
 ### PNPM
 
 ```bash
-pnpm add <UNSET>
+pnpm add ryan-lending
 ```
 
 ### Bun
 
 ```bash
-bun add <UNSET>
+bun add ryan-lending
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET> zod
+yarn add ryan-lending zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.

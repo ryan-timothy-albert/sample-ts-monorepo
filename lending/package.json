@@ -1,9 +1,14 @@
 {
   "name": "ryan-lending",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "ryan-timothy-albert",
   "main": "./index.js",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryan-timothy-albert/sample-ts-monorepo.git",
+    "directory": "lending"
+  },
   "scripts": {
     "lint": "eslint --max-warnings=0 src",
     "build": "tsc",
