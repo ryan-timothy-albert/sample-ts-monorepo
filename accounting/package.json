@@ -1,6 +1,6 @@
 {
   "name": "ryan-accounting",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "ryan-timothy-albert",
   "main": "./index.js",
   "sideEffects": false,
