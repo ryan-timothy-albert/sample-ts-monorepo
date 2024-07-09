@@ -53,7 +53,7 @@ export class Pets extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ListPetsRequest$.outboundSchema.parse(value$),
+            (value$) => operations.ListPetsRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -83,9 +83,9 @@ export class Pets extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.ListPetsResponse>()
-            .json(200, operations.ListPetsResponse$, { hdrs: true, key: "Result" })
+            .json(200, operations.ListPetsResponse$inboundSchema, { hdrs: true, key: "Result" })
             .fail(["4XX", "5XX"])
-            .json("default", operations.ListPetsResponse$, { key: "Result" })
+            .json("default", operations.ListPetsResponse$inboundSchema, { key: "Result" })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -102,7 +102,7 @@ export class Pets extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => components.Pet$.outboundSchema.parse(value$),
+            (value$) => components.Pet$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
@@ -127,9 +127,9 @@ export class Pets extends ClientSDK {
         const response = await this.do$(request$, { context, errorCodes: ["4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.ErrorT | undefined>()
-            .void(201, components.ErrorT$.inboundSchema.optional())
+            .void(201, components.ErrorT$inboundSchema.optional())
             .fail(["4XX", "5XX"])
-            .json("default", components.ErrorT$.inboundSchema.optional())
+            .json("default", components.ErrorT$inboundSchema.optional())
             .match(response);
 
         return result$;
@@ -146,7 +146,7 @@ export class Pets extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ShowPetByIdRequest$.outboundSchema.parse(value$),
+            (value$) => operations.ShowPetByIdRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -176,9 +176,9 @@ export class Pets extends ClientSDK {
         const response = await this.do$(request$, { context, errorCodes: ["4XX", "5XX"] });
 
         const [result$] = await this.matcher<operations.ShowPetByIdResponse>()
-            .json(200, operations.ShowPetByIdResponse$)
+            .json(200, operations.ShowPetByIdResponse$inboundSchema)
             .fail(["4XX", "5XX"])
-            .json("default", operations.ShowPetByIdResponse$)
+            .json("default", operations.ShowPetByIdResponse$inboundSchema)
             .match(response);
 
         return result$;

@@ -21,66 +21,115 @@ export type ListPetsResponse = {
 };
 
 /** @internal */
+export const ListPetsRequest$inboundSchema: z.ZodType<ListPetsRequest, z.ZodTypeDef, unknown> =
+    z.object({
+        limit: z.number().int().optional(),
+    });
+
+/** @internal */
+export type ListPetsRequest$Outbound = {
+    limit?: number | undefined;
+};
+
+/** @internal */
+export const ListPetsRequest$outboundSchema: z.ZodType<
+    ListPetsRequest$Outbound,
+    z.ZodTypeDef,
+    ListPetsRequest
+> = z.object({
+    limit: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ListPetsRequest$ {
-    export const inboundSchema: z.ZodType<ListPetsRequest, z.ZodTypeDef, unknown> = z.object({
-        limit: z.number().int().optional(),
-    });
-
-    export type Outbound = {
-        limit?: number | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListPetsRequest> = z.object({
-        limit: z.number().int().optional(),
-    });
+    /** @deprecated use `ListPetsRequest$inboundSchema` instead. */
+    export const inboundSchema = ListPetsRequest$inboundSchema;
+    /** @deprecated use `ListPetsRequest$outboundSchema` instead. */
+    export const outboundSchema = ListPetsRequest$outboundSchema;
+    /** @deprecated use `ListPetsRequest$Outbound` instead. */
+    export type Outbound = ListPetsRequest$Outbound;
 }
 
 /** @internal */
+export const ListPetsResponseResult$inboundSchema: z.ZodType<
+    ListPetsResponseResult,
+    z.ZodTypeDef,
+    unknown
+> = z.union([components.ErrorT$inboundSchema, z.array(components.Pet$inboundSchema)]);
+
+/** @internal */
+export type ListPetsResponseResult$Outbound =
+    | components.ErrorT$Outbound
+    | Array<components.Pet$Outbound>;
+
+/** @internal */
+export const ListPetsResponseResult$outboundSchema: z.ZodType<
+    ListPetsResponseResult$Outbound,
+    z.ZodTypeDef,
+    ListPetsResponseResult
+> = z.union([components.ErrorT$outboundSchema, z.array(components.Pet$outboundSchema)]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ListPetsResponseResult$ {
-    export const inboundSchema: z.ZodType<ListPetsResponseResult, z.ZodTypeDef, unknown> = z.union([
-        components.ErrorT$.inboundSchema,
-        z.array(components.Pet$.inboundSchema),
-    ]);
-
-    export type Outbound = components.ErrorT$.Outbound | Array<components.Pet$.Outbound>;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListPetsResponseResult> =
-        z.union([components.ErrorT$.outboundSchema, z.array(components.Pet$.outboundSchema)]);
+    /** @deprecated use `ListPetsResponseResult$inboundSchema` instead. */
+    export const inboundSchema = ListPetsResponseResult$inboundSchema;
+    /** @deprecated use `ListPetsResponseResult$outboundSchema` instead. */
+    export const outboundSchema = ListPetsResponseResult$outboundSchema;
+    /** @deprecated use `ListPetsResponseResult$Outbound` instead. */
+    export type Outbound = ListPetsResponseResult$Outbound;
 }
 
 /** @internal */
+export const ListPetsResponse$inboundSchema: z.ZodType<ListPetsResponse, z.ZodTypeDef, unknown> = z
+    .object({
+        Headers: z.record(z.array(z.string())),
+        Result: z.union([components.ErrorT$inboundSchema, z.array(components.Pet$inboundSchema)]),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            Headers: "headers",
+            Result: "result",
+        });
+    });
+
+/** @internal */
+export type ListPetsResponse$Outbound = {
+    Headers: { [k: string]: Array<string> };
+    Result: components.ErrorT$Outbound | Array<components.Pet$Outbound>;
+};
+
+/** @internal */
+export const ListPetsResponse$outboundSchema: z.ZodType<
+    ListPetsResponse$Outbound,
+    z.ZodTypeDef,
+    ListPetsResponse
+> = z
+    .object({
+        headers: z.record(z.array(z.string())),
+        result: z.union([components.ErrorT$outboundSchema, z.array(components.Pet$outboundSchema)]),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            headers: "Headers",
+            result: "Result",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ListPetsResponse$ {
-    export const inboundSchema: z.ZodType<ListPetsResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            Headers: z.record(z.array(z.string())),
-            Result: z.union([
-                components.ErrorT$.inboundSchema,
-                z.array(components.Pet$.inboundSchema),
-            ]),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                Headers: "headers",
-                Result: "result",
-            });
-        });
-
-    export type Outbound = {
-        Headers: { [k: string]: Array<string> };
-        Result: components.ErrorT$.Outbound | Array<components.Pet$.Outbound>;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListPetsResponse> = z
-        .object({
-            headers: z.record(z.array(z.string())),
-            result: z.union([
-                components.ErrorT$.outboundSchema,
-                z.array(components.Pet$.outboundSchema),
-            ]),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                headers: "Headers",
-                result: "Result",
-            });
-        });
+    /** @deprecated use `ListPetsResponse$inboundSchema` instead. */
+    export const inboundSchema = ListPetsResponse$inboundSchema;
+    /** @deprecated use `ListPetsResponse$outboundSchema` instead. */
+    export const outboundSchema = ListPetsResponse$outboundSchema;
+    /** @deprecated use `ListPetsResponse$Outbound` instead. */
+    export type Outbound = ListPetsResponse$Outbound;
 }
