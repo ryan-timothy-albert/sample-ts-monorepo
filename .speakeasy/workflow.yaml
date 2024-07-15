@@ -18,13 +18,10 @@ targets:
         target: typescript
         source: source1
         output: ./finance
-        publish:
-            npm:
-                token: $npm_token
     lending:
         target: typescript
         source: source1
-        output: lending
+        output: ./lending
         publish:
             npm:
                 token: $npm_token
