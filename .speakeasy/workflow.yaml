@@ -10,7 +10,7 @@ targets:
     accounting:
         target: typescript
         source: source1
-        output: accounting
+        output: ./accounting
         publish:
             npm:
                 token: $npm_token
@@ -21,7 +21,7 @@ targets:
     lending:
         target: typescript
         source: source1
-        output: ./lending
+        output: lending
         publish:
             npm:
                 token: $npm_token
