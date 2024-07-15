@@ -3,17 +3,23 @@ id: de44aa14-d51e-4f37-b22e-356d78ca0ebc
 management:
   docChecksum: 1bdb7a6f8bf3995d4b40475228403253
   docVersion: 1.0.0
-  speakeasyVersion: 1.326.0
-  generationVersion: 2.359.0
-  releaseVersion: 0.0.1
-  configChecksum: a855a32d4cdc76e6341a97559e3b249f
+  speakeasyVersion: 1.335.0
+  generationVersion: 2.370.2
+  releaseVersion: 0.1.0
+  configChecksum: e98d0a9ce123c36dd6a76567c68850cf
+  repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
+  repoSubDirectory: accounting
+  installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/accounting
+  published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
-    core: 3.11.0
+    core: 3.11.6
+    defaultEnabledRetries: 0.1.0
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.4
     responseFormat: 0.2.3
+    retries: 2.83.0
     sdkHooks: 0.1.0
 generatedFiles:
   - src/sdk/pets.ts
@@ -59,6 +65,7 @@ generatedFiles:
   - docs/models/components/pet.md
   - docs/models/components/errort.md
   - docs/sdks/accountingsdk/README.md
+  - docs/lib/utils/retryconfig.md
   - docs/sdks/pets/README.md
   - USAGE.md
   - .gitattributes

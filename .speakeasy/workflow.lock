@@ -1,9 +1,9 @@
-speakeasyVersion: 1.331.0
+speakeasyVersion: 1.335.0
 sources:
     source1:
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:56ec44d889e3fda3ad03621a3ca66aa8ad51dcfa28894355b01740d2c52abf17
-        sourceBlobDigest: sha256:be8f049420bd34cd3b2da37cd59cb9a51540a3d879692a5ac8b28ce69d135b0a
+        sourceRevisionDigest: sha256:c05df64382f7118dbee8e36f36e7e17a61bae6c7fd8d97182ffa79c5a806aa99
+        sourceBlobDigest: sha256:a5c282e36a818a84dc2692de0273191dcd24f0af561ca11393161ea00536c468
         tags:
             - latest
             - main
@@ -11,8 +11,8 @@ targets:
     accounting:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:43d9d3d838fac17eddc84d2acb5dcb0b499fd6e5bff338951c547b24d496da97
-        sourceBlobDigest: sha256:5ac74c70fd06c09876fd12094a844951d898b9c3aead02a8d50b3db56ed4f135
+        sourceRevisionDigest: sha256:c05df64382f7118dbee8e36f36e7e17a61bae6c7fd8d97182ffa79c5a806aa99
+        sourceBlobDigest: sha256:a5c282e36a818a84dc2692de0273191dcd24f0af561ca11393161ea00536c468
         outLocation: accounting
     finance:
         source: source1
