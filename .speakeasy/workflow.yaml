@@ -10,21 +10,21 @@ targets:
     accounting:
         target: typescript
         source: source1
-        output: accounting
+        output: ./accounting
         publish:
             npm:
                 token: $npm_token
     finance:
         target: typescript
         source: source1
-        output: finance
+        output: ./finance
         publish:
             npm:
                 token: $npm_token
     lending:
         target: typescript
         source: source1
-        output: lending
+        output: ./lending
         publish:
             npm:
                 token: $npm_token
