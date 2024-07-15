@@ -157,3 +157,14 @@ Based on:
 - Speakeasy CLI 1.335.2 (2.372.3) https://github.com/speakeasy-api/speakeasy
 ### Generated
 - [typescript v3.1.2] platform
+
+
+## 2024-07-15 21:47:16
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.335.2 (2.372.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.1.2] accounting
+### Releases
+- [NPM v0.1.2] https://www.npmjs.com/package/ryan-accounting/v/0.1.2 - accounting
