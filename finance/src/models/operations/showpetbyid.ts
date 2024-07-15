@@ -15,30 +15,67 @@ export type ShowPetByIdRequest = {
 export type ShowPetByIdResponse = components.ErrorT | components.Pet;
 
 /** @internal */
+export const ShowPetByIdRequest$inboundSchema: z.ZodType<
+    ShowPetByIdRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    petId: z.string(),
+});
+
+/** @internal */
+export type ShowPetByIdRequest$Outbound = {
+    petId: string;
+};
+
+/** @internal */
+export const ShowPetByIdRequest$outboundSchema: z.ZodType<
+    ShowPetByIdRequest$Outbound,
+    z.ZodTypeDef,
+    ShowPetByIdRequest
+> = z.object({
+    petId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ShowPetByIdRequest$ {
-    export const inboundSchema: z.ZodType<ShowPetByIdRequest, z.ZodTypeDef, unknown> = z.object({
-        petId: z.string(),
-    });
-
-    export type Outbound = {
-        petId: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ShowPetByIdRequest> = z.object({
-        petId: z.string(),
-    });
+    /** @deprecated use `ShowPetByIdRequest$inboundSchema` instead. */
+    export const inboundSchema = ShowPetByIdRequest$inboundSchema;
+    /** @deprecated use `ShowPetByIdRequest$outboundSchema` instead. */
+    export const outboundSchema = ShowPetByIdRequest$outboundSchema;
+    /** @deprecated use `ShowPetByIdRequest$Outbound` instead. */
+    export type Outbound = ShowPetByIdRequest$Outbound;
 }
 
 /** @internal */
-export namespace ShowPetByIdResponse$ {
-    export const inboundSchema: z.ZodType<ShowPetByIdResponse, z.ZodTypeDef, unknown> = z.union([
-        components.ErrorT$.inboundSchema,
-        components.Pet$.inboundSchema,
-    ]);
+export const ShowPetByIdResponse$inboundSchema: z.ZodType<
+    ShowPetByIdResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.union([components.ErrorT$inboundSchema, components.Pet$inboundSchema]);
 
-    export type Outbound = components.ErrorT$.Outbound | components.Pet$.Outbound;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ShowPetByIdResponse> = z.union([
-        components.ErrorT$.outboundSchema,
-        components.Pet$.outboundSchema,
-    ]);
+/** @internal */
+export type ShowPetByIdResponse$Outbound = components.ErrorT$Outbound | components.Pet$Outbound;
+
+/** @internal */
+export const ShowPetByIdResponse$outboundSchema: z.ZodType<
+    ShowPetByIdResponse$Outbound,
+    z.ZodTypeDef,
+    ShowPetByIdResponse
+> = z.union([components.ErrorT$outboundSchema, components.Pet$outboundSchema]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ShowPetByIdResponse$ {
+    /** @deprecated use `ShowPetByIdResponse$inboundSchema` instead. */
+    export const inboundSchema = ShowPetByIdResponse$inboundSchema;
+    /** @deprecated use `ShowPetByIdResponse$outboundSchema` instead. */
+    export const outboundSchema = ShowPetByIdResponse$outboundSchema;
+    /** @deprecated use `ShowPetByIdResponse$Outbound` instead. */
+    export type Outbound = ShowPetByIdResponse$Outbound;
 }
