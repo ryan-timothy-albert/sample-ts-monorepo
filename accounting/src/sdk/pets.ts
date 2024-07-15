@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import {
     encodeFormQuery as encodeFormQuery$,
     encodeJSON as encodeJSON$,
@@ -50,13 +50,10 @@ export class Pets extends ClientSDK {
         options?: RequestOptions
     ): Promise<operations.ListPetsResponse> {
         const input$ = typeof request === "undefined" ? {} : request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ListPetsRequest$.outboundSchema.parse(value$),
+            (value$) => operations.ListPetsRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -67,25 +64,40 @@ export class Pets extends ClientSDK {
             limit: payload$.limit,
         });
 
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
+
         const context = { operationID: "listPets", oAuth2Scopes: [], securitySource: null };
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
-            { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
         const [result$] = await this.matcher<operations.ListPetsResponse>()
-            .json(200, operations.ListPetsResponse$, { hdrs: true, key: "Result" })
+            .json(200, operations.ListPetsResponse$inboundSchema, { hdrs: true, key: "Result" })
             .fail(["4XX", "5XX"])
-            .json("default", operations.ListPetsResponse$, { key: "Result" })
+            .json("default", operations.ListPetsResponse$inboundSchema, { key: "Result" })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -99,14 +111,10 @@ export class Pets extends ClientSDK {
         options?: RequestOptions
     ): Promise<components.ErrorT | undefined> {
         const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => components.Pet$.outboundSchema.parse(value$),
+            (value$) => components.Pet$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
@@ -115,21 +123,37 @@ export class Pets extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        });
+
         const context = { operationID: "createPets", oAuth2Scopes: [], securitySource: null };
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
-            { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const [result$] = await this.matcher<components.ErrorT | undefined>()
-            .void(201, components.ErrorT$.inboundSchema.optional())
+            .void(201, components.ErrorT$inboundSchema.optional())
             .fail(["4XX", "5XX"])
-            .json("default", components.ErrorT$.inboundSchema.optional())
+            .json("default", components.ErrorT$inboundSchema.optional())
             .match(response);
 
         return result$;
@@ -143,13 +167,10 @@ export class Pets extends ClientSDK {
         options?: RequestOptions
     ): Promise<operations.ShowPetByIdResponse> {
         const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ShowPetByIdRequest$.outboundSchema.parse(value$),
+            (value$) => operations.ShowPetByIdRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -164,21 +185,36 @@ export class Pets extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
+
         const context = { operationID: "showPetById", oAuth2Scopes: [], securitySource: null };
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
-            { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const [result$] = await this.matcher<operations.ShowPetByIdResponse>()
-            .json(200, operations.ShowPetByIdResponse$)
+            .json(200, operations.ShowPetByIdResponse$inboundSchema)
             .fail(["4XX", "5XX"])
-            .json("default", operations.ShowPetByIdResponse$)
+            .json("default", operations.ShowPetByIdResponse$inboundSchema)
             .match(response);
 
         return result$;

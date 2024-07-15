@@ -22,25 +22,25 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add ryan-accounting
 ```
 
 ### PNPM
 
 ```bash
-pnpm add <UNSET>
+pnpm add ryan-accounting
 ```
 
 ### Bun
 
 ```bash
-bun add <UNSET>
+bun add ryan-accounting
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET> zod
+yarn add ryan-accounting zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -232,6 +232,71 @@ httpClient.addHook("requestError", (error, request) => {
 const sdk = new AccountingSDK({ httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+```typescript
+import { AccountingSDK } from "ryan-accounting";
+
+const accountingSDK = new AccountingSDK();
+
+async function run() {
+    const result = await accountingSDK.pets.listPets(
+        {},
+        {
+            retries: {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 1,
+                    maxInterval: 50,
+                    exponent: 1.1,
+                    maxElapsedTime: 100,
+                },
+                retryConnectionErrors: false,
+            },
+        }
+    );
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+```typescript
+import { AccountingSDK } from "ryan-accounting";
+
+const accountingSDK = new AccountingSDK({
+    retryConfig: {
+        strategy: "backoff",
+        backoff: {
+            initialInterval: 1,
+            maxInterval: 50,
+            exponent: 1.1,
+            maxElapsedTime: 100,
+        },
+        retryConnectionErrors: false,
+    },
+});
+
+async function run() {
+    const result = await accountingSDK.pets.listPets({});
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+<!-- End Retries [retries] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
