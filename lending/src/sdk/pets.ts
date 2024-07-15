@@ -72,11 +72,23 @@ export class Pets extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
-        const response = await this.do$(request$, { context, errorCodes: ["4XX", "5XX"] });
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
@@ -120,11 +132,23 @@ export class Pets extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
-        const response = await this.do$(request$, { context, errorCodes: ["4XX", "5XX"] });
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const [result$] = await this.matcher<components.ErrorT | undefined>()
             .void(201, components.ErrorT$inboundSchema.optional())
@@ -169,11 +193,23 @@ export class Pets extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
-        const response = await this.do$(request$, { context, errorCodes: ["4XX", "5XX"] });
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const [result$] = await this.matcher<operations.ShowPetByIdResponse>()
             .json(200, operations.ShowPetByIdResponse$inboundSchema)
