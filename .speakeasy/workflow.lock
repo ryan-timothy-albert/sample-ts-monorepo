@@ -23,9 +23,9 @@ targets:
     lending:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:75560e49e43997686d2c4a213e10c7386f4f3f993c2c2bbbd782ef62a6d6dc21
-        sourceBlobDigest: sha256:af9c3817a50dedbaec6fb0bb6e8f64526954a036ae80417395d1f739ea9d81ee
-        outLocation: ./lending
+        sourceRevisionDigest: sha256:5f48817c3c11c1e7106d72b6defd8769073fa35bbd18c6f6ed57a1ec79445c0d
+        sourceBlobDigest: sha256:a32b8aa44c94b9f36570a301587ee1485bf1f5ad957d4908c8da646b61ce8aef
+        outLocation: lending
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
