@@ -2,8 +2,8 @@ speakeasyVersion: 1.335.2
 sources:
     source1:
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:75560e49e43997686d2c4a213e10c7386f4f3f993c2c2bbbd782ef62a6d6dc21
-        sourceBlobDigest: sha256:af9c3817a50dedbaec6fb0bb6e8f64526954a036ae80417395d1f739ea9d81ee
+        sourceRevisionDigest: sha256:f1c16550b5fae5934ee128bf121cb51614ce18928c80f211b9012d904cae07e9
+        sourceBlobDigest: sha256:917f783532db81e8d7bd5dc27b194431fc3ff19759dfc32d740e61307c281584
         tags:
             - latest
             - main
@@ -11,9 +11,9 @@ targets:
     accounting:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:fe52c93e59473ea1eace5f32014554eca5b2a630bf878f6a488c4ae1a21b7c9b
-        sourceBlobDigest: sha256:0e63f59aa74a9c8dcc702f6a0d52bd3f754f2718a67015dd28be0ec7f0880d74
-        outLocation: accounting
+        sourceRevisionDigest: sha256:f1c16550b5fae5934ee128bf121cb51614ce18928c80f211b9012d904cae07e9
+        sourceBlobDigest: sha256:917f783532db81e8d7bd5dc27b194431fc3ff19759dfc32d740e61307c281584
+        outLocation: ./accounting
     finance:
         source: source1
         sourceNamespace: source-1
@@ -39,7 +39,7 @@ workflow:
         accounting:
             target: typescript
             source: source1
-            output: accounting
+            output: ./accounting
             publish:
                 npm:
                     token: $npm_token
@@ -50,7 +50,7 @@ workflow:
         lending:
             target: typescript
             source: source1
-            output: ./lending
+            output: lending
             publish:
                 npm:
                     token: $npm_token
