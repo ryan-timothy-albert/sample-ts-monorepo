@@ -2,8 +2,8 @@ speakeasyVersion: 1.335.2
 sources:
     source1:
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:fe52c93e59473ea1eace5f32014554eca5b2a630bf878f6a488c4ae1a21b7c9b
-        sourceBlobDigest: sha256:0e63f59aa74a9c8dcc702f6a0d52bd3f754f2718a67015dd28be0ec7f0880d74
+        sourceRevisionDigest: sha256:75560e49e43997686d2c4a213e10c7386f4f3f993c2c2bbbd782ef62a6d6dc21
+        sourceBlobDigest: sha256:af9c3817a50dedbaec6fb0bb6e8f64526954a036ae80417395d1f739ea9d81ee
         tags:
             - latest
             - main
@@ -23,9 +23,9 @@ targets:
     lending:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:ad99f5e6b321b7dbf7afd0e61263ec3f00ab6b031d6380af771ebda63e49ec9c
-        sourceBlobDigest: sha256:21e43da8e397352630177b567bb8e3620e6ed5ac072b262fc56305a03d8b204f
-        outLocation: lending
+        sourceRevisionDigest: sha256:75560e49e43997686d2c4a213e10c7386f4f3f993c2c2bbbd782ef62a6d6dc21
+        sourceBlobDigest: sha256:af9c3817a50dedbaec6fb0bb6e8f64526954a036ae80417395d1f739ea9d81ee
+        outLocation: ./lending
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -47,13 +47,10 @@ workflow:
             target: typescript
             source: source1
             output: ./finance
-            publish:
-                npm:
-                    token: $npm_token
         lending:
             target: typescript
             source: source1
-            output: lending
+            output: ./lending
             publish:
                 npm:
                     token: $npm_token
