@@ -1,9 +1,9 @@
-speakeasyVersion: 1.335.2
+speakeasyVersion: 1.358.0
 sources:
     source1:
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:f1c16550b5fae5934ee128bf121cb51614ce18928c80f211b9012d904cae07e9
-        sourceBlobDigest: sha256:917f783532db81e8d7bd5dc27b194431fc3ff19759dfc32d740e61307c281584
+        sourceRevisionDigest: sha256:4e0a3cc23c422dabed444f32549721608636f73b029fa424c9389c7bd39dcd55
+        sourceBlobDigest: sha256:9f186c5312f73551b96f875f9e8f009878b3c809e5b069f023b9e905ca856379
         tags:
             - latest
             - main
@@ -23,8 +23,8 @@ targets:
     lending:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:5f48817c3c11c1e7106d72b6defd8769073fa35bbd18c6f6ed57a1ec79445c0d
-        sourceBlobDigest: sha256:a32b8aa44c94b9f36570a301587ee1485bf1f5ad957d4908c8da646b61ce8aef
+        sourceRevisionDigest: sha256:4e0a3cc23c422dabed444f32549721608636f73b029fa424c9389c7bd39dcd55
+        sourceBlobDigest: sha256:9f186c5312f73551b96f875f9e8f009878b3c809e5b069f023b9e905ca856379
         outLocation: lending
 workflow:
     workflowVersion: 1.0.0
