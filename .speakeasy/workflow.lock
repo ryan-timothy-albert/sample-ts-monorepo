@@ -11,8 +11,8 @@ targets:
     accounting:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:f1c16550b5fae5934ee128bf121cb51614ce18928c80f211b9012d904cae07e9
-        sourceBlobDigest: sha256:917f783532db81e8d7bd5dc27b194431fc3ff19759dfc32d740e61307c281584
+        sourceRevisionDigest: sha256:00d024558a05b3efdf72d1e2e3fbe7070c818b431d7f3f054b0418ba11990f53
+        sourceBlobDigest: sha256:7c35756702030633a8d2ebb1d378d34f883126319b06edcd798ac7bb2fddb189
         outLocation: ./accounting
     finance:
         source: source1

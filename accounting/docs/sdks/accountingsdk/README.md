@@ -1,7 +1,3 @@
 # AccountingSDK
 
-
 ## Overview
-
-### Available Operations
-

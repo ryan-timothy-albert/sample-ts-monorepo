@@ -1,5 +1,15 @@
 # ListPetsResponseResult
 
+## Example Usage
+
+```typescript
+import { ListPetsResponseResult } from "ryan-accounting/models/operations";
+
+let value: ListPetsResponseResult = {
+    code: 592845,
+    message: "<value>",
+};
+```
 
 ## Supported Types
 

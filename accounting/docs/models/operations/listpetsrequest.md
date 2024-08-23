@@ -1,5 +1,12 @@
 # ListPetsRequest
 
+## Example Usage
+
+```typescript
+import { ListPetsRequest } from "ryan-accounting/models/operations";
+
+let value: ListPetsRequest = {};
+```
 
 ## Fields
 
