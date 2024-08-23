@@ -168,3 +168,13 @@ Based on:
 - [typescript v0.1.2] accounting
 ### Releases
 - [NPM v0.1.2] https://www.npmjs.com/package/ryan-accounting/v/0.1.2 - accounting
+
+## 2024-08-23 16:11:01
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.378.0 (2.404.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.2.0] accounting
+### Releases
+- [NPM v0.2.0] https://www.npmjs.com/package/ryan-accounting/v/0.2.0 - accounting

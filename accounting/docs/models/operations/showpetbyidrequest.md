@@ -1,5 +1,14 @@
 # ShowPetByIdRequest
 
+## Example Usage
+
+```typescript
+import { ShowPetByIdRequest } from "ryan-accounting/models/operations";
+
+let value: ShowPetByIdRequest = {
+    petId: "<value>",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,15 @@
 # ErrorT
 
+## Example Usage
+
+```typescript
+import { ErrorT } from "ryan-accounting/models/components";
+
+let value: ErrorT = {
+    code: 847252,
+    message: "<value>",
+};
+```
 
 ## Fields
 
