@@ -1,5 +1,15 @@
 # ShowPetByIdResponse
 
+## Example Usage
+
+```typescript
+import { ShowPetByIdResponse } from "ryan-lending/models/operations";
+
+let value: ShowPetByIdResponse = {
+    code: 857946,
+    message: "<value>",
+};
+```
 
 ## Supported Types
 

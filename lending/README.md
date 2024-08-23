@@ -298,6 +298,46 @@ run();
 ```
 <!-- End Retries [retries] -->
 
+<!-- Start Standalone functions [standalone-funcs] -->
+## Standalone functions
+
+All the methods listed above are available as standalone functions. These
+functions are ideal for use in applications running in the browser, serverless
+runtimes or other environments where application bundle size is a primary
+concern. When using a bundler to build your application, all unused
+functionality will be either excluded from the final bundle or tree-shaken away.
+
+To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
+
+<details>
+
+<summary>Available standalone functions</summary>
+
+- [petsCreatePets](docs/sdks/pets/README.md#createpets)
+- [petsListPets](docs/sdks/pets/README.md#listpets)
+- [petsShowPetById](docs/sdks/pets/README.md#showpetbyid)
+
+
+</details>
+<!-- End Standalone functions [standalone-funcs] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+You can setup your SDK to emit debug logs for SDK requests and responses.
+
+You can pass a logger that matches `console`'s interface as an SDK option.
+
+> [!WARNING]
+> Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
+
+```typescript
+import { LendingSDK } from "ryan-lending";
+
+const sdk = new LendingSDK({ debugLogger: console });
+```
+<!-- End Debugging [debug] -->
+
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
 # Development
