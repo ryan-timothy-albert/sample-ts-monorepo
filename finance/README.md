@@ -233,6 +233,111 @@ const sdk = new FinanceSDK({ httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
+<!-- Start Standalone functions [standalone-funcs] -->
+## Standalone functions
+
+All the methods listed above are available as standalone functions. These
+functions are ideal for use in applications running in the browser, serverless
+runtimes or other environments where application bundle size is a primary
+concern. When using a bundler to build your application, all unused
+functionality will be either excluded from the final bundle or tree-shaken away.
+
+To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
+
+<details>
+
+<summary>Available standalone functions</summary>
+
+- [petsCreatePets](docs/sdks/pets/README.md#createpets)
+- [petsListPets](docs/sdks/pets/README.md#listpets)
+- [petsShowPetById](docs/sdks/pets/README.md#showpetbyid)
+
+
+</details>
+<!-- End Standalone functions [standalone-funcs] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+```typescript
+import { FinanceSDK } from "ryan-finance";
+
+const financeSDK = new FinanceSDK();
+
+async function run() {
+    const result = await financeSDK.pets.listPets(
+        {},
+        {
+            retries: {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 1,
+                    maxInterval: 50,
+                    exponent: 1.1,
+                    maxElapsedTime: 100,
+                },
+                retryConnectionErrors: false,
+            },
+        }
+    );
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+```typescript
+import { FinanceSDK } from "ryan-finance";
+
+const financeSDK = new FinanceSDK({
+    retryConfig: {
+        strategy: "backoff",
+        backoff: {
+            initialInterval: 1,
+            maxInterval: 50,
+            exponent: 1.1,
+            maxElapsedTime: 100,
+        },
+        retryConnectionErrors: false,
+    },
+});
+
+async function run() {
+    const result = await financeSDK.pets.listPets({});
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+<!-- End Retries [retries] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+You can setup your SDK to emit debug logs for SDK requests and responses.
+
+You can pass a logger that matches `console`'s interface as an SDK option.
+
+> [!WARNING]
+> Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
+
+```typescript
+import { FinanceSDK } from "ryan-finance";
+
+const sdk = new FinanceSDK({ debugLogger: console });
+```
+<!-- End Debugging [debug] -->
+
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
 # Development

@@ -1,7 +1,3 @@
 # FinanceSDK
 
-
 ## Overview
-
-### Available Operations
-
