@@ -1,7 +1,7 @@
 {
   "name": "ryan-accounting",
-  "version": "0.2.0",
-  "author": "ryan-timothy-albert",
+  "version": "0.2.1",
+  "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,
   "repository": {
