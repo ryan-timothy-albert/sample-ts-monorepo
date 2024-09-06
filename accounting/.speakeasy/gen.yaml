@@ -18,7 +18,8 @@ typescript:
     devDependencies: {}
     peerDependencies: {}
   additionalPackageJSON:
-    prepare: "true"
+    scripts:
+      prepare: "true"
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   enumFormat: union
