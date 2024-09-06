@@ -18,8 +18,7 @@ typescript:
     devDependencies: {}
     peerDependencies: {}
   additionalPackageJSON:
-    license: UNLICENSED
-    prepare: npm run build && true
+    prepare: "true"
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   enumFormat: union
