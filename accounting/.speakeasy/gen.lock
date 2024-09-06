@@ -3,10 +3,10 @@ id: de44aa14-d51e-4f37-b22e-356d78ca0ebc
 management:
   docChecksum: 1bdb7a6f8bf3995d4b40475228403253
   docVersion: 1.0.0
-  speakeasyVersion: 1.385.0
-  generationVersion: 2.407.2
-  releaseVersion: 0.2.2
-  configChecksum: 300a1be6e0b5be0de3dd36b89d94298f
+  speakeasyVersion: 1.390.7
+  generationVersion: 2.409.8
+  releaseVersion: 0.3.0
+  configChecksum: 879dd3c1988cd08535a555f32ec5f653
   repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
   repoSubDirectory: accounting
   installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/accounting
@@ -14,7 +14,7 @@ management:
 features:
   typescript:
     additionalDependencies: 0.1.0
-    core: 3.14.2
+    core: 3.16.1
     defaultEnabledRetries: 0.1.0
     envVarSecurityUsage: 0.1.1
     globalSecurityCallbacks: 0.1.0
@@ -40,6 +40,7 @@ generatedFiles:
   - src/lib/config.ts
   - src/lib/dlv.ts
   - src/lib/encodings.ts
+  - src/lib/files.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
   - src/lib/logger.ts
@@ -61,6 +62,7 @@ generatedFiles:
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts
+  - src/types/streams.ts
   - tsconfig.json
   - src/models/operations/listpets.ts
   - src/models/operations/showpetbyid.ts

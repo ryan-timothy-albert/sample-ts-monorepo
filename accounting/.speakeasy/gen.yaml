@@ -12,11 +12,14 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 typescript:
-  version: 0.2.2
+  version: 0.3.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
+  additionalPackageJSON:
+    license: UNLICENSED
+    prepare: npm run build && true
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   enumFormat: union
@@ -30,9 +33,6 @@ typescript:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
-  additionalPackageJSON:
-    license: UNLICENSED
-    prepare: "npm run build && true"
   maxMethodParams: 0
   methodArguments: require-security-and-request
   moduleFormat: commonjs

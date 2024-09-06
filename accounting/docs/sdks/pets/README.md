@@ -22,7 +22,7 @@ const accountingSDK = new AccountingSDK();
 
 async function run() {
   const result = await accountingSDK.pets.listPets({});
-
+  
   // Handle the result
   console.log(result)
 }
@@ -94,7 +94,7 @@ async function run() {
     id: 596804,
     name: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -168,7 +168,7 @@ async function run() {
   const result = await accountingSDK.pets.showPetById({
     petId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
