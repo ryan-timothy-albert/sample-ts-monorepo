@@ -17,7 +17,6 @@ typescript:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
-  additionalPackageJSON: {}
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   enumFormat: union
