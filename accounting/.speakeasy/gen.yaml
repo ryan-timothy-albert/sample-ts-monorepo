@@ -31,6 +31,9 @@ typescript:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
+  additionalPackageJSON:
+    license: UNLICENSED
+    prepare: "npm run build && true"
   maxMethodParams: 0
   methodArguments: require-security-and-request
   moduleFormat: commonjs
