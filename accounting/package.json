@@ -1,9 +1,10 @@
 {
   "name": "ryan-accounting",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Speakeasy",
-  "license": "UNLICENSED",
-  "prepare": "npm run build && true",
+  "scripts": {
+    "prepare": "true"
+  },
   "main": "./index.js",
   "sideEffects": false,
   "repository": {
