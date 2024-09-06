@@ -17,7 +17,8 @@ typescript:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
-  additionalPackageJSON: {}
+  additionalPackageJSON:
+    scripts: {}
   author: ryan-timothy-albert
   clientServerStatusCodesAsErrors: true
   enumFormat: union
