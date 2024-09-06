@@ -130,6 +130,9 @@ async function run() {
     let result;
     try {
         result = await accountingSDK.pets.listPets({});
+
+        // Handle the result
+        console.log(result);
     } catch (err) {
         switch (true) {
             case err instanceof SDKValidationError: {
@@ -144,9 +147,6 @@ async function run() {
             }
         }
     }
-
-    // Handle the result
-    console.log(result);
 }
 
 run();
