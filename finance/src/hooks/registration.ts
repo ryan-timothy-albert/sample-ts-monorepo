@@ -1,3 +1,4 @@
+import { CustomHeaderHook } from "./customHeader.js";
 import { Hooks } from "./types.js";
 
 /*
