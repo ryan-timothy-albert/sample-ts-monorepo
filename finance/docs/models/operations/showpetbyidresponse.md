@@ -6,8 +6,8 @@
 import { ShowPetByIdResponse } from "ryan-finance/models/operations";
 
 let value: ShowPetByIdResponse = {
-    code: 857946,
-    message: "<value>",
+  code: 857946,
+  message: "<value>",
 };
 ```
 

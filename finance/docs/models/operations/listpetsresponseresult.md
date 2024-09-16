@@ -6,8 +6,8 @@
 import { ListPetsResponseResult } from "ryan-finance/models/operations";
 
 let value: ListPetsResponseResult = {
-    code: 592845,
-    message: "<value>",
+  code: 592845,
+  message: "<value>",
 };
 ```
 

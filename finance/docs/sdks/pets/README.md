@@ -22,7 +22,7 @@ const financeSDK = new FinanceSDK();
 
 async function run() {
   const result = await financeSDK.pets.listPets({});
-
+  
   // Handle the result
   console.log(result)
 }
@@ -94,7 +94,7 @@ async function run() {
     id: 596804,
     name: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -116,7 +116,7 @@ const financeSDK = new FinanceSDKCore();
 
 async function run() {
   const res = await petsCreatePets(financeSDK, {
-    id: 589113,
+    id: 596804,
     name: "<value>",
   });
 
@@ -168,7 +168,7 @@ async function run() {
   const result = await financeSDK.pets.showPetById({
     petId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }

@@ -1,7 +1,8 @@
 {
   "name": "ryan-finance",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "ryan-timothy-albert",
+  "scripts": {},
   "main": "./index.js",
   "sideEffects": false,
   "repository": {
@@ -12,7 +13,7 @@
   "scripts": {
     "lint": "eslint --max-warnings=0 src",
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "zod": ">= 3"

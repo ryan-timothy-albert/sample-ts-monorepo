@@ -5,10 +5,10 @@ import { FinanceSDK } from "ryan-finance";
 const financeSDK = new FinanceSDK();
 
 async function run() {
-    const result = await financeSDK.pets.listPets({});
+  const result = await financeSDK.pets.listPets({});
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();

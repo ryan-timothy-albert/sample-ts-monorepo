@@ -17,3 +17,11 @@ Based on:
 - Speakeasy CLI 1.378.0 (2.404.3) https://github.com/speakeasy-api/speakeasy
 ### Generated
 - [typescript v0.1.0] finance
+
+## 2024-09-16 01:27:00
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.396.9 (2.415.7) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.2.0] finance

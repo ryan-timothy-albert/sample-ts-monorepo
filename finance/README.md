@@ -16,8 +16,31 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 - [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/advanced-setup/publish-sdks)
 - [ ] ✨ When ready to productionize, delete this section from the README
 
+<!-- Start Summary [summary] -->
+## Summary
+
+
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [Requirements](#requirements)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Standalone functions](#standalone-functions)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Debugging](#debugging)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
+
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
 
@@ -64,10 +87,10 @@ import { FinanceSDK } from "ryan-finance";
 const financeSDK = new FinanceSDK();
 
 async function run() {
-    const result = await financeSDK.pets.listPets({});
+  const result = await financeSDK.pets.listPets({});
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -78,11 +101,17 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
+
 ### [pets](docs/sdks/pets/README.md)
 
 * [listPets](docs/sdks/pets/README.md#listpets) - List all pets
 * [createPets](docs/sdks/pets/README.md#createpets) - Create a pet
 * [showPetById](docs/sdks/pets/README.md#showpetbyid) - Info for a specific pet
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -104,26 +133,26 @@ import { SDKValidationError } from "ryan-finance/models/errors";
 const financeSDK = new FinanceSDK();
 
 async function run() {
-    let result;
-    try {
-        result = await financeSDK.pets.listPets({});
-    } catch (err) {
-        switch (true) {
-            case err instanceof SDKValidationError: {
-                // Validation errors can be pretty-printed
-                console.error(err.pretty());
-                // Raw value may also be inspected
-                console.error(err.rawValue);
-                return;
-            }
-            default: {
-                throw err;
-            }
-        }
-    }
+  let result;
+  try {
+    result = await financeSDK.pets.listPets({});
 
     // Handle the result
     console.log(result);
+  } catch (err) {
+    switch (true) {
+      case (err instanceof SDKValidationError): {
+        // Validation errors can be pretty-printed
+        console.error(err.pretty());
+        // Raw value may also be inspected
+        console.error(err.rawValue);
+        return;
+      }
+      default: {
+        throw err;
+      }
+    }
+  }
 }
 
 run();
@@ -146,14 +175,14 @@ You can override the default server globally by passing a server index to the `s
 import { FinanceSDK } from "ryan-finance";
 
 const financeSDK = new FinanceSDK({
-    serverIdx: 0,
+  serverIdx: 0,
 });
 
 async function run() {
-    const result = await financeSDK.pets.listPets({});
+  const result = await financeSDK.pets.listPets({});
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -169,14 +198,14 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { FinanceSDK } from "ryan-finance";
 
 const financeSDK = new FinanceSDK({
-    serverURL: "http://petstore.swagger.io/v1",
+  serverURL: "http://petstore.swagger.io/v1",
 });
 
 async function run() {
-    const result = await financeSDK.pets.listPets({});
+  const result = await financeSDK.pets.listPets({});
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -268,24 +297,21 @@ import { FinanceSDK } from "ryan-finance";
 const financeSDK = new FinanceSDK();
 
 async function run() {
-    const result = await financeSDK.pets.listPets(
-        {},
-        {
-            retries: {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1,
-                    maxInterval: 50,
-                    exponent: 1.1,
-                    maxElapsedTime: 100,
-                },
-                retryConnectionErrors: false,
-            },
-        }
-    );
+  const result = await financeSDK.pets.listPets({}, {
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
+      },
+      retryConnectionErrors: false,
+    },
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -297,23 +323,23 @@ If you'd like to override the default retry strategy for all operations that sup
 import { FinanceSDK } from "ryan-finance";
 
 const financeSDK = new FinanceSDK({
-    retryConfig: {
-        strategy: "backoff",
-        backoff: {
-            initialInterval: 1,
-            maxInterval: 50,
-            exponent: 1.1,
-            maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  retryConfig: {
+    strategy: "backoff",
+    backoff: {
+      initialInterval: 1,
+      maxInterval: 50,
+      exponent: 1.1,
+      maxElapsedTime: 100,
     },
+    retryConnectionErrors: false,
+  },
 });
 
 async function run() {
-    const result = await financeSDK.pets.listPets({});
+  const result = await financeSDK.pets.listPets({});
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
