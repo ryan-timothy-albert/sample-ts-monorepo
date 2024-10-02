@@ -31,6 +31,7 @@ typescript:
       errors: models/errors
       operations: models/operations
       shared: models/components
+      sdvs
       webhooks: models/webhooks
   inputModelSuffix: input
   maxMethodParams: 0
