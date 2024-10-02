@@ -31,7 +31,6 @@ typescript:
       errors: models/errors
       operations: models/operations
       shared: models/components
-      sdvs
       webhooks: models/webhooks
   inputModelSuffix: input
   maxMethodParams: 0
@@ -40,5 +39,5 @@ typescript:
   outputModelSuffix: output
   packageName: ryan-accounting
   responseFormat: flat
-  templateVersion: v2
+  templateVersion: v3
   useIndexModules: true
