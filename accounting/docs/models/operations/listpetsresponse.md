@@ -6,13 +6,15 @@
 import { ListPetsResponse } from "ryan-accounting/models/operations";
 
 let value: ListPetsResponse = {
-    headers: {
-        key: ["<value>"],
-    },
-    result: {
-        code: 844266,
-        message: "<value>",
-    },
+  headers: {
+    "key": [
+      "<value>",
+    ],
+  },
+  result: {
+    code: 544883,
+    message: "<value>",
+  },
 };
 ```
 

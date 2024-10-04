@@ -5,10 +5,10 @@ import { AccountingSDK } from "ryan-accounting";
 const accountingSDK = new AccountingSDK();
 
 async function run() {
-    const result = await accountingSDK.pets.listPets({});
+  const result = await accountingSDK.pets.listPets({});
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();

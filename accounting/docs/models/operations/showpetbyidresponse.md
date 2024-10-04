@@ -1,27 +1,23 @@
 # ShowPetByIdResponse
 
-## Example Usage
-
-```typescript
-import { ShowPetByIdResponse } from "ryan-accounting/models/operations";
-
-let value: ShowPetByIdResponse = {
-    code: 857946,
-    message: "<value>",
-};
-```
 
 ## Supported Types
 
 ### `components.Pet`
 
 ```typescript
-const value: components.Pet = /* values here */
+const value: components.Pet = {
+  id: 423655,
+  name: "<value>",
+};
 ```
 
 ### `components.ErrorT`
 
 ```typescript
-const value: components.ErrorT = /* values here */
+const value: components.ErrorT = {
+  code: 645894,
+  message: "<value>",
+};
 ```
 

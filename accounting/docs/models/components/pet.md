@@ -6,8 +6,8 @@
 import { Pet } from "ryan-accounting/models/components";
 
 let value: Pet = {
-    id: 544883,
-    name: "<value>",
+  id: 437587,
+  name: "<value>",
 };
 ```
 
