@@ -94,7 +94,7 @@ examples:
         "200":
           application/json: []
         default:
-          application/json: {"code": 767425, "message": "<value>"}
+          application/json: {"code": 767426, "message": "<value>"}
   createPets:
     speakeasy-default-create-pets:
       requestBody:
