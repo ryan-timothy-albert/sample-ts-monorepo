@@ -39,5 +39,5 @@ typescript:
   outputModelSuffix: output
   packageName: ryan-accounting
   responseFormat: flat
-  templateVersion: v3
+  templateVersion: v2
   useIndexModules: true
