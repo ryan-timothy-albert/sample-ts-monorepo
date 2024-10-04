@@ -6,7 +6,7 @@
 import { ShowPetByIdRequest } from "ryan-accounting/models/operations";
 
 let value: ShowPetByIdRequest = {
-    petId: "<value>",
+  petId: "<id>",
 };
 ```
 

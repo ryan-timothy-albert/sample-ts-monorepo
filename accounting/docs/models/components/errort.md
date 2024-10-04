@@ -6,8 +6,8 @@
 import { ErrorT } from "ryan-accounting/models/components";
 
 let value: ErrorT = {
-    code: 847252,
-    message: "<value>",
+  code: 891773,
+  message: "<value>",
 };
 ```
 
