@@ -20,7 +20,7 @@ typescript:
   compileCommand:
     - bash
     - -c
-    - ./compile.sh
+    - ./scripts/compile.sh
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   enumFormat: union
