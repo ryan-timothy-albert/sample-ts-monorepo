@@ -5,10 +5,10 @@ import { LendingSDK } from "ryan-lending";
 const lendingSDK = new LendingSDK();
 
 async function run() {
-    const result = await lendingSDK.pets.listPets({});
+  const result = await lendingSDK.pets.listPets({});
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();

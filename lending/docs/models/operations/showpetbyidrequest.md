@@ -6,7 +6,7 @@
 import { ShowPetByIdRequest } from "ryan-lending/models/operations";
 
 let value: ShowPetByIdRequest = {
-    petId: "<value>",
+  petId: "<id>",
 };
 ```
 
