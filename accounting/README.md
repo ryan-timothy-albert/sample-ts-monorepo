@@ -350,10 +350,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [petsCreatePets](docs/sdks/pets/README.md#createpets)
-- [petsListPets](docs/sdks/pets/README.md#listpets)
-- [petsShowPetById](docs/sdks/pets/README.md#showpetbyid)
-
+- [`petsCreatePets`](docs/sdks/pets/README.md#createpets) - Create a pet
+- [`petsListPets`](docs/sdks/pets/README.md#listpets) - List all pets
+- [`petsShowPetById`](docs/sdks/pets/README.md#showpetbyid) - Info for a specific pet
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

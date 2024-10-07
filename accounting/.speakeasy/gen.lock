@@ -3,10 +3,10 @@ id: de44aa14-d51e-4f37-b22e-356d78ca0ebc
 management:
   docChecksum: 1bdb7a6f8bf3995d4b40475228403253
   docVersion: 1.0.0
-  speakeasyVersion: 1.409.0
-  generationVersion: 2.429.0
-  releaseVersion: 0.4.0
-  configChecksum: d5948076ccfeec49f8444dd6a39ab2b5
+  speakeasyVersion: 1.410.3
+  generationVersion: 2.435.1
+  releaseVersion: 0.4.1
+  configChecksum: d830765f8a1b87b087d63f855a029168
   repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
   repoSubDirectory: accounting
   installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/accounting
@@ -94,7 +94,7 @@ examples:
         "200":
           application/json: []
         default:
-          application/json: {"code": dsfdsf, "message": "<value>"}
+          application/json: {"code": "dsfdsf", "message": "<value>"}
   createPets:
     speakeasy-default-create-pets:
       requestBody:

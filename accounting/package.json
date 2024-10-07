@@ -1,10 +1,7 @@
 {
   "name": "ryan-accounting",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": "Speakeasy",
-  "scripts": {
-    "prepare": "true"
-  },
   "main": "./index.js",
   "sideEffects": false,
   "repository": {
