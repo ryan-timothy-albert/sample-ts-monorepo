@@ -17,9 +17,10 @@ typescript:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
-  additionalPackageJSON:
-    scripts:
-      prepare: "true"
+  compileCommand:
+    - bash
+    - -c
+    - ./compile.sh
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   enumFormat: union
