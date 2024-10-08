@@ -73,9 +73,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
+| Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## createPets
 
@@ -147,9 +148,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
+| Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## showPetById
 
@@ -219,6 +221,6 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
+| Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| errors.SDKError | 4xx-5xx         | */*             |
