@@ -39,8 +39,10 @@ export async function petsCreatePets(
     | ConnectionError
   >
 > {
+  const input = request;
+
   const parsed = safeParse(
-    request,
+    input,
     (value) => components.Pet$outboundSchema.parse(value),
     "Input validation failed",
   );

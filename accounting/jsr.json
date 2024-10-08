@@ -2,7 +2,7 @@
 
 {
   "name": "ryan-accounting",
-  "version": "0.4.2",
+  "version": "0.5.3",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    

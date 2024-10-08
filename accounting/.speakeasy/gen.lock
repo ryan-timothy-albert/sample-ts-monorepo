@@ -3,10 +3,10 @@ id: de44aa14-d51e-4f37-b22e-356d78ca0ebc
 management:
   docChecksum: 1bdb7a6f8bf3995d4b40475228403253
   docVersion: 1.0.0
-  speakeasyVersion: 1.406.0
-  generationVersion: 2.429.0
-  releaseVersion: 0.4.2
-  configChecksum: 584f370a1411184010d8ebce48b62010
+  speakeasyVersion: 1.404.3
+  generationVersion: 2.426.2
+  releaseVersion: 0.5.3
+  configChecksum: b2506cf212b39bb19f55f1bf96c886eb
   repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
   repoSubDirectory: accounting
   installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/accounting
@@ -14,7 +14,7 @@ management:
 features:
   typescript:
     additionalDependencies: 0.1.0
-    core: 3.18.2
+    core: 3.18.0
     defaultEnabledRetries: 0.1.0
     envVarSecurityUsage: 0.1.1
     globalSecurityCallbacks: 0.1.0
