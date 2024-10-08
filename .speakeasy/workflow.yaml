@@ -1,5 +1,5 @@
 workflowVersion: 1.0.0
-speakeasyVersion: latest
+speakeasyVersion: 1.404.3
 sources:
     source1:
         inputs:
