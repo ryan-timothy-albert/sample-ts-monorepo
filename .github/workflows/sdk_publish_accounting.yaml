@@ -5,12 +5,12 @@ permissions:
   pull-requests: write
   statuses: write
 on:
-  # push:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - accounting/.speakeasy/gen.lock
-  #     - accounting/RELEASES.md
+  push:
+    branches:
+      - main
+    paths:
+      - accounting/.speakeasy/gen.lock
+      - accounting/RELEASES.md
   workflow_dispatch:
 jobs:
   publish:
