@@ -10,7 +10,6 @@ on:
       - main
     paths:
       - accounting/.speakeasy/gen.lock
-      - accounting/RELEASES.md
   workflow_dispatch:
 jobs:
   publish:
