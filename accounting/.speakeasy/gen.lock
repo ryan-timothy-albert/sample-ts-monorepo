@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.404.3
   generationVersion: 2.426.2
-  releaseVersion: 0.5.4
-  configChecksum: f263a3ef69dd2772e598ffe8593410e4
+  releaseVersion: 0.5.5
+  configChecksum: 21bbbd7c749ae704e598646aa7ed3724
   repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
   repoSubDirectory: accounting
   installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/accounting
