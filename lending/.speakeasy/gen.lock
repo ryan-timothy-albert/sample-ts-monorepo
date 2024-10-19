@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.404.3
   generationVersion: 2.426.2
-  releaseVersion: 0.4.11
-  configChecksum: f0dc8ac325769f5794c98e0c7be32307
+  releaseVersion: 0.4.12
+  configChecksum: 2ae275eed3b8484f7c17f7aab2985c79
   repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
   repoSubDirectory: lending
   installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/lending
