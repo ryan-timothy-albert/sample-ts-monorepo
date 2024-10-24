@@ -39,10 +39,8 @@ export async function petsListPets(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.ListPetsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
