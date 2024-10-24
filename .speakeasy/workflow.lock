@@ -1,8 +1,8 @@
-speakeasyVersion: 1.404.3
+speakeasyVersion: 1.421.1
 sources:
     source1:
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:e8678ffd3b9f2b16f672ed2e81c8bfe7820737b7285d505f62dfd4fa629b38fe
+        sourceRevisionDigest: sha256:6507cee300f718432f5a22561facd3fb3d455dea6b5c19144fa54be4f75413f4
         sourceBlobDigest: sha256:7c35756702030633a8d2ebb1d378d34f883126319b06edcd798ac7bb2fddb189
         tags:
             - latest
@@ -21,11 +21,11 @@ targets:
     lending:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:e8678ffd3b9f2b16f672ed2e81c8bfe7820737b7285d505f62dfd4fa629b38fe
+        sourceRevisionDigest: sha256:6507cee300f718432f5a22561facd3fb3d455dea6b5c19144fa54be4f75413f4
         sourceBlobDigest: sha256:7c35756702030633a8d2ebb1d378d34f883126319b06edcd798ac7bb2fddb189
 workflow:
     workflowVersion: 1.0.0
-    speakeasyVersion: 1.404.3
+    speakeasyVersion: latest
     sources:
         source1:
             inputs:
