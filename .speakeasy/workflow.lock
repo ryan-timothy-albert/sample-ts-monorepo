@@ -1,8 +1,8 @@
-speakeasyVersion: 1.421.1
+speakeasyVersion: 1.421.2
 sources:
     source1:
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:6507cee300f718432f5a22561facd3fb3d455dea6b5c19144fa54be4f75413f4
+        sourceRevisionDigest: sha256:677c48eccbe2fa34b75f71cc5b3b7b2cf4b0a11bc8a21da0fecd6e99856a7cc6
         sourceBlobDigest: sha256:7c35756702030633a8d2ebb1d378d34f883126319b06edcd798ac7bb2fddb189
         tags:
             - latest
@@ -21,7 +21,7 @@ targets:
     lending:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:6507cee300f718432f5a22561facd3fb3d455dea6b5c19144fa54be4f75413f4
+        sourceRevisionDigest: sha256:677c48eccbe2fa34b75f71cc5b3b7b2cf4b0a11bc8a21da0fecd6e99856a7cc6
         sourceBlobDigest: sha256:7c35756702030633a8d2ebb1d378d34f883126319b06edcd798ac7bb2fddb189
 workflow:
     workflowVersion: 1.0.0
