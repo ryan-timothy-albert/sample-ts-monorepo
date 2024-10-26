@@ -14,10 +14,18 @@ targets:
         publish:
             npm:
                 token: $npm_token
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-code-samples
+            blocking: false
     finance:
         target: typescript
         source: source1
         output: ./finance
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-code-samples
+            blocking: false
     lending:
         target: typescript
         source: source1
@@ -25,3 +33,7 @@ targets:
         publish:
             npm:
                 token: $npm_token
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-code-samples
+            blocking: false
