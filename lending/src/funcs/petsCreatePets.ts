@@ -60,6 +60,9 @@ export async function petsCreatePets(
   const context = {
     operationID: "createPets",
     oAuth2Scopes: [],
+
+    resolvedSecurity: null,
+
     securitySource: null,
     retryConfig: options?.retries
       || client._options.retryConfig
