@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListPetsRequest = {
   /**
@@ -56,6 +59,22 @@ export namespace ListPetsRequest$ {
   export type Outbound = ListPetsRequest$Outbound;
 }
 
+export function listPetsRequestToJSON(
+  listPetsRequest: ListPetsRequest,
+): string {
+  return JSON.stringify(ListPetsRequest$outboundSchema.parse(listPetsRequest));
+}
+
+export function listPetsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListPetsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListPetsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListPetsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListPetsResponseResult$inboundSchema: z.ZodType<
   ListPetsResponseResult,
@@ -92,6 +111,24 @@ export namespace ListPetsResponseResult$ {
   export const outboundSchema = ListPetsResponseResult$outboundSchema;
   /** @deprecated use `ListPetsResponseResult$Outbound` instead. */
   export type Outbound = ListPetsResponseResult$Outbound;
+}
+
+export function listPetsResponseResultToJSON(
+  listPetsResponseResult: ListPetsResponseResult,
+): string {
+  return JSON.stringify(
+    ListPetsResponseResult$outboundSchema.parse(listPetsResponseResult),
+  );
+}
+
+export function listPetsResponseResultFromJSON(
+  jsonString: string,
+): SafeParseResult<ListPetsResponseResult, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListPetsResponseResult$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListPetsResponseResult' from JSON`,
+  );
 }
 
 /** @internal */
@@ -147,4 +184,22 @@ export namespace ListPetsResponse$ {
   export const outboundSchema = ListPetsResponse$outboundSchema;
   /** @deprecated use `ListPetsResponse$Outbound` instead. */
   export type Outbound = ListPetsResponse$Outbound;
+}
+
+export function listPetsResponseToJSON(
+  listPetsResponse: ListPetsResponse,
+): string {
+  return JSON.stringify(
+    ListPetsResponse$outboundSchema.parse(listPetsResponse),
+  );
+}
+
+export function listPetsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListPetsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListPetsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListPetsResponse' from JSON`,
+  );
 }
