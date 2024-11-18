@@ -11,8 +11,9 @@ generation:
     requestResponseComponentNamesFeb2024: true
   auth:
     oAuth2ClientCredentialsEnabled: true
+    oAuth2PasswordEnabled: false
 typescript:
-  version: 0.6.0
+  version: 0.7.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -24,6 +25,7 @@ typescript:
     - bash
     - -c
     - ./scripts/compile.sh
+  defaultErrorName: SDKError
   enumFormat: union
   flattenGlobalSecurity: true
   flatteningOrder: body-first
