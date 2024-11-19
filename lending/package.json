@@ -1,6 +1,6 @@
 {
   "name": "ryan-lending",
-  "version": "0.6.13",
+  "version": "0.6.14",
   "author": "ryan-timothy-albert",
   "main": "./index.js",
   "sideEffects": false,
