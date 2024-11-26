@@ -1,3 +1,5 @@
 # LendingSDK
 
 ## Overview
+
+### Available Operations
