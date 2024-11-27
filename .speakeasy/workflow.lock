@@ -1,12 +1,12 @@
-speakeasyVersion: 1.446.0
+speakeasyVersion: 1.448.0
 sources:
     source1:
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:08663567222a78a1d6f5be50ddf46ca40e3cb0fba21dec10a095d6058f8fd24f
+        sourceRevisionDigest: sha256:7953d7d07da1ca91076680317b87cba9600d1127f14f6b11cfe67dd2bda7dd0b
         sourceBlobDigest: sha256:012d4be23953adcc7552fbaf9a012f9f2ce1acb929189304bea43cccd9e8e681
         tags:
             - latest
-            - speakeasy-sdk-regen-1732582941
+            - speakeasy-sdk-regen-1732669385
             - 1.0.0
 targets:
     accounting:
@@ -24,10 +24,10 @@ targets:
     lending:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:08663567222a78a1d6f5be50ddf46ca40e3cb0fba21dec10a095d6058f8fd24f
+        sourceRevisionDigest: sha256:7953d7d07da1ca91076680317b87cba9600d1127f14f6b11cfe67dd2bda7dd0b
         sourceBlobDigest: sha256:012d4be23953adcc7552fbaf9a012f9f2ce1acb929189304bea43cccd9e8e681
-        codeSamplesNamespace: source-1-code-samples
-        codeSamplesRevisionDigest: sha256:f5bb25b082671e5f83f285edec0ffaf84cd0cb925f397edd052570896c2007a3
+        codeSamplesNamespace: source-1-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:812512ab990fe84a219ef97e68b77b7752b708dd722f35319006a90e8242517f
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -47,7 +47,7 @@ workflow:
                     token: $npm_token
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-code-samples-code-samples-code-samples
+                    location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-typescript-code-samples
                 blocking: false
         finance:
             target: typescript
@@ -55,7 +55,7 @@ workflow:
             output: ./finance
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-code-samples-code-samples
+                    location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-typescript-code-samples
                 blocking: false
         lending:
             target: typescript
@@ -66,5 +66,5 @@ workflow:
                     token: $npm_token
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-code-samples
+                    location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-typescript-code-samples
                 blocking: false

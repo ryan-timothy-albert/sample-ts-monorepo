@@ -16,7 +16,7 @@ targets:
                 token: $npm_token
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-code-samples-code-samples-code-samples
+                location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-typescript-code-samples
             blocking: false
     finance:
         target: typescript
@@ -24,7 +24,7 @@ targets:
         output: ./finance
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-code-samples-code-samples
+                location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-typescript-code-samples
             blocking: false
     lending:
         target: typescript
@@ -35,5 +35,5 @@ targets:
                 token: $npm_token
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-code-samples
+                location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-typescript-code-samples
             blocking: false
