@@ -13,7 +13,7 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
 typescript:
-  version: 0.7.0
+  version: 0.8.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -26,6 +26,7 @@ typescript:
     - -c
     - ./scripts/compile.sh
   defaultErrorName: SDKError
+  enableReactQuery: false
   enumFormat: union
   flattenGlobalSecurity: true
   flatteningOrder: body-first
