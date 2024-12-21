@@ -979,3 +979,13 @@ Based on:
 - [typescript v0.7.25] lending
 ### Releases
 - [NPM v0.7.25] https://www.npmjs.com/package/ryan-lending/v/0.7.25 - lending
+
+## 2024-12-21 00:58:04
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.459.2 (2.483.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.7.26] lending
+### Releases
+- [NPM v0.7.26] https://www.npmjs.com/package/ryan-lending/v/0.7.26 - lending
