@@ -2,7 +2,7 @@
 
 {
   "name": "ryan-lending",
-  "version": "0.7.42",
+  "version": "0.7.43",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    
