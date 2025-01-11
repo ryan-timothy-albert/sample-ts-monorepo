@@ -3,10 +3,10 @@ id: 7caa457a-d738-4713-931d-4e4f19784732
 management:
   docChecksum: 1bdb7a6f8bf3995d4b40475228403253
   docVersion: 1.0.0
-  speakeasyVersion: 1.467.0
+  speakeasyVersion: 1.468.1
   generationVersion: 2.492.3
-  releaseVersion: 0.7.46
-  configChecksum: 11359ca6ebf80801384ea509e5ab501c
+  releaseVersion: 0.7.47
+  configChecksum: fbb2cbb960122880350d50410090650b
   repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
   repoSubDirectory: lending
   installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/lending
