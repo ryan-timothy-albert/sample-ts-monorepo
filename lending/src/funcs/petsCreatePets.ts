@@ -106,7 +106,8 @@ export async function petsCreatePets(
     | ConnectionError
   >(
     M.nil(201, components.ErrorT$inboundSchema.optional()),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
     M.json("default", components.ErrorT$inboundSchema.optional()),
   )(response);
   if (!result.ok) {

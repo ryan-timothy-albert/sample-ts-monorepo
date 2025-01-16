@@ -117,7 +117,8 @@ export async function petsListPets(
       hdrs: true,
       key: "Result",
     }),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
     M.json("default", operations.ListPetsResponse$inboundSchema, {
       key: "Result",
     }),

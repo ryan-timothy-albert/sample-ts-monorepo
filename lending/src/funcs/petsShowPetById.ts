@@ -112,7 +112,8 @@ export async function petsShowPetById(
     | ConnectionError
   >(
     M.json(200, operations.ShowPetByIdResponse$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
     M.json("default", operations.ShowPetByIdResponse$inboundSchema),
   )(response);
   if (!result.ok) {
