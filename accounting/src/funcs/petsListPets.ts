@@ -5,6 +5,7 @@
 import { AccountingSDKCore } from "../core.js";
 import { encodeFormQuery } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
@@ -56,9 +57,9 @@ export async function petsListPets(
     "limit": payload.limit,
   });
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
-  });
+  }));
 
   const context = {
     operationID: "listPets",
@@ -75,6 +76,7 @@ export async function petsListPets(
 
   const requestRes = client._createRequest(context, {
     method: "GET",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -115,7 +117,8 @@ export async function petsListPets(
       hdrs: true,
       key: "Result",
     }),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
     M.json("default", operations.ListPetsResponse$inboundSchema, {
       key: "Result",
     }),
