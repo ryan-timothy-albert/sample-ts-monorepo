@@ -2,20 +2,20 @@ speakeasyVersion: 1.481.1
 sources:
     source1:
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:6119f83a09557215a4ee2300d9e0c0103923989d08d47e63ffe192011c203722
+        sourceRevisionDigest: sha256:0f011c5acf553c0172391ba2f13d17f998db20a3993b9418a0547f73f04c642f
         sourceBlobDigest: sha256:012d4be23953adcc7552fbaf9a012f9f2ce1acb929189304bea43cccd9e8e681
         tags:
             - latest
-            - speakeasy-sdk-regen-1738544339
+            - speakeasy-sdk-regen-1733363298
             - 1.0.0
 targets:
     accounting:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:8f46105fc5dd785cfdeadeb5de21593b87179ec13c526bf2711ef03b8c6baa26
+        sourceRevisionDigest: sha256:0f011c5acf553c0172391ba2f13d17f998db20a3993b9418a0547f73f04c642f
         sourceBlobDigest: sha256:012d4be23953adcc7552fbaf9a012f9f2ce1acb929189304bea43cccd9e8e681
         codeSamplesNamespace: source-1-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:45da7a73cae3ab6202e99116f6edca69b266aedd01afc3d6ddd2436eceb0c1f5
+        codeSamplesRevisionDigest: sha256:ba6bba22f33277b33c8eabd2f2a9dc6cdf8a71af325cbf87b105dbe275b1073d
     finance:
         source: source1
         sourceNamespace: source-1
