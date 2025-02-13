@@ -65,6 +65,7 @@ export async function petsShowPetById(
   }));
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "showPetById",
     oAuth2Scopes: [],
 

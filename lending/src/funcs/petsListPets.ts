@@ -62,6 +62,7 @@ export async function petsListPets(
   }));
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "listPets",
     oAuth2Scopes: [],
 
