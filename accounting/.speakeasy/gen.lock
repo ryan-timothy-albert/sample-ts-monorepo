@@ -3,10 +3,10 @@ id: de44aa14-d51e-4f37-b22e-356d78ca0ebc
 management:
   docChecksum: 1bdb7a6f8bf3995d4b40475228403253
   docVersion: 1.0.0
-  speakeasyVersion: 1.451.4
-  generationVersion: 2.471.2
-  releaseVersion: 0.8.0
-  configChecksum: f6cf8a118bef5e4b68840ebe86ba92e0
+  speakeasyVersion: 1.490.0
+  generationVersion: 2.512.0
+  releaseVersion: 0.9.0
+  configChecksum: a397230171df33e3e6939082d7122aa4
   repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
   repoSubDirectory: accounting
   installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/accounting
@@ -14,7 +14,7 @@ management:
 features:
   typescript:
     additionalDependencies: 0.1.0
-    core: 3.18.8
+    core: 3.19.0
     defaultEnabledRetries: 0.1.0
     envVarSecurityUsage: 0.1.2
     globalSecurityCallbacks: 0.1.0
@@ -23,10 +23,8 @@ features:
     retries: 2.83.0
     sdkHooks: 0.2.0
 generatedFiles:
-  - .eslintrc.cjs
   - .gitattributes
   - .npmignore
-  - CONTRIBUTING.md
   - FUNCTIONS.md
   - RUNTIMES.md
   - USAGE.md
@@ -40,6 +38,7 @@ generatedFiles:
   - docs/models/operations/showpetbyidresponse.md
   - docs/sdks/accountingsdk/README.md
   - docs/sdks/pets/README.md
+  - eslint.config.mjs
   - jsr.json
   - package.json
   - src/core.ts
@@ -88,28 +87,15 @@ generatedFiles:
   - src/types/streams.ts
   - tsconfig.json
 examples:
-  listPets:
-    speakeasy-default-list-pets:
-      responses:
-        "200":
-          application/json: []
-        default:
-          application/json: {"code": "dsfdsf", "message": "<value>"}
+  listPets: {}
   createPets:
     speakeasy-default-create-pets:
       requestBody:
         application/json: {"id": 596804, "name": "<value>"}
-      responses:
-        default:
-          application/json: {"code": 589113, "message": "<value>"}
   showPetById:
     speakeasy-default-show-pet-by-id:
       parameters:
         path:
           petId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": 763078, "name": "<value>"}
-        default:
-          application/json: {"code": 743784, "message": "<value>"}
+examplesVersion: 1.0.0
 generatedTests: {}

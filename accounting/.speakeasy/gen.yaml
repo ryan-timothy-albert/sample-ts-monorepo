@@ -9,11 +9,12 @@ generation:
     nameResolutionDec2023: true
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
+    securityFeb2025: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
 typescript:
-  version: 0.8.0
+  version: 0.9.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -26,6 +27,7 @@ typescript:
     - -c
     - ./scripts/compile.sh
   defaultErrorName: SDKError
+  enableCustomCodeRegions: false
   enableReactQuery: false
   enumFormat: union
   flattenGlobalSecurity: true
