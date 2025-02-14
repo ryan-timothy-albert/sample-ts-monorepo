@@ -20,15 +20,27 @@ specific category of applications.
 
 ```typescript
 import { AccountingSDKCore } from "ryan-accounting/core.js";
-import { petsListPets } from "ryan-accounting/funcs/petsListPets.js";
+import { petPetsStoreMonday } from "ryan-accounting/funcs/petPetsStoreMonday.js";
 import { SDKValidationError } from "ryan-accounting/models/errors/sdkvalidationerror.js";
 
 // Use `AccountingSDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const accountingSDK = new AccountingSDKCore();
+const accountingSDK = new AccountingSDKCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const res = await petsListPets(accountingSDK, {});
+  const res = await petPetsStoreMonday(accountingSDK, {
+    id: 10,
+    name: "doggie",
+    category: {
+      id: 1,
+      name: "Dogs",
+    },
+    photoUrls: [
+      "<value>",
+    ],
+  });
 
   switch (true) {
     case res.ok:
