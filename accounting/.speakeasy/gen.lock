@@ -5,8 +5,8 @@ management:
   docVersion: 4.0.0
   speakeasyVersion: 1.492.0
   generationVersion: 2.512.4
-  releaseVersion: 0.9.0
-  configChecksum: 37aeb01a768f130beba42b6b33ff9394
+  releaseVersion: 0.9.1
+  configChecksum: 77ff6ded0c6d1cc21db45fb19dadffe5
   repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
   repoSubDirectory: accounting
   installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/accounting
@@ -339,6 +339,7 @@ examples:
           application/json: {"status": 401, "error": "Unauthorized"}
         "404":
           application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
+        "200": {}
   placeOrder:
     speakeasy-default-place-order:
       requestBody:
@@ -401,6 +402,7 @@ examples:
           application/json: {"status": 401, "error": "Unauthorized"}
         "404":
           application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
+        "200": {}
   logoutUser: {}
   getUserByName:
     speakeasy-default-get-user-by-name:

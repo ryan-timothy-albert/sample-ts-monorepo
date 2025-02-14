@@ -20,15 +20,27 @@ specific category of applications.
 
 ```typescript
 import { FinanceSDKCore } from "ryan-finance/core.js";
-import { petsListPets } from "ryan-finance/funcs/petsListPets.js";
+import { petPetsStoreMonday } from "ryan-finance/funcs/petPetsStoreMonday.js";
 import { SDKValidationError } from "ryan-finance/models/errors/sdkvalidationerror.js";
 
 // Use `FinanceSDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const financeSDK = new FinanceSDKCore();
+const financeSDK = new FinanceSDKCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const res = await petsListPets(financeSDK, {});
+  const res = await petPetsStoreMonday(financeSDK, {
+    id: 10,
+    name: "doggie",
+    category: {
+      id: 1,
+      name: "Dogs",
+    },
+    photoUrls: [
+      "<value>",
+    ],
+  });
 
   switch (true) {
     case res.ok:
