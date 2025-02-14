@@ -1,0 +1,15 @@
+POST /pets HTTP/1.1
+Host: localhost:18080
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Connection: keep-alive
+Content-Length: 30
+Content-Type: application/json
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.8.6 2.512.4 1.0.0 ryan-lending
+X-Speakeasy-Test-Instance-Id: 2349E8FA-53AA-7FE4-5097-C43FD6B37EAC
+X-Speakeasy-Test-Name: createPets
+
+{"id":596804,"name":"<value>"}

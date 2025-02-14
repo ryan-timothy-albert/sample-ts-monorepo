@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json
+
+{"id":10,"name":"doggie","category":{"id":1,"name":"Dogs"},"photoUrls":["\u003cvalue\u003e","\u003cvalue\u003e","\u003cvalue\u003e"]}

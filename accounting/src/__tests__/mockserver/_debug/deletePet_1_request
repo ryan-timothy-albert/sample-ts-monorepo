@@ -1,0 +1,13 @@
+DELETE /pet/441876 HTTP/1.1
+Host: localhost:18080
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Api_key: <YOUR_API_KEY_HERE>
+Connection: keep-alive
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.9.1 2.512.4 4.0.0 ryan-accounting
+X-Speakeasy-Test-Instance-Id: 5EA0ADF0-837E-2E37-8889-05AF416FCEC5
+X-Speakeasy-Test-Name: deletePet
+

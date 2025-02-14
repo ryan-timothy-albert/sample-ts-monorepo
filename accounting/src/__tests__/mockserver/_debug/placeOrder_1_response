@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json
+
+{"id":10,"petId":198772,"quantity":7,"status":"approved"}

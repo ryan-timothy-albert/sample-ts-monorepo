@@ -1,0 +1,12 @@
+GET /pets/%3Cid%3E HTTP/1.1
+Host: localhost:18080
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Connection: keep-alive
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.8.6 2.512.4 1.0.0 ryan-lending
+X-Speakeasy-Test-Instance-Id: 9B255AA2-95E4-6F32-851B-77FD9F890F12
+X-Speakeasy-Test-Name: showPetById
+
