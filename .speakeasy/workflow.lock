@@ -2,19 +2,20 @@ speakeasyVersion: 1.492.0
 sources:
     source1:
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:bcf18321db9b5ca0d901936331cdae077b408561d15d40a69f0e1a5c78f88870
-        sourceBlobDigest: sha256:5dab60b1099d6cccfbe0b8e627c9ac49dfd51ff4e06e1bee021b32fe51ccc4a0
+        sourceRevisionDigest: sha256:5a5bc400ffcc6e66bf764083532196402ad40d5694d14a6ff885b0662df90944
+        sourceBlobDigest: sha256:1abad1a8292d1c78d369392b88aa5fde3e3d2bd97d03adf3d599810f5eccb229
         tags:
             - latest
-            - 1.0.0
+            - speakeasy-sdk-regen-1739494295
+            - 4.0.0
 targets:
     accounting:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:bcf18321db9b5ca0d901936331cdae077b408561d15d40a69f0e1a5c78f88870
-        sourceBlobDigest: sha256:5dab60b1099d6cccfbe0b8e627c9ac49dfd51ff4e06e1bee021b32fe51ccc4a0
+        sourceRevisionDigest: sha256:5a5bc400ffcc6e66bf764083532196402ad40d5694d14a6ff885b0662df90944
+        sourceBlobDigest: sha256:1abad1a8292d1c78d369392b88aa5fde3e3d2bd97d03adf3d599810f5eccb229
         codeSamplesNamespace: source-1-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:caa3d1fa1d124c9c0f1477d92576e4616e45d8e4376a4af376ccd9ede8a9a833
+        codeSamplesRevisionDigest: sha256:e460c3ebd0001c546576a6895a788ef5b32387708b79c8ecdc7ed7c846d59d55
     finance:
         source: source1
         sourceNamespace: source-1
@@ -35,7 +36,7 @@ workflow:
     sources:
         source1:
             inputs:
-                - location: https://raw.githubusercontent.com/OAI/OpenAPI-Specification/refs/heads/main/tests/v3.0/pass/petstore.yaml
+                - location: openapi.yaml
             registry:
                 location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1
     targets:
