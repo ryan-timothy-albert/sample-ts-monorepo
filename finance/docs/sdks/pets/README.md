@@ -24,7 +24,7 @@ async function run() {
   const result = await financeSDK.pets.listPets({});
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -52,7 +52,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -73,10 +73,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## createPets
 
@@ -96,7 +95,7 @@ async function run() {
   });
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -116,7 +115,7 @@ const financeSDK = new FinanceSDKCore();
 
 async function run() {
   const res = await petsCreatePets(financeSDK, {
-    id: 589113,
+    id: 596804,
     name: "<value>",
   });
 
@@ -127,7 +126,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -148,10 +147,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## showPetById
 
@@ -166,11 +164,11 @@ const financeSDK = new FinanceSDK();
 
 async function run() {
   const result = await financeSDK.pets.showPetById({
-    petId: "<value>",
+    petId: "<id>",
   });
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -190,7 +188,7 @@ const financeSDK = new FinanceSDKCore();
 
 async function run() {
   const res = await petsShowPetById(financeSDK, {
-    petId: "<value>",
+    petId: "<id>",
   });
 
   if (!res.ok) {
@@ -200,7 +198,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -221,6 +219,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

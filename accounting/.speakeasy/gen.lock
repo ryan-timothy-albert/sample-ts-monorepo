@@ -3,10 +3,10 @@ id: de44aa14-d51e-4f37-b22e-356d78ca0ebc
 management:
   docChecksum: 1bdb7a6f8bf3995d4b40475228403253
   docVersion: 1.0.0
-  speakeasyVersion: 1.451.4
-  generationVersion: 2.471.2
+  speakeasyVersion: 1.492.0
+  generationVersion: 2.512.4
   releaseVersion: 0.8.0
-  configChecksum: f6cf8a118bef5e4b68840ebe86ba92e0
+  configChecksum: 1d0c48cae231b5a1065581d046ee027d
   repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
   repoSubDirectory: accounting
   installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/accounting
@@ -14,19 +14,19 @@ management:
 features:
   typescript:
     additionalDependencies: 0.1.0
-    core: 3.18.8
+    core: 3.19.0
     defaultEnabledRetries: 0.1.0
     envVarSecurityUsage: 0.1.2
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.4
+    mockServer: 0.1.0
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
+    tests: 0.13.0
 generatedFiles:
-  - .eslintrc.cjs
   - .gitattributes
   - .npmignore
-  - CONTRIBUTING.md
   - FUNCTIONS.md
   - RUNTIMES.md
   - USAGE.md
@@ -40,8 +40,62 @@ generatedFiles:
   - docs/models/operations/showpetbyidresponse.md
   - docs/sdks/accountingsdk/README.md
   - docs/sdks/pets/README.md
+  - eslint.config.mjs
   - jsr.json
   - package.json
+  - src/__tests__/assertions.ts
+  - src/__tests__/files.ts
+  - src/__tests__/mockserver/Dockerfile
+  - src/__tests__/mockserver/Makefile
+  - src/__tests__/mockserver/README.md
+  - src/__tests__/mockserver/go.mod
+  - src/__tests__/mockserver/go.sum
+  - src/__tests__/mockserver/internal/handler/assert/contenttype.go
+  - src/__tests__/mockserver/internal/handler/assert/header.go
+  - src/__tests__/mockserver/internal/handler/assert/parameter.go
+  - src/__tests__/mockserver/internal/handler/assert/pointer.go
+  - src/__tests__/mockserver/internal/handler/assert/security.go
+  - src/__tests__/mockserver/internal/handler/doc.go
+  - src/__tests__/mockserver/internal/handler/generated_handler.go
+  - src/__tests__/mockserver/internal/handler/generated_handlers.go
+  - src/__tests__/mockserver/internal/handler/pathgetpets.go
+  - src/__tests__/mockserver/internal/handler/pathgetpetspetid.go
+  - src/__tests__/mockserver/internal/handler/pathpostpets.go
+  - src/__tests__/mockserver/internal/handler/values/files.go
+  - src/__tests__/mockserver/internal/logging/doc.go
+  - src/__tests__/mockserver/internal/logging/formats.go
+  - src/__tests__/mockserver/internal/logging/http_file.go
+  - src/__tests__/mockserver/internal/logging/http_logger.go
+  - src/__tests__/mockserver/internal/logging/levels.go
+  - src/__tests__/mockserver/internal/logging/logger.go
+  - src/__tests__/mockserver/internal/logging/oas_operation.go
+  - src/__tests__/mockserver/internal/logging/oas_operation_call.go
+  - src/__tests__/mockserver/internal/sdk/models/components/error.go
+  - src/__tests__/mockserver/internal/sdk/models/components/httpmetadata.go
+  - src/__tests__/mockserver/internal/sdk/models/components/pet.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/createpets.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/listpets.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/showpetbyid.go
+  - src/__tests__/mockserver/internal/sdk/types/bigint.go
+  - src/__tests__/mockserver/internal/sdk/types/date.go
+  - src/__tests__/mockserver/internal/sdk/types/datetime.go
+  - src/__tests__/mockserver/internal/sdk/types/decimal.go
+  - src/__tests__/mockserver/internal/sdk/types/pointers.go
+  - src/__tests__/mockserver/internal/sdk/utils/json.go
+  - src/__tests__/mockserver/internal/sdk/utils/reflect.go
+  - src/__tests__/mockserver/internal/sdk/utils/sort.go
+  - src/__tests__/mockserver/internal/server/doc.go
+  - src/__tests__/mockserver/internal/server/generated_handlers.go
+  - src/__tests__/mockserver/internal/server/internal_handlers.go
+  - src/__tests__/mockserver/internal/server/server.go
+  - src/__tests__/mockserver/internal/server/server_option.go
+  - src/__tests__/mockserver/internal/server/templates/log/index.html.tmpl
+  - src/__tests__/mockserver/internal/server/templates/log/operation.html.tmpl
+  - src/__tests__/mockserver/internal/server/templates/log/style.css.tmpl
+  - src/__tests__/mockserver/internal/tracking/requesttracker.go
+  - src/__tests__/mockserver/main.go
+  - src/__tests__/pets.test.ts
+  - src/__tests__/testclient.ts
   - src/core.ts
   - src/funcs/petsCreatePets.ts
   - src/funcs/petsListPets.ts
@@ -88,28 +142,18 @@ generatedFiles:
   - src/types/streams.ts
   - tsconfig.json
 examples:
-  listPets:
-    speakeasy-default-list-pets:
-      responses:
-        "200":
-          application/json: []
-        default:
-          application/json: {"code": "dsfdsf", "message": "<value>"}
+  listPets: {}
   createPets:
     speakeasy-default-create-pets:
       requestBody:
         application/json: {"id": 596804, "name": "<value>"}
-      responses:
-        default:
-          application/json: {"code": 589113, "message": "<value>"}
   showPetById:
     speakeasy-default-show-pet-by-id:
       parameters:
         path:
           petId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": 763078, "name": "<value>"}
-        default:
-          application/json: {"code": 743784, "message": "<value>"}
-generatedTests: {}
+examplesVersion: 1.0.0
+generatedTests:
+  listPets: "2025-02-13T16:24:25-08:00"
+  createPets: "2025-02-13T16:24:25-08:00"
+  showPetById: "2025-02-13T16:24:25-08:00"

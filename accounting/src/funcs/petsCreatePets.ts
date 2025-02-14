@@ -5,6 +5,7 @@
 import { AccountingSDKCore } from "../core.js";
 import { encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
@@ -52,12 +53,13 @@ export async function petsCreatePets(
 
   const path = pathToFunc("/pets")();
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
-  });
+  }));
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "createPets",
     oAuth2Scopes: [],
 
@@ -72,6 +74,7 @@ export async function petsCreatePets(
 
   const requestRes = client._createRequest(context, {
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,
@@ -104,7 +107,8 @@ export async function petsCreatePets(
     | ConnectionError
   >(
     M.nil(201, components.ErrorT$inboundSchema.optional()),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
     M.json("default", components.ErrorT$inboundSchema.optional()),
   )(response);
   if (!result.ok) {

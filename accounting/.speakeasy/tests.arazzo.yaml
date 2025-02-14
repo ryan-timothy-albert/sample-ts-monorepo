@@ -1,0 +1,40 @@
+arazzo: 1.0.0
+info:
+  title: Test Suite
+  summary: Created from /Users/ryanalbert/sample-ts-monorepo/.speakeasy/temp/registry_a6400d.yaml
+  version: 0.0.1
+sourceDescriptions:
+  - name: /Users/ryanalbert/sample-ts-monorepo/.speakeasy/temp/registry_a6400d.yaml
+    url: https://TBD.com
+    type: openapi
+workflows:
+  - workflowId: listPets
+    steps:
+      - stepId: test
+        operationId: listPets
+        successCriteria:
+          - condition: $statusCode == 200
+    x-speakeasy-test-group: pets
+  - workflowId: createPets
+    steps:
+      - stepId: test
+        operationId: createPets
+        requestBody:
+          contentType: application/json
+          payload:
+            id: 596804
+            name: <value>
+        successCriteria:
+          - condition: $statusCode == 201
+    x-speakeasy-test-group: pets
+  - workflowId: showPetById
+    steps:
+      - stepId: test
+        operationId: showPetById
+        parameters:
+          - name: petId
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+    x-speakeasy-test-group: pets

@@ -1,3 +1,7 @@
+/react-query
+/.eslintcache
+/__tests__
+/.speakeasy/reports
 /funcs
 /core.*
 /models

@@ -9,8 +9,12 @@ generation:
     nameResolutionDec2023: true
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
+    securityFeb2025: false
   auth:
     oAuth2ClientCredentialsEnabled: true
+    oAuth2PasswordEnabled: false
+  tests:
+    generateNewTests: true
 typescript:
   version: 0.1.0
   additionalDependencies:
@@ -21,8 +25,12 @@ typescript:
     scripts: {}
   author: ryan-timothy-albert
   clientServerStatusCodesAsErrors: true
+  defaultErrorName: SDKError
+  enableCustomCodeRegions: false
+  enableReactQuery: false
   enumFormat: union
   flattenGlobalSecurity: true
+  flatteningOrder: parameters-first
   imports:
     option: openapi
     paths:

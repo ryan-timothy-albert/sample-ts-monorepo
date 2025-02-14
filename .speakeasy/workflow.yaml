@@ -18,6 +18,8 @@ targets:
             registry:
                 location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-typescript-code-samples
             blocking: false
+        testing:
+            enabled: true
     finance:
         target: typescript
         source: source1
@@ -26,6 +28,8 @@ targets:
             registry:
                 location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-typescript-code-samples
             blocking: false
+        testing:
+            enabled: true
     lending:
         target: typescript
         source: source1
@@ -37,3 +41,5 @@ targets:
             registry:
                 location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-typescript-code-samples
             blocking: false
+        testing:
+            enabled: true

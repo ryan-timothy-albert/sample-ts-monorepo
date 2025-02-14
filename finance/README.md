@@ -16,8 +16,37 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 - [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/advanced-setup/publish-sdks)
 - [ ] ✨ When ready to productionize, delete this section from the README
 
+<!-- Start Summary [summary] -->
+## Summary
+
+
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [ryan-finance](#ryan-finance)
+  * [🏗 **Welcome to your new SDK!** 🏗](#welcome-to-your-new-sdk)
+  * [SDK Installation](#sdk-installation)
+  * [Requirements](#requirements)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Standalone functions](#standalone-functions)
+  * [Retries](#retries)
+  * [Debugging](#debugging)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
+
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
+
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
 
@@ -64,10 +93,10 @@ import { FinanceSDK } from "ryan-finance";
 const financeSDK = new FinanceSDK();
 
 async function run() {
-    const result = await financeSDK.pets.listPets({});
+  const result = await financeSDK.pets.listPets({});
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -78,24 +107,27 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
+
 ### [pets](docs/sdks/pets/README.md)
 
 * [listPets](docs/sdks/pets/README.md#listpets) - List all pets
 * [createPets](docs/sdks/pets/README.md#createpets) - Create a pet
 * [showPetById](docs/sdks/pets/README.md#showpetbyid) - Info for a specific pet
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
+If the request fails due to, for example 4XX or 5XX status codes, it will throw a `SDKError`.
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
-
+| Error Type      | Status Code | Content Type |
+| --------------- | ----------- | ------------ |
+| errors.SDKError | 4XX, 5XX    | \*/\*        |
 
 ```typescript
 import { FinanceSDK } from "ryan-finance";
@@ -104,79 +136,73 @@ import { SDKValidationError } from "ryan-finance/models/errors";
 const financeSDK = new FinanceSDK();
 
 async function run() {
-    let result;
-    try {
-        result = await financeSDK.pets.listPets({});
-    } catch (err) {
-        switch (true) {
-            case err instanceof SDKValidationError: {
-                // Validation errors can be pretty-printed
-                console.error(err.pretty());
-                // Raw value may also be inspected
-                console.error(err.rawValue);
-                return;
-            }
-            default: {
-                throw err;
-            }
-        }
-    }
+  let result;
+  try {
+    result = await financeSDK.pets.listPets({});
 
     // Handle the result
     console.log(result);
+  } catch (err) {
+    switch (true) {
+      // The server response does not match the expected SDK schema
+      case (err instanceof SDKValidationError):
+        {
+          // Pretty-print will provide a human-readable multi-line error message
+          console.error(err.pretty());
+          // Raw value may also be inspected
+          console.error(err.rawValue);
+          return;
+        }
+        sdkerror.js;
+      // Server returned an error status code or an unknown content type
+      case (err instanceof SDKError): {
+        console.error(err.statusCode);
+        console.error(err.rawResponse.body);
+        return;
+      }
+      default: {
+        // Other errors such as network errors, see HTTPClientErrors for more details
+        throw err;
+      }
+    }
+  }
 }
 
 run();
 
 ```
+
+Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+
+In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `models/errors/httpclienterrors.ts` module:
+
+| HTTP Client Error                                    | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| RequestAbortedError                                  | HTTP request was aborted by the client               |
+| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
+| ConnectionError                                      | HTTP client was unable to make a request to a server |
+| InvalidRequestError                                  | Any input used to create a request is invalid        |
+| UnexpectedClientError                                | Unrecognised or unexpected error                     |
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
-
-You can override the default server globally by passing a server index to the `serverIdx` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `http://petstore.swagger.io/v1` | None |
-
-```typescript
-import { FinanceSDK } from "ryan-finance";
-
-const financeSDK = new FinanceSDK({
-    serverIdx: 0,
-});
-
-async function run() {
-    const result = await financeSDK.pets.listPets({});
-
-    // Handle the result
-    console.log(result);
-}
-
-run();
-
-```
-
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
-
+The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { FinanceSDK } from "ryan-finance";
 
 const financeSDK = new FinanceSDK({
-    serverURL: "http://petstore.swagger.io/v1",
+  serverURL: "http://petstore.swagger.io/v1",
 });
 
 async function run() {
-    const result = await financeSDK.pets.listPets({});
+  const result = await financeSDK.pets.listPets({});
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -248,10 +274,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [petsCreatePets](docs/sdks/pets/README.md#createpets)
-- [petsListPets](docs/sdks/pets/README.md#listpets)
-- [petsShowPetById](docs/sdks/pets/README.md#showpetbyid)
-
+- [`petsCreatePets`](docs/sdks/pets/README.md#createpets) - Create a pet
+- [`petsListPets`](docs/sdks/pets/README.md#listpets) - List all pets
+- [`petsShowPetById`](docs/sdks/pets/README.md#showpetbyid) - Info for a specific pet
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -268,24 +293,21 @@ import { FinanceSDK } from "ryan-finance";
 const financeSDK = new FinanceSDK();
 
 async function run() {
-    const result = await financeSDK.pets.listPets(
-        {},
-        {
-            retries: {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1,
-                    maxInterval: 50,
-                    exponent: 1.1,
-                    maxElapsedTime: 100,
-                },
-                retryConnectionErrors: false,
-            },
-        }
-    );
+  const result = await financeSDK.pets.listPets({}, {
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
+      },
+      retryConnectionErrors: false,
+    },
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -297,23 +319,23 @@ If you'd like to override the default retry strategy for all operations that sup
 import { FinanceSDK } from "ryan-finance";
 
 const financeSDK = new FinanceSDK({
-    retryConfig: {
-        strategy: "backoff",
-        backoff: {
-            initialInterval: 1,
-            maxInterval: 50,
-            exponent: 1.1,
-            maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  retryConfig: {
+    strategy: "backoff",
+    backoff: {
+      initialInterval: 1,
+      maxInterval: 50,
+      exponent: 1.1,
+      maxElapsedTime: 100,
     },
+    retryConnectionErrors: false,
+  },
 });
 
 async function run() {
-    const result = await financeSDK.pets.listPets({});
+  const result = await financeSDK.pets.listPets({});
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();

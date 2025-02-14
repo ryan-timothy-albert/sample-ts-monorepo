@@ -1,33 +1,34 @@
-speakeasyVersion: 1.490.0
+speakeasyVersion: 1.492.0
 sources:
     source1:
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:a6e6b59095f59365ec8556ba87f970cd526d2387ad3e005d69d1b9c3acf83fee
-        sourceBlobDigest: sha256:012d4be23953adcc7552fbaf9a012f9f2ce1acb929189304bea43cccd9e8e681
+        sourceRevisionDigest: sha256:bcf18321db9b5ca0d901936331cdae077b408561d15d40a69f0e1a5c78f88870
+        sourceBlobDigest: sha256:5dab60b1099d6cccfbe0b8e627c9ac49dfd51ff4e06e1bee021b32fe51ccc4a0
         tags:
             - latest
-            - speakeasy-sdk-regen-1739408358
             - 1.0.0
 targets:
     accounting:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:8f46105fc5dd785cfdeadeb5de21593b87179ec13c526bf2711ef03b8c6baa26
-        sourceBlobDigest: sha256:012d4be23953adcc7552fbaf9a012f9f2ce1acb929189304bea43cccd9e8e681
+        sourceRevisionDigest: sha256:bcf18321db9b5ca0d901936331cdae077b408561d15d40a69f0e1a5c78f88870
+        sourceBlobDigest: sha256:5dab60b1099d6cccfbe0b8e627c9ac49dfd51ff4e06e1bee021b32fe51ccc4a0
         codeSamplesNamespace: source-1-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:45da7a73cae3ab6202e99116f6edca69b266aedd01afc3d6ddd2436eceb0c1f5
+        codeSamplesRevisionDigest: sha256:caa3d1fa1d124c9c0f1477d92576e4616e45d8e4376a4af376ccd9ede8a9a833
     finance:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:429d7585fe3e0d880661c3f9df4fcb1705c94bf4bf705fd516aaa2a030a93dd1
-        sourceBlobDigest: sha256:7c35756702030633a8d2ebb1d378d34f883126319b06edcd798ac7bb2fddb189
+        sourceRevisionDigest: sha256:bcf18321db9b5ca0d901936331cdae077b408561d15d40a69f0e1a5c78f88870
+        sourceBlobDigest: sha256:5dab60b1099d6cccfbe0b8e627c9ac49dfd51ff4e06e1bee021b32fe51ccc4a0
+        codeSamplesNamespace: source-1-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:8e917a72054a364d10dbfcd204887bed2b709d577f2043bf13cd151db51a7819
     lending:
         source: source1
         sourceNamespace: source-1
-        sourceRevisionDigest: sha256:a6e6b59095f59365ec8556ba87f970cd526d2387ad3e005d69d1b9c3acf83fee
-        sourceBlobDigest: sha256:012d4be23953adcc7552fbaf9a012f9f2ce1acb929189304bea43cccd9e8e681
+        sourceRevisionDigest: sha256:bcf18321db9b5ca0d901936331cdae077b408561d15d40a69f0e1a5c78f88870
+        sourceBlobDigest: sha256:5dab60b1099d6cccfbe0b8e627c9ac49dfd51ff4e06e1bee021b32fe51ccc4a0
         codeSamplesNamespace: source-1-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:aa888429e3d0fdc8d412fc9de4d695ddbd0d8f66c2c459b57f3b9f18b519820d
+        codeSamplesRevisionDigest: sha256:3e4315fd20285e1e6acdf3be652f798e1ef6f851cd9af6c6c326613ada872a89
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -49,6 +50,8 @@ workflow:
                 registry:
                     location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-typescript-code-samples
                 blocking: false
+            testing:
+                enabled: true
         finance:
             target: typescript
             source: source1
@@ -57,6 +60,8 @@ workflow:
                 registry:
                     location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-typescript-code-samples
                 blocking: false
+            testing:
+                enabled: true
         lending:
             target: typescript
             source: source1
@@ -68,3 +73,5 @@ workflow:
                 registry:
                     location: registry.speakeasyapi.dev/ryan-local/ryan-telemetry/source-1-typescript-code-samples
                 blocking: false
+            testing:
+                enabled: true
