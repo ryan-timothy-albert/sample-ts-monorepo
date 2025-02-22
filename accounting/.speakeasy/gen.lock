@@ -3,10 +3,10 @@ id: de44aa14-d51e-4f37-b22e-356d78ca0ebc
 management:
   docChecksum: f2912237283867905ea48f05f9c6902f
   docVersion: 4.0.0
-  speakeasyVersion: 1.492.0
-  generationVersion: 2.512.4
-  releaseVersion: 0.9.1
-  configChecksum: 77ff6ded0c6d1cc21db45fb19dadffe5
+  speakeasyVersion: 1.501.0
+  generationVersion: 2.522.1
+  releaseVersion: 0.10.0
+  configChecksum: 84148dd5c6933dfe7f3e1a0238949195
   repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
   repoSubDirectory: accounting
   installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/accounting
@@ -15,7 +15,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.19.0
+    core: 3.21.1
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -27,7 +27,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
-    tests: 0.13.0
+    tests: 0.14.0
     uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
@@ -232,6 +232,7 @@ generatedFiles:
   - src/sdk/sdk.ts
   - src/sdk/store.ts
   - src/sdk/user.ts
+  - src/types/async.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
