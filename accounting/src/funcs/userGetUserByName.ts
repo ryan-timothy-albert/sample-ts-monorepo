@@ -22,16 +22,17 @@ import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
  * Get user by user name
  */
-export async function userGetUserByName(
+export function userGetUserByName(
   client: AccountingSDKCore,
   request: operations.GetUserByNameRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     components.User,
     | errors.ApiErrorInvalidInput
@@ -46,13 +47,42 @@ export async function userGetUserByName(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: AccountingSDKCore,
+  request: operations.GetUserByNameRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      components.User,
+      | errors.ApiErrorInvalidInput
+      | errors.ApiErrorUnauthorized
+      | errors.ApiErrorNotFound
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.GetUserByNameRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -75,7 +105,7 @@ export async function userGetUserByName(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    baseURL: options?.serverURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getUserByName",
     oAuth2Scopes: [],
 
@@ -98,7 +128,7 @@ export async function userGetUserByName(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -109,7 +139,7 @@ export async function userGetUserByName(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -138,8 +168,8 @@ export async function userGetUserByName(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

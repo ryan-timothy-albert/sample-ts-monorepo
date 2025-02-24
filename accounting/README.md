@@ -303,11 +303,45 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 ### Server Variables
 
 The default server `https://{environment}.petstore.io` contains variables and is set to `https://prod.petstore.io` by default. To override default values, the following parameters are available when initializing the SDK client instance:
- * `environment: models.ServerEnvironment`
+
+| Variable      | Parameter                               | Supported Values                           | Default  | Description                                                   |
+| ------------- | --------------------------------------- | ------------------------------------------ | -------- | ------------------------------------------------------------- |
+| `environment` | `environment: models.ServerEnvironment` | - `"prod"`<br/>- `"staging"`<br/>- `"dev"` | `"prod"` | The environment name. Defaults to the production environment. |
+
+#### Example
+
+```typescript
+import { AccountingSDK } from "ryan-accounting";
+
+const accountingSDK = new AccountingSDK({
+  environment: "dev",
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await accountingSDK.pet.petsStoreMonday({
+    id: 10,
+    name: "doggie",
+    category: {
+      id: 1,
+      name: "Dogs",
+    },
+    photoUrls: [
+      "<value>",
+    ],
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
+The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
