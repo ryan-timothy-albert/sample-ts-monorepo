@@ -25,7 +25,7 @@ func pathPostUser(dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) h
 		case "createUser[0]":
 			dir.HandlerFunc("createUser", testCreateUserCreateUser0)(w, req)
 		default:
-			http.Error(w, "Unknown test: "+test, http.StatusBadRequest)
+			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }

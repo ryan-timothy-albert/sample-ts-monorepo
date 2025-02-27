@@ -25,7 +25,7 @@ func pathGetPetFindByTags(dir *logging.HTTPFileDirectory, rt *tracking.RequestTr
 		case "findPetsByTags[0]":
 			dir.HandlerFunc("findPetsByTags", testFindPetsByTagsFindPetsByTags0)(w, req)
 		default:
-			http.Error(w, "Unknown test: "+test, http.StatusBadRequest)
+			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }

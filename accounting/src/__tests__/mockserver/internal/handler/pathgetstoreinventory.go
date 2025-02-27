@@ -23,7 +23,7 @@ func pathGetStoreInventory(dir *logging.HTTPFileDirectory, rt *tracking.RequestT
 		case "getInventory[0]":
 			dir.HandlerFunc("getInventory", testGetInventoryGetInventory0)(w, req)
 		default:
-			http.Error(w, "Unknown test: "+test, http.StatusBadRequest)
+			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
@@ -45,7 +45,8 @@ func testGetInventoryGetInventory0(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	respBody := map[string]int{
-		"key": 548814,
+		"key":  373538,
+		"key1": 961069,
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)
 

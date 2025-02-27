@@ -25,7 +25,7 @@ func pathPostStoreOrder(dir *logging.HTTPFileDirectory, rt *tracking.RequestTrac
 		case "placeOrder[0]":
 			dir.HandlerFunc("placeOrder", testPlaceOrderPlaceOrder0)(w, req)
 		default:
-			http.Error(w, "Unknown test: "+test, http.StatusBadRequest)
+			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
