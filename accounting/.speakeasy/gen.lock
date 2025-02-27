@@ -3,10 +3,10 @@ id: de44aa14-d51e-4f37-b22e-356d78ca0ebc
 management:
   docChecksum: f2912237283867905ea48f05f9c6902f
   docVersion: 4.0.0
-  speakeasyVersion: 1.492.0
-  generationVersion: 2.512.4
-  releaseVersion: 0.9.1
-  configChecksum: 77ff6ded0c6d1cc21db45fb19dadffe5
+  speakeasyVersion: 1.505.1
+  generationVersion: 2.531.0
+  releaseVersion: 0.10.0
+  configChecksum: 3f90608fec45d12a626bd32694f40b5a
   repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
   repoSubDirectory: accounting
   installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/accounting
@@ -15,7 +15,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.19.0
+    core: 3.21.3
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -23,11 +23,12 @@ features:
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
+    mcpServer: 0.3.0
     mockServer: 0.1.0
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
-    tests: 0.13.0
+    tests: 0.15.0
     uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
@@ -200,6 +201,35 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
+  - src/mcp-server/build.mts
+  - src/mcp-server/cli.ts
+  - src/mcp-server/cli/start/command.ts
+  - src/mcp-server/cli/start/impl.ts
+  - src/mcp-server/console-logger.ts
+  - src/mcp-server/mcp-server.ts
+  - src/mcp-server/resources.ts
+  - src/mcp-server/scopes.ts
+  - src/mcp-server/server.ts
+  - src/mcp-server/shared.ts
+  - src/mcp-server/tools.ts
+  - src/mcp-server/tools/petDeletePet.ts
+  - src/mcp-server/tools/petFindPetsByStatusTypes.ts
+  - src/mcp-server/tools/petFindPetsByTags.ts
+  - src/mcp-server/tools/petGetPetByIDS.ts
+  - src/mcp-server/tools/petMyNewTest.ts
+  - src/mcp-server/tools/petPetsStoreMonday.ts
+  - src/mcp-server/tools/petUploadFile.ts
+  - src/mcp-server/tools/storeDeleteOrder.ts
+  - src/mcp-server/tools/storeGetInventory.ts
+  - src/mcp-server/tools/storeGetOrderById.ts
+  - src/mcp-server/tools/storePlaceOrder.ts
+  - src/mcp-server/tools/userCreateUser.ts
+  - src/mcp-server/tools/userCreateUsersWithListInput.ts
+  - src/mcp-server/tools/userDeleteUser.ts
+  - src/mcp-server/tools/userGetUserByName.ts
+  - src/mcp-server/tools/userLoginUser.ts
+  - src/mcp-server/tools/userLogoutUser.ts
+  - src/mcp-server/tools/userUpdateUser.ts
   - src/models/components/apiresponse.ts
   - src/models/components/category.ts
   - src/models/components/index.ts
@@ -232,6 +262,7 @@ generatedFiles:
   - src/sdk/sdk.ts
   - src/sdk/store.ts
   - src/sdk/user.ts
+  - src/types/async.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -332,6 +363,9 @@ examples:
         path:
           petId: 565380
         query: {}
+      responses:
+        "200":
+          application/json: {}
   getInventory:
     speakeasy-default-get-inventory:
       responses:
@@ -339,7 +373,8 @@ examples:
           application/json: {"status": 401, "error": "Unauthorized"}
         "404":
           application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
-        "200": {}
+        "200":
+          application/json: {"key": 373538, "key1": 961069}
   placeOrder:
     speakeasy-default-place-order:
       requestBody:
@@ -402,7 +437,8 @@ examples:
           application/json: {"status": 401, "error": "Unauthorized"}
         "404":
           application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
-        "200": {}
+        "200":
+          application/json: "<value>"
   logoutUser: {}
   getUserByName:
     speakeasy-default-get-user-by-name:

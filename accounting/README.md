@@ -83,6 +83,58 @@ yarn add ryan-accounting zod
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
 ```
+
+
+
+### Model Context Protocol (MCP) Server
+
+This SDK is also an installable MCP server where the various SDK methods are
+exposed as tools that can be invoked by AI applications.
+
+> Node.js v20 or greater is required to run the MCP server.
+
+<details>
+<summary>Claude installation steps</summary>
+
+Add the following server definition to your `claude_desktop_config.json` file:
+
+```json
+{
+  "mcpServers": {
+    "AccountingSDK": {
+      "command": "npx",
+      "args": [
+        "-y", "--package", "ryan-accounting",
+        "--",
+        "mcp", "start",
+        "--api-key", "..."
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>Cursor installation steps</summary>
+
+Go to `Cursor Settings > Features > MCP Servers > Add new MCP server` and use the following settings:
+
+- Name: AccountingSDK
+- Type: `command`
+- Command:
+```sh
+npx -y --package ryan-accounting -- mcp start --api-key ... 
+```
+
+</details>
+
+For a full list of server arguments, run:
+
+```sh
+npx -y --package ryan-accounting -- mcp start --help
+```
 <!-- End SDK Installation [installation] -->
 
 <!-- Start Requirements [requirements] -->
@@ -303,11 +355,45 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 ### Server Variables
 
 The default server `https://{environment}.petstore.io` contains variables and is set to `https://prod.petstore.io` by default. To override default values, the following parameters are available when initializing the SDK client instance:
- * `environment: models.ServerEnvironment`
+
+| Variable      | Parameter                               | Supported Values                           | Default  | Description                                                   |
+| ------------- | --------------------------------------- | ------------------------------------------ | -------- | ------------------------------------------------------------- |
+| `environment` | `environment: models.ServerEnvironment` | - `"prod"`<br/>- `"staging"`<br/>- `"dev"` | `"prod"` | The environment name. Defaults to the production environment. |
+
+#### Example
+
+```typescript
+import { AccountingSDK } from "ryan-accounting";
+
+const accountingSDK = new AccountingSDK({
+  environment: "dev",
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await accountingSDK.pet.petsStoreMonday({
+    id: 10,
+    name: "doggie",
+    category: {
+      id: 1,
+      name: "Dogs",
+    },
+    photoUrls: [
+      "<value>",
+    ],
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
+The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 

@@ -25,7 +25,7 @@ func pathPutPet(dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) htt
 		case "petsStoreMonday[0]":
 			dir.HandlerFunc("petsStoreMonday", testPetsStoreMondayPetsStoreMonday0)(w, req)
 		default:
-			http.Error(w, "Unknown test: "+test, http.StatusBadRequest)
+			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }

@@ -25,7 +25,7 @@ func pathDeletePetPetID(dir *logging.HTTPFileDirectory, rt *tracking.RequestTrac
 		case "deletePet[0]":
 			dir.HandlerFunc("deletePet", testDeletePetDeletePet0)(w, req)
 		default:
-			http.Error(w, "Unknown test: "+test, http.StatusBadRequest)
+			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
