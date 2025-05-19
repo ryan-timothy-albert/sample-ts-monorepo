@@ -7,16 +7,19 @@ generation:
   useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: true
+    nameResolutionFeb2025: false
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
     securityFeb2025: false
+    sharedErrorComponentsApr2025: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
   tests:
     generateNewTests: true
+    skipResponseBodyAssertions: false
 typescript:
-  version: 0.9.1
+  version: 0.10.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -30,6 +33,7 @@ typescript:
     - ./scripts/compile.sh
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
+  enableMCPServer: true
   enableReactQuery: false
   enumFormat: union
   flattenGlobalSecurity: true
@@ -43,6 +47,7 @@ typescript:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
+  jsonpath: legacy
   maxMethodParams: 0
   methodArguments: require-security-and-request
   moduleFormat: commonjs

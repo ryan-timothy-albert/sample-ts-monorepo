@@ -130,6 +130,26 @@ async function run() {
       phone: "12345",
       userStatus: 1,
     },
+    {
+      id: 10,
+      username: "theUser",
+      firstName: "John",
+      lastName: "James",
+      email: "john@email.com",
+      password: "12345",
+      phone: "12345",
+      userStatus: 1,
+    },
+    {
+      id: 10,
+      username: "theUser",
+      firstName: "John",
+      lastName: "James",
+      email: "john@email.com",
+      password: "12345",
+      phone: "12345",
+      userStatus: 1,
+    },
   ]);
 
   // Handle the result
@@ -155,6 +175,26 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await userCreateUsersWithListInput(accountingSDK, [
+    {
+      id: 10,
+      username: "theUser",
+      firstName: "John",
+      lastName: "James",
+      email: "john@email.com",
+      password: "12345",
+      phone: "12345",
+      userStatus: 1,
+    },
+    {
+      id: 10,
+      username: "theUser",
+      firstName: "John",
+      lastName: "James",
+      email: "john@email.com",
+      password: "12345",
+      phone: "12345",
+      userStatus: 1,
+    },
     {
       id: 10,
       username: "theUser",
@@ -358,7 +398,7 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.user.getUserByName({
-    username: "Zachery_Lubowitz15",
+    username: "Edyth10",
   });
 
   // Handle the result
@@ -384,7 +424,7 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await userGetUserByName(accountingSDK, {
-    username: "Zachery_Lubowitz15",
+    username: "Edyth10",
   });
 
   if (!res.ok) {
@@ -437,7 +477,7 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   await accountingSDK.user.updateUser({
-    username: "Dandre_Hand41",
+    username: "Alison.Cassin",
     user: {
       id: 10,
       username: "theUser",
@@ -472,7 +512,7 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await userUpdateUser(accountingSDK, {
-    username: "Dandre_Hand41",
+    username: "Alison.Cassin",
     user: {
       id: 10,
       username: "theUser",
@@ -531,7 +571,7 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.user.deleteUser({
-    username: "Demetris_Schmitt",
+    username: "Rita_Schuppe",
   });
 
   // Handle the result
@@ -557,7 +597,7 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await userDeleteUser(accountingSDK, {
-    username: "Demetris_Schmitt",
+    username: "Rita_Schuppe",
   });
 
   if (!res.ok) {

@@ -7,9 +7,11 @@ import { AccountingSDK } from "../index.js";
 import { createTestHTTPClient } from "./testclient.js";
 
 test("Pet Pets Store Monday", async () => {
+  const testHttpClient = createTestHTTPClient("petsStoreMonday");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("petsStoreMonday"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 
@@ -40,9 +42,11 @@ test("Pet Pets Store Monday", async () => {
 });
 
 test("Pet My New Test", async () => {
+  const testHttpClient = createTestHTTPClient("MyNewTest");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("MyNewTest"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 
@@ -73,9 +77,11 @@ test("Pet My New Test", async () => {
 });
 
 test("Pet Find Pets By Status Types", async () => {
+  const testHttpClient = createTestHTTPClient("findPetsByStatusTypes");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("findPetsByStatusTypes"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 
@@ -122,9 +128,11 @@ test("Pet Find Pets By Status Types", async () => {
 });
 
 test("Pet Find Pets By Tags", async () => {
+  const testHttpClient = createTestHTTPClient("findPetsByTags");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("findPetsByTags"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 
@@ -148,9 +156,11 @@ test("Pet Find Pets By Tags", async () => {
 });
 
 test("Pet Get Pet By Ids", async () => {
+  const testHttpClient = createTestHTTPClient("getPetByIDS");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("getPetByIDS"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 
@@ -174,9 +184,11 @@ test("Pet Get Pet By Ids", async () => {
 });
 
 test("Pet Delete Pet", async () => {
+  const testHttpClient = createTestHTTPClient("deletePet");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("deletePet"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 
@@ -198,9 +210,11 @@ test("Pet Delete Pet", async () => {
 });
 
 test("Pet Upload File", async () => {
+  const testHttpClient = createTestHTTPClient("uploadFile");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("uploadFile"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 

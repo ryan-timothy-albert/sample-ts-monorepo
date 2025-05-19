@@ -40,7 +40,8 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
 
@@ -74,7 +75,8 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
 
@@ -134,10 +136,7 @@ async function run() {
       id: 1,
       name: "Dogs",
     },
-    photoUrls: [
-      "<value>",
-      "<value>",
-    ],
+    photoUrls: [],
   });
 
   // Handle the result
@@ -169,10 +168,7 @@ async function run() {
       id: 1,
       name: "Dogs",
     },
-    photoUrls: [
-      "<value>",
-      "<value>",
-    ],
+    photoUrls: [],
   });
 
   if (!res.ok) {
@@ -372,7 +368,7 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.pet.getPetByIDS({
-    petId: 137396,
+    petId: 327430,
   });
 
   // Handle the result
@@ -398,7 +394,7 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await petGetPetByIDS(accountingSDK, {
-    petId: 137396,
+    petId: 327430,
   });
 
   if (!res.ok) {
@@ -451,7 +447,7 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.pet.deletePet({
-    petId: 441876,
+    petId: 818965,
   });
 
   // Handle the result
@@ -477,7 +473,7 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await petDeletePet(accountingSDK, {
-    petId: 441876,
+    petId: 818965,
   });
 
   if (!res.ok) {
@@ -530,7 +526,7 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.pet.uploadFile({
-    petId: 565380,
+    petId: 150516,
   });
 
   // Handle the result
@@ -556,7 +552,7 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await petUploadFile(accountingSDK, {
-    petId: 565380,
+    petId: 150516,
   });
 
   if (!res.ok) {

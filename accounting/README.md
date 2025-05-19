@@ -83,6 +83,91 @@ yarn add ryan-accounting zod
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
 ```
+
+
+
+### Model Context Protocol (MCP) Server
+
+This SDK is also an installable MCP server where the various SDK methods are
+exposed as tools that can be invoked by AI applications.
+
+> Node.js v20 or greater is required to run the MCP server from npm.
+
+<details>
+<summary>Claude installation steps</summary>
+
+Add the following server definition to your `claude_desktop_config.json` file:
+
+```json
+{
+  "mcpServers": {
+    "AccountingSDK": {
+      "command": "npx",
+      "args": [
+        "-y", "--package", "ryan-accounting",
+        "--",
+        "mcp", "start",
+        "--api-key", "..."
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>Cursor installation steps</summary>
+
+Create a `.cursor/mcp.json` file in your project root with the following content:
+
+```json
+{
+  "mcpServers": {
+    "AccountingSDK": {
+      "command": "npx",
+      "args": [
+        "-y", "--package", "ryan-accounting",
+        "--",
+        "mcp", "start",
+        "--api-key", "..."
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+You can also run MCP servers as a standalone binary with no additional dependencies. You must pull these binaries from available Github releases:
+
+```bash
+curl -L -o mcp-server \
+    https://github.com/{org}/{repo}/releases/download/{tag}/mcp-server-bun-darwin-arm64 && \
+chmod +x mcp-server
+```
+
+If the repo is a private repo you must add your Github PAT to download a release `-H "Authorization: Bearer {GITHUB_PAT}"`.
+
+
+```json
+{
+  "mcpServers": {
+    "Todos": {
+      "command": "./DOWNLOAD/PATH/mcp-server",
+      "args": [
+        "start"
+      ]
+    }
+  }
+}
+```
+
+For a full list of server arguments, run:
+
+```sh
+npx -y --package ryan-accounting -- mcp start --help
+```
 <!-- End SDK Installation [installation] -->
 
 <!-- Start Requirements [requirements] -->
@@ -112,7 +197,8 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
 
@@ -153,7 +239,8 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
 
@@ -241,7 +328,8 @@ async function run() {
         name: "Dogs",
       },
       photoUrls: [
-        "<value>",
+        "<value 1>",
+        "<value 2>",
       ],
     });
 
@@ -303,11 +391,46 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 ### Server Variables
 
 The default server `https://{environment}.petstore.io` contains variables and is set to `https://prod.petstore.io` by default. To override default values, the following parameters are available when initializing the SDK client instance:
- * `environment: models.ServerEnvironment`
+
+| Variable      | Parameter                               | Supported Values                           | Default  | Description                                                   |
+| ------------- | --------------------------------------- | ------------------------------------------ | -------- | ------------------------------------------------------------- |
+| `environment` | `environment: models.ServerEnvironment` | - `"prod"`<br/>- `"staging"`<br/>- `"dev"` | `"prod"` | The environment name. Defaults to the production environment. |
+
+#### Example
+
+```typescript
+import { AccountingSDK } from "ryan-accounting";
+
+const accountingSDK = new AccountingSDK({
+  environment: "dev",
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await accountingSDK.pet.petsStoreMonday({
+    id: 10,
+    name: "doggie",
+    category: {
+      id: 1,
+      name: "Dogs",
+    },
+    photoUrls: [
+      "<value 1>",
+      "<value 2>",
+    ],
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
+The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -325,7 +448,8 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
 
@@ -410,7 +534,7 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.pet.uploadFile({
-    petId: 565380,
+    petId: 150516,
   });
 
   // Handle the result
@@ -444,7 +568,8 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   }, {
     retries: {
@@ -494,7 +619,8 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
 

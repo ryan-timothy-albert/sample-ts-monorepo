@@ -187,7 +187,7 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.store.getOrderById({
-    orderId: 614993,
+    orderId: 728529,
   });
 
   // Handle the result
@@ -213,7 +213,7 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await storeGetOrderById(accountingSDK, {
-    orderId: 614993,
+    orderId: 728529,
   });
 
   if (!res.ok) {
@@ -266,7 +266,7 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.store.deleteOrder({
-    orderId: 127902,
+    orderId: 690575,
   });
 
   // Handle the result
@@ -292,7 +292,7 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await storeDeleteOrder(accountingSDK, {
-    orderId: 127902,
+    orderId: 690575,
   });
 
   if (!res.ok) {

@@ -38,7 +38,8 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
 

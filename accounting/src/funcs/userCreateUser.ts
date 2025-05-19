@@ -20,6 +20,7 @@ import {
 } from "../models/errors/httpclienterrors.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -28,11 +29,11 @@ import { Result } from "../types/fp.js";
  * @remarks
  * This can only be done by the logged in user.
  */
-export async function userCreateUser(
+export function userCreateUser(
   client: AccountingSDKCore,
   request?: components.User | undefined,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     components.User,
     | SDKError
@@ -44,13 +45,39 @@ export async function userCreateUser(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: AccountingSDKCore,
+  request?: components.User | undefined,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      components.User,
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => components.User$outboundSchema.optional().parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = payload === undefined
@@ -69,7 +96,7 @@ export async function userCreateUser(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    baseURL: options?.serverURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "createUser",
     oAuth2Scopes: [],
 
@@ -92,7 +119,7 @@ export async function userCreateUser(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -103,7 +130,7 @@ export async function userCreateUser(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -122,8 +149,8 @@ export async function userCreateUser(
     M.fail("5XX"),
   )(response);
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }
