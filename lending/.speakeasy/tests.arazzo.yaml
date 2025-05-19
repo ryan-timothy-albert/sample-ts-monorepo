@@ -64,3 +64,457 @@ workflows:
               }
             type: simple
     x-speakeasy-test-group: pets
+  - workflowId: petsStoreMonday
+    steps:
+      - stepId: test
+        operationId: petsStoreMonday
+        requestBody:
+          contentType: application/json
+          payload:
+            category:
+              id: 1
+              name: Dogs
+            id: 10
+            name: doggie
+            photoUrls:
+              - <value 1>
+              - <value 2>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": 10,
+                "name": "doggie",
+                "category": {
+                  "id": 1,
+                  "name": "Dogs"
+                },
+                "photoUrls": [
+                  "\u003cvalue 1\u003e"
+                ]
+              }
+            type: simple
+    x-speakeasy-test-group: pet
+  - workflowId: MyNewTest
+    steps:
+      - stepId: test
+        operationId: MyNewTest
+        requestBody:
+          contentType: application/json
+          payload:
+            category:
+              id: 1
+              name: Dogs
+            id: 10
+            name: doggie
+            photoUrls: []
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": 10,
+                "name": "doggie",
+                "category": {
+                  "id": 1,
+                  "name": "Dogs"
+                },
+                "photoUrls": []
+              }
+            type: simple
+    x-speakeasy-test-group: pet
+  - workflowId: findPetsByStatusTypes
+    steps:
+      - stepId: test
+        operationId: findPetsByStatusTypes
+        parameters:
+          - name: status
+            in: query
+            value: available
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              [
+                {
+                  "id": 10,
+                  "name": "doggie",
+                  "category": {
+                    "id": 1,
+                    "name": "Dogs"
+                  },
+                  "photoUrls": [
+                    "\u003cvalue 1\u003e"
+                  ]
+                },
+                {
+                  "id": 10,
+                  "name": "doggie",
+                  "category": {
+                    "id": 1,
+                    "name": "Dogs"
+                  },
+                  "photoUrls": [
+                    "\u003cvalue 1\u003e"
+                  ]
+                },
+                {
+                  "id": 10,
+                  "name": "doggie",
+                  "category": {
+                    "id": 1,
+                    "name": "Dogs"
+                  },
+                  "photoUrls": [
+                    "\u003cvalue 1\u003e"
+                  ]
+                }
+              ]
+            type: simple
+    x-speakeasy-test-group: pet
+  - workflowId: findPetsByTags
+    steps:
+      - stepId: test
+        operationId: findPetsByTags
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              [
+                {
+                  "id": 10,
+                  "name": "doggie",
+                  "category": {
+                    "id": 1,
+                    "name": "Dogs"
+                  },
+                  "photoUrls": [
+                    "\u003cvalue 1\u003e",
+                    "\u003cvalue 2\u003e"
+                  ]
+                }
+              ]
+            type: simple
+    x-speakeasy-test-group: pet
+  - workflowId: getPetByIDS
+    steps:
+      - stepId: test
+        operationId: getPetByIDS
+        parameters:
+          - name: petId
+            in: path
+            value: 327430
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": 10,
+                "name": "doggie",
+                "category": {
+                  "id": 1,
+                  "name": "Dogs"
+                },
+                "photoUrls": []
+              }
+            type: simple
+    x-speakeasy-test-group: pet
+  - workflowId: deletePet
+    steps:
+      - stepId: test
+        operationId: deletePet
+        parameters:
+          - name: petId
+            in: path
+            value: 818965
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": 10,
+                "name": "doggie",
+                "category": {
+                  "id": 1,
+                  "name": "Dogs"
+                },
+                "photoUrls": []
+              }
+            type: simple
+    x-speakeasy-test-group: pet
+  - workflowId: uploadFile
+    steps:
+      - stepId: test
+        operationId: uploadFile
+        parameters:
+          - name: petId
+            in: path
+            value: 150516
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {}
+            type: simple
+    x-speakeasy-test-group: pet
+  - workflowId: getInventory
+    steps:
+      - stepId: test
+        operationId: getInventory
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "key": 111959,
+                "key1": 333452,
+                "key2": 973245
+              }
+            type: simple
+    x-speakeasy-test-group: store
+  - workflowId: placeOrder
+    steps:
+      - stepId: test
+        operationId: placeOrder
+        requestBody:
+          contentType: application/json
+          payload:
+            id: 10
+            petId: 198772
+            quantity: 7
+            status: approved
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": 10,
+                "petId": 198772,
+                "quantity": 7,
+                "status": "approved"
+              }
+            type: simple
+    x-speakeasy-test-group: store
+  - workflowId: getOrderById
+    steps:
+      - stepId: test
+        operationId: getOrderById
+        parameters:
+          - name: orderId
+            in: path
+            value: 728529
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": 10,
+                "petId": 198772,
+                "quantity": 7,
+                "status": "approved"
+              }
+            type: simple
+    x-speakeasy-test-group: store
+  - workflowId: deleteOrder
+    steps:
+      - stepId: test
+        operationId: deleteOrder
+        parameters:
+          - name: orderId
+            in: path
+            value: 690575
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": 10,
+                "petId": 198772,
+                "quantity": 7,
+                "status": "approved"
+              }
+            type: simple
+    x-speakeasy-test-group: store
+  - workflowId: createUser
+    steps:
+      - stepId: test
+        operationId: createUser
+        requestBody:
+          contentType: application/json
+          payload:
+            email: john@email.com
+            firstName: John
+            id: 10
+            lastName: James
+            password: "12345"
+            phone: "12345"
+            userStatus: 1
+            username: theUser
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": 10,
+                "username": "theUser",
+                "firstName": "John",
+                "lastName": "James",
+                "email": "john@email.com",
+                "password": "12345",
+                "phone": "12345",
+                "userStatus": 1
+              }
+            type: simple
+    x-speakeasy-test-group: user
+  - workflowId: createUsersWithListInput
+    steps:
+      - stepId: test
+        operationId: createUsersWithListInput
+        requestBody:
+          contentType: application/json
+          payload:
+            - email: john@email.com
+              firstName: John
+              id: 10
+              lastName: James
+              password: "12345"
+              phone: "12345"
+              userStatus: 1
+              username: theUser
+            - email: john@email.com
+              firstName: John
+              id: 10
+              lastName: James
+              password: "12345"
+              phone: "12345"
+              userStatus: 1
+              username: theUser
+            - email: john@email.com
+              firstName: John
+              id: 10
+              lastName: James
+              password: "12345"
+              phone: "12345"
+              userStatus: 1
+              username: theUser
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": 10,
+                "username": "theUser",
+                "firstName": "John",
+                "lastName": "James",
+                "email": "john@email.com",
+                "password": "12345",
+                "phone": "12345",
+                "userStatus": 1
+              }
+            type: simple
+    x-speakeasy-test-group: user
+  - workflowId: loginUser
+    steps:
+      - stepId: test
+        operationId: loginUser
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              "\u003cvalue\u003e"
+            type: simple
+    x-speakeasy-test-group: user
+  - workflowId: logoutUser
+    steps:
+      - stepId: test
+        operationId: logoutUser
+        successCriteria:
+          - condition: $statusCode == 200
+    x-speakeasy-test-group: user
+  - workflowId: getUserByName
+    steps:
+      - stepId: test
+        operationId: getUserByName
+        parameters:
+          - name: username
+            in: path
+            value: Edyth10
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": 10,
+                "username": "theUser",
+                "firstName": "John",
+                "lastName": "James",
+                "email": "john@email.com",
+                "password": "12345",
+                "phone": "12345",
+                "userStatus": 1
+              }
+            type: simple
+    x-speakeasy-test-group: user
+  - workflowId: updateUser
+    steps:
+      - stepId: test
+        operationId: updateUser
+        parameters:
+          - name: username
+            in: path
+            value: Alison.Cassin
+        requestBody:
+          contentType: application/json
+          payload:
+            email: john@email.com
+            firstName: John
+            id: 10
+            lastName: James
+            password: "12345"
+            phone: "12345"
+            userStatus: 1
+            username: theUser
+        successCriteria:
+          - condition: $statusCode == 200
+    x-speakeasy-test-group: user
+  - workflowId: deleteUser
+    steps:
+      - stepId: test
+        operationId: deleteUser
+        parameters:
+          - name: username
+            in: path
+            value: Rita_Schuppe
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": 10,
+                "username": "theUser",
+                "firstName": "John",
+                "lastName": "James",
+                "email": "john@email.com",
+                "password": "12345",
+                "phone": "12345",
+                "userStatus": 1
+              }
+            type: simple
+    x-speakeasy-test-group: user

@@ -20,15 +20,28 @@ specific category of applications.
 
 ```typescript
 import { LendingSDKCore } from "ryan-lending/core.js";
-import { petsListPets } from "ryan-lending/funcs/petsListPets.js";
+import { petPetsStoreMonday } from "ryan-lending/funcs/petPetsStoreMonday.js";
 import { SDKValidationError } from "ryan-lending/models/errors/sdkvalidationerror.js";
 
 // Use `LendingSDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const lendingSDK = new LendingSDKCore();
+const lendingSDK = new LendingSDKCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const res = await petsListPets(lendingSDK, {});
+  const res = await petPetsStoreMonday(lendingSDK, {
+    id: 10,
+    name: "doggie",
+    category: {
+      id: 1,
+      name: "Dogs",
+    },
+    photoUrls: [
+      "<value 1>",
+      "<value 2>",
+    ],
+  });
 
   switch (true) {
     case res.ok:
