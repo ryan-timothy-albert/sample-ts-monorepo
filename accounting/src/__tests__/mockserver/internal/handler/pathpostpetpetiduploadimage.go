@@ -24,7 +24,7 @@ func pathPostPetPetIDUploadImage(dir *logging.HTTPFileDirectory, rt *tracking.Re
 		case "uploadFile[0]":
 			dir.HandlerFunc("uploadFile", testUploadFileUploadFile0)(w, req)
 		default:
-			http.Error(w, "Unknown test: "+test, http.StatusBadRequest)
+			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
@@ -50,7 +50,7 @@ func testUploadFileUploadFile0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.APIResponse{}
+	var respBody *components.APIResponse = &components.APIResponse{}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)
 
 	if err != nil {

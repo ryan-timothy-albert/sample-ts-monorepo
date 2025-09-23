@@ -3,10 +3,10 @@ id: de44aa14-d51e-4f37-b22e-356d78ca0ebc
 management:
   docChecksum: f2912237283867905ea48f05f9c6902f
   docVersion: 4.0.0
-  speakeasyVersion: 1.492.0
-  generationVersion: 2.512.4
-  releaseVersion: 0.9.1
-  configChecksum: 77ff6ded0c6d1cc21db45fb19dadffe5
+  speakeasyVersion: 1.622.1
+  generationVersion: 2.709.0
+  releaseVersion: 0.10.0
+  configChecksum: 3e78899de843c940ed8b7756dc5f13c7
   repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
   repoSubDirectory: accounting
   installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/accounting
@@ -14,20 +14,20 @@ management:
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.11
-    core: 3.19.0
+    constsAndDefaults: 0.1.12
+    core: 3.21.23
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
-    globalSecurity: 2.82.13
+    globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.4
-    mockServer: 0.1.0
+    globalServerURLs: 2.82.5
+    mockServer: 0.1.1
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.2.0
-    tests: 0.13.0
+    sdkHooks: 0.3.0
+    tests: 0.17.2
     uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
@@ -66,10 +66,15 @@ generatedFiles:
   - docs/sdks/store/README.md
   - docs/sdks/user/README.md
   - eslint.config.mjs
+  - examples/.env.template
+  - examples/README.md
+  - examples/package.json
+  - examples/petPetsStoreMonday.example.ts
   - jsr.json
   - package.json
   - src/__tests__/assertions.ts
   - src/__tests__/files.ts
+  - src/__tests__/mockserver/.gitignore
   - src/__tests__/mockserver/Dockerfile
   - src/__tests__/mockserver/Makefile
   - src/__tests__/mockserver/README.md
@@ -143,6 +148,7 @@ generatedFiles:
   - src/__tests__/mockserver/internal/sdk/types/date.go
   - src/__tests__/mockserver/internal/sdk/types/datetime.go
   - src/__tests__/mockserver/internal/sdk/types/decimal.go
+  - src/__tests__/mockserver/internal/sdk/types/jsonl/jsonl.go
   - src/__tests__/mockserver/internal/sdk/types/pointers.go
   - src/__tests__/mockserver/internal/sdk/utils/json.go
   - src/__tests__/mockserver/internal/sdk/utils/reflect.go
@@ -208,11 +214,13 @@ generatedFiles:
   - src/models/components/security.ts
   - src/models/components/tag.ts
   - src/models/components/user.ts
+  - src/models/errors/accountingsdkerror.ts
   - src/models/errors/apierrorinvalidinput.ts
   - src/models/errors/apierrornotfound.ts
   - src/models/errors/apierrorunauthorized.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
+  - src/models/errors/responsevalidationerror.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/models/operations/deleteorder.ts
@@ -232,6 +240,7 @@ generatedFiles:
   - src/sdk/sdk.ts
   - src/sdk/store.ts
   - src/sdk/user.ts
+  - src/types/async.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -242,23 +251,13 @@ generatedFiles:
   - src/types/streams.ts
   - tsconfig.json
 examples:
-  listPets: {}
-  createPets:
-    speakeasy-default-create-pets:
-      requestBody:
-        application/json: {"id": 596804, "name": "<value>"}
-  showPetById:
-    speakeasy-default-show-pet-by-id:
-      parameters:
-        path:
-          petId: "<id>"
   petsStoreMonday:
     speakeasy-default-pets-store-monday:
       requestBody:
-        application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>"]}
+        application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value 1>", "<value 2>"]}
       responses:
         "200":
-          application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>", "<value>"]}
+          application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value 1>"]}
         "400":
           application/json: {"status": 400, "error": "Bad request"}
         "401":
@@ -268,10 +267,10 @@ examples:
   MyNewTest:
     speakeasy-default-my-new-test:
       requestBody:
-        application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>", "<value>"]}
+        application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": []}
       responses:
         "200":
-          application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>"]}
+          application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": []}
   findPetsByStatusTypes:
     speakeasy-default-find-pets-by-status-types:
       parameters:
@@ -279,7 +278,7 @@ examples:
           status: "available"
       responses:
         "200":
-          application/json: [{"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>", "<value>", "<value>"]}, {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>", "<value>"]}, {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>"]}]
+          application/json: [{"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value 1>", "<value 2>"]}]
         "400":
           application/json: {"status": 400, "error": "Bad request"}
         "401":
@@ -290,7 +289,7 @@ examples:
     speakeasy-default-find-pets-by-tags:
       responses:
         "200":
-          application/json: [{"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>", "<value>", "<value>"]}]
+          application/json: [{"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": []}]
         "400":
           application/json: {"status": 400, "error": "Bad request"}
         "401":
@@ -301,10 +300,10 @@ examples:
     speakeasy-default-get-pet-by-IDS:
       parameters:
         path:
-          petId: 137396
+          petId: 327430
       responses:
         "200":
-          application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>", "<value>", "<value>"]}
+          application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": []}
         "400":
           application/json: {"status": 400, "error": "Bad request"}
         "401":
@@ -315,11 +314,10 @@ examples:
     speakeasy-default-delete-pet:
       parameters:
         path:
-          petId: 441876
-        header: {}
+          petId: 818965
       responses:
         "200":
-          application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>"]}
+          application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": []}
         "400":
           application/json: {"status": 400, "error": "Bad request"}
         "401":
@@ -330,16 +328,19 @@ examples:
     speakeasy-default-upload-file:
       parameters:
         path:
-          petId: 565380
-        query: {}
+          petId: 150516
+      responses:
+        "200":
+          application/json: {}
   getInventory:
     speakeasy-default-get-inventory:
       responses:
+        "200":
+          application/json: {"key": 111959, "key1": 333452, "key2": 973245}
         "401":
           application/json: {"status": 401, "error": "Unauthorized"}
         "404":
           application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
-        "200": {}
   placeOrder:
     speakeasy-default-place-order:
       requestBody:
@@ -355,7 +356,7 @@ examples:
     speakeasy-default-get-order-by-id:
       parameters:
         path:
-          orderId: 614993
+          orderId: 728529
       responses:
         "200":
           application/json: {"id": 10, "petId": 198772, "quantity": 7, "status": "approved"}
@@ -369,7 +370,7 @@ examples:
     speakeasy-default-delete-order:
       parameters:
         path:
-          orderId: 127902
+          orderId: 690575
       responses:
         "200":
           application/json: {"id": 10, "petId": 198772, "quantity": 7, "status": "approved"}
@@ -396,19 +397,20 @@ examples:
   loginUser:
     speakeasy-default-login-user:
       responses:
+        "200":
+          application/json: "<value>"
         "400":
           application/json: {"status": 400, "error": "Bad request"}
         "401":
           application/json: {"status": 401, "error": "Unauthorized"}
         "404":
           application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
-        "200": {}
   logoutUser: {}
   getUserByName:
     speakeasy-default-get-user-by-name:
       parameters:
         path:
-          username: "Zachery_Lubowitz15"
+          username: "Edyth10"
       responses:
         "200":
           application/json: {"id": 10, "username": "theUser", "firstName": "John", "lastName": "James", "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}
@@ -422,14 +424,14 @@ examples:
     speakeasy-default-update-user:
       parameters:
         path:
-          username: "Dandre_Hand41"
+          username: "Alison.Cassin"
       requestBody:
         application/json: {"id": 10, "username": "theUser", "firstName": "John", "lastName": "James", "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}
   deleteUser:
     speakeasy-default-delete-user:
       parameters:
         path:
-          username: "Demetris_Schmitt"
+          username: "Rita_Schuppe"
       responses:
         "200":
           application/json: {"id": 10, "username": "theUser", "firstName": "John", "lastName": "James", "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}
@@ -439,7 +441,7 @@ examples:
           application/json: {"status": 401, "error": "Unauthorized"}
         "404":
           application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
-examplesVersion: 1.0.0
+examplesVersion: 1.0.2
 generatedTests:
   listPets: "2025-02-13T16:24:25-08:00"
   createPets: "2025-02-13T16:24:25-08:00"

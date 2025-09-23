@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { AccountingSDKError } from "./accountingsdkerror.js";
 
 /**
  * Not Found error
@@ -16,7 +17,7 @@ export type ApiErrorNotFoundData = {
 /**
  * Not Found error
  */
-export class ApiErrorNotFound extends Error {
+export class ApiErrorNotFound extends AccountingSDKError {
   status: number;
   error: string;
   code: string;
@@ -24,13 +25,15 @@ export class ApiErrorNotFound extends Error {
   /** The original data that was passed to this error instance. */
   data$: ApiErrorNotFoundData;
 
-  constructor(err: ApiErrorNotFoundData) {
+  constructor(
+    err: ApiErrorNotFoundData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.status = err.status;
     this.error = err.error;
     this.code = err.code;
@@ -48,9 +51,16 @@ export const ApiErrorNotFound$inboundSchema: z.ZodType<
   status: z.number().int(),
   error: z.string(),
   code: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new ApiErrorNotFound(v);
+    return new ApiErrorNotFound(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
