@@ -20,37 +20,33 @@ specific category of applications.
 
 ```typescript
 import { LendingSDKCore } from "ryan-lending/core.js";
-import { petsListPets } from "ryan-lending/funcs/petsListPets.js";
-import { SDKValidationError } from "ryan-lending/models/errors/sdkvalidationerror.js";
+import { petPetsStoreMonday } from "ryan-lending/funcs/petPetsStoreMonday.js";
 
 // Use `LendingSDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const lendingSDK = new LendingSDKCore();
+const lendingSDK = new LendingSDKCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const res = await petsListPets(lendingSDK, {});
-
-  switch (true) {
-    case res.ok:
-      // The success case will be handled outside of the switch block
-      break;
-    case res.error instanceof SDKValidationError:
-      // Pretty-print validation errors.
-      return console.log(res.error.pretty());
-    case res.error instanceof Error:
-      return console.log(res.error);
-    default:
-      // TypeScript's type checking will fail on the following line if the above
-      // cases were not exhaustive.
-      res.error satisfies never;
-      throw new Error("Assertion failed: expected error checks to be exhaustive: " + res.error);
+  const res = await petPetsStoreMonday(lendingSDK, {
+    id: 10,
+    name: "doggie",
+    category: {
+      id: 1,
+      name: "Dogs",
+    },
+    photoUrls: [
+      "<value 1>",
+      "<value 2>",
+    ],
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("petPetsStoreMonday failed:", res.error);
   }
-
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
