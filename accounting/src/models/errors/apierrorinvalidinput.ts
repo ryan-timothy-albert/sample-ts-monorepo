@@ -3,26 +3,29 @@
  */
 
 import * as z from "zod";
+import { AccountingSDKError } from "./accountingsdkerror.js";
 
 export type ApiErrorInvalidInputData = {
   status: number;
   error: string;
 };
 
-export class ApiErrorInvalidInput extends Error {
+export class ApiErrorInvalidInput extends AccountingSDKError {
   status: number;
   error: string;
 
   /** The original data that was passed to this error instance. */
   data$: ApiErrorInvalidInputData;
 
-  constructor(err: ApiErrorInvalidInputData) {
+  constructor(
+    err: ApiErrorInvalidInputData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.status = err.status;
     this.error = err.error;
 
@@ -38,9 +41,16 @@ export const ApiErrorInvalidInput$inboundSchema: z.ZodType<
 > = z.object({
   status: z.number().int(),
   error: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new ApiErrorInvalidInput(v);
+    return new ApiErrorInvalidInput(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

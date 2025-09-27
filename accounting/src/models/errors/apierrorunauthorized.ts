@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { AccountingSDKError } from "./accountingsdkerror.js";
 
 /**
  * Unauthorized error
@@ -15,20 +16,22 @@ export type ApiErrorUnauthorizedData = {
 /**
  * Unauthorized error
  */
-export class ApiErrorUnauthorized extends Error {
+export class ApiErrorUnauthorized extends AccountingSDKError {
   status: number;
   error: string;
 
   /** The original data that was passed to this error instance. */
   data$: ApiErrorUnauthorizedData;
 
-  constructor(err: ApiErrorUnauthorizedData) {
+  constructor(
+    err: ApiErrorUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.status = err.status;
     this.error = err.error;
 
@@ -44,9 +47,16 @@ export const ApiErrorUnauthorized$inboundSchema: z.ZodType<
 > = z.object({
   status: z.number().int(),
   error: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new ApiErrorUnauthorized(v);
+    return new ApiErrorUnauthorized(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

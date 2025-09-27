@@ -15,11 +15,11 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
