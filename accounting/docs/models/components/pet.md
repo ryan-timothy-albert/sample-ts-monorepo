@@ -12,9 +12,7 @@ let value: Pet = {
     id: 1,
     name: "Dogs",
   },
-  photoUrls: [
-    "<value>",
-  ],
+  photoUrls: [],
 };
 ```
 

@@ -10,6 +10,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import { AccountingSDKError } from "../models/errors/accountingsdkerror.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -18,32 +19,64 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import * as errors from "../models/errors/index.js";
-import { SDKError } from "../models/errors/sdkerror.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
  * Logs user into the system
  */
-export async function userLoginUser(
+export function userLoginUser(
   client: AccountingSDKCore,
   request: operations.LoginUserRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.LoginUserResponse,
     | errors.ApiErrorInvalidInput
     | errors.ApiErrorUnauthorized
     | errors.ApiErrorNotFound
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | AccountingSDKError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
+> {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: AccountingSDKCore,
+  request: operations.LoginUserRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.LoginUserResponse,
+      | errors.ApiErrorInvalidInput
+      | errors.ApiErrorUnauthorized
+      | errors.ApiErrorNotFound
+      | AccountingSDKError
+      | ResponseValidationError
+      | ConnectionError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
+    >,
+    APICall,
+  ]
 > {
   const parsed = safeParse(
     request,
@@ -51,7 +84,7 @@ export async function userLoginUser(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -72,7 +105,8 @@ export async function userLoginUser(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    baseURL: options?.serverURL ?? "",
+    options: client._options,
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "loginUser",
     oAuth2Scopes: [],
 
@@ -93,10 +127,11 @@ export async function userLoginUser(
     headers: headers,
     query: query,
     body: body,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -107,7 +142,7 @@ export async function userLoginUser(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -120,13 +155,14 @@ export async function userLoginUser(
     | errors.ApiErrorInvalidInput
     | errors.ApiErrorUnauthorized
     | errors.ApiErrorNotFound
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | AccountingSDKError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.json(200, operations.LoginUserResponse$inboundSchema, {
       hdrs: true,
@@ -137,10 +173,10 @@ export async function userLoginUser(
     M.jsonErr(404, errors.ApiErrorNotFound$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

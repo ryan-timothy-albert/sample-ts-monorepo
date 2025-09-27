@@ -21,6 +21,7 @@ This can only be done by the logged in user.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createUser" method="post" path="/user" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -40,7 +41,6 @@ async function run() {
     userStatus: 1,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -72,15 +72,12 @@ async function run() {
     phone: "12345",
     userStatus: 1,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("userCreateUser failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -111,6 +108,7 @@ Creates list of users with given input array
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createUsersWithListInput" method="post" path="/user/createWithList" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -132,7 +130,6 @@ async function run() {
     },
   ]);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -166,15 +163,12 @@ async function run() {
       userStatus: 1,
     },
   ]);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("userCreateUsersWithListInput failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -205,6 +199,7 @@ Logs user into the system
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="loginUser" method="get" path="/user/login" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -215,7 +210,6 @@ const accountingSDK = new AccountingSDK({
 async function run() {
   const result = await accountingSDK.user.loginUser({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -238,15 +232,12 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await userLoginUser(accountingSDK, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("userLoginUser failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -280,6 +271,7 @@ Logs out current logged in user session
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="logoutUser" method="get" path="/user/logout" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -312,14 +304,12 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await userLogoutUser(accountingSDK);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("userLogoutUser failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -349,6 +339,7 @@ Get user by user name
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getUserByName" method="get" path="/user/{username}" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -358,10 +349,9 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.user.getUserByName({
-    username: "Zachery_Lubowitz15",
+    username: "Edyth10",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -384,17 +374,14 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await userGetUserByName(accountingSDK, {
-    username: "Zachery_Lubowitz15",
+    username: "Edyth10",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("userGetUserByName failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -428,6 +415,7 @@ This can only be done by the logged in user.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateUser" method="put" path="/user/{username}" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -437,7 +425,7 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   await accountingSDK.user.updateUser({
-    username: "Dandre_Hand41",
+    username: "Alison.Cassin",
     user: {
       id: 10,
       username: "theUser",
@@ -472,7 +460,7 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await userUpdateUser(accountingSDK, {
-    username: "Dandre_Hand41",
+    username: "Alison.Cassin",
     user: {
       id: 10,
       username: "theUser",
@@ -484,14 +472,12 @@ async function run() {
       userStatus: 1,
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("userUpdateUser failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -522,6 +508,7 @@ This can only be done by the logged in user.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteUser" method="delete" path="/user/{username}" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -531,10 +518,9 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.user.deleteUser({
-    username: "Demetris_Schmitt",
+    username: "Rita_Schuppe",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -557,17 +543,14 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await userDeleteUser(accountingSDK, {
-    username: "Demetris_Schmitt",
+    username: "Rita_Schuppe",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("userDeleteUser failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
