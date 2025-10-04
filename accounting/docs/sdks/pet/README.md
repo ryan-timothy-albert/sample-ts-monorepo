@@ -24,6 +24,7 @@ Update an existing pet by Id
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="petsStoreMonday" method="put" path="/pet" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -40,11 +41,11 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -74,18 +75,16 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("petPetsStoreMonday failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -119,6 +118,7 @@ Add a new pet to the store
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="MyNewTest" method="post" path="/pet" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -134,13 +134,9 @@ async function run() {
       id: 1,
       name: "Dogs",
     },
-    photoUrls: [
-      "<value>",
-      "<value>",
-    ],
+    photoUrls: [],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -169,20 +165,14 @@ async function run() {
       id: 1,
       name: "Dogs",
     },
-    photoUrls: [
-      "<value>",
-      "<value>",
-    ],
+    photoUrls: [],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("petMyNewTest failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -213,6 +203,7 @@ Multiple status values can be provided with comma separated strings
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="findPetsByStatusTypes" method="get" path="/pet/findByStatus" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -223,7 +214,6 @@ const accountingSDK = new AccountingSDK({
 async function run() {
   const result = await accountingSDK.pet.findPetsByStatusTypes({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -246,15 +236,12 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await petFindPetsByStatusTypes(accountingSDK, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("petFindPetsByStatusTypes failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -288,6 +275,7 @@ Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="findPetsByTags" method="get" path="/pet/findByTags" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -298,7 +286,6 @@ const accountingSDK = new AccountingSDK({
 async function run() {
   const result = await accountingSDK.pet.findPetsByTags({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -321,15 +308,12 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await petFindPetsByTags(accountingSDK, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("petFindPetsByTags failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -363,6 +347,7 @@ Returns a single pet
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getPetByIDS" method="get" path="/pet/{petId}" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -372,10 +357,9 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.pet.getPetByIDS({
-    petId: 137396,
+    petId: 327430,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -398,17 +382,14 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await petGetPetByIDS(accountingSDK, {
-    petId: 137396,
+    petId: 327430,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("petGetPetByIDS failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -442,6 +423,7 @@ Deletes a pet
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deletePet" method="delete" path="/pet/{petId}" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -451,10 +433,9 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.pet.deletePet({
-    petId: 441876,
+    petId: 818965,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -477,17 +458,14 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await petDeletePet(accountingSDK, {
-    petId: 441876,
+    petId: 818965,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("petDeletePet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -521,6 +499,7 @@ uploads an image
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="uploadFile" method="post" path="/pet/{petId}/uploadImage" -->
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -530,10 +509,9 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.pet.uploadFile({
-    petId: 565380,
+    petId: 150516,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -556,17 +534,14 @@ const accountingSDK = new AccountingSDKCore({
 
 async function run() {
   const res = await petUploadFile(accountingSDK, {
-    petId: 565380,
+    petId: 150516,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("petUploadFile failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
