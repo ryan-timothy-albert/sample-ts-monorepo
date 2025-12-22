@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7caa457a-d738-4713-931d-4e4f19784732
 management:
-  docChecksum: 1bdb7a6f8bf3995d4b40475228403253
-  docVersion: 1.0.0
+  docChecksum: f2912237283867905ea48f05f9c6902f
+  docVersion: 4.0.0
   speakeasyVersion: 1.492.0
   generationVersion: 2.512.4
-  releaseVersion: 0.8.6
-  configChecksum: 05ad7cc94a5305bbc7fc17b748bca401
+  releaseVersion: 0.9.0
+  configChecksum: 22f8085c992fe5a454886089403a37cd
   repoURL: https://github.com/ryan-timothy-albert/sample-ts-monorepo.git
   repoSubDirectory: lending
   installationURL: https://gitpkg.now.sh/ryan-timothy-albert/sample-ts-monorepo/lending
@@ -14,16 +14,21 @@ management:
 features:
   typescript:
     additionalDependencies: 0.1.0
+    constsAndDefaults: 0.1.11
     core: 3.19.0
     defaultEnabledRetries: 0.1.0
+    enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
+    globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
+    globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
     mockServer: 0.1.0
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
     tests: 0.13.0
+    uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
   - .npmignore
@@ -31,15 +36,35 @@ generatedFiles:
   - RUNTIMES.md
   - USAGE.md
   - docs/lib/utils/retryconfig.md
-  - docs/models/components/errort.md
+  - docs/models/components/apiresponse.md
+  - docs/models/components/category.md
+  - docs/models/components/order.md
+  - docs/models/components/orderstatus.md
   - docs/models/components/pet.md
-  - docs/models/operations/listpetsrequest.md
-  - docs/models/operations/listpetsresponse.md
-  - docs/models/operations/listpetsresponseresult.md
-  - docs/models/operations/showpetbyidrequest.md
-  - docs/models/operations/showpetbyidresponse.md
+  - docs/models/components/security.md
+  - docs/models/components/status.md
+  - docs/models/components/tag.md
+  - docs/models/components/user.md
+  - docs/models/errors/apierrorinvalidinput.md
+  - docs/models/errors/apierrornotfound.md
+  - docs/models/errors/apierrorunauthorized.md
+  - docs/models/operations/deleteorderrequest.md
+  - docs/models/operations/deletepetrequest.md
+  - docs/models/operations/deleteuserrequest.md
+  - docs/models/operations/findpetsbystatustypesrequest.md
+  - docs/models/operations/findpetsbytagsrequest.md
+  - docs/models/operations/getorderbyidrequest.md
+  - docs/models/operations/getpetbyidsrequest.md
+  - docs/models/operations/getuserbynamerequest.md
+  - docs/models/operations/loginuserrequest.md
+  - docs/models/operations/loginuserresponse.md
+  - docs/models/operations/status.md
+  - docs/models/operations/updateuserrequest.md
+  - docs/models/operations/uploadfilerequest.md
   - docs/sdks/lendingsdk/README.md
-  - docs/sdks/pets/README.md
+  - docs/sdks/pet/README.md
+  - docs/sdks/store/README.md
+  - docs/sdks/user/README.md
   - eslint.config.mjs
   - jsr.json
   - package.json
@@ -58,9 +83,24 @@ generatedFiles:
   - src/__tests__/mockserver/internal/handler/doc.go
   - src/__tests__/mockserver/internal/handler/generated_handler.go
   - src/__tests__/mockserver/internal/handler/generated_handlers.go
-  - src/__tests__/mockserver/internal/handler/pathgetpets.go
-  - src/__tests__/mockserver/internal/handler/pathgetpetspetid.go
-  - src/__tests__/mockserver/internal/handler/pathpostpets.go
+  - src/__tests__/mockserver/internal/handler/pathdeletepetpetid.go
+  - src/__tests__/mockserver/internal/handler/pathdeletestoreorderorderid.go
+  - src/__tests__/mockserver/internal/handler/pathdeleteuserusername.go
+  - src/__tests__/mockserver/internal/handler/pathgetpetfindbystatus.go
+  - src/__tests__/mockserver/internal/handler/pathgetpetfindbytags.go
+  - src/__tests__/mockserver/internal/handler/pathgetpetpetid.go
+  - src/__tests__/mockserver/internal/handler/pathgetstoreinventory.go
+  - src/__tests__/mockserver/internal/handler/pathgetstoreorderorderid.go
+  - src/__tests__/mockserver/internal/handler/pathgetuserlogin.go
+  - src/__tests__/mockserver/internal/handler/pathgetuserlogout.go
+  - src/__tests__/mockserver/internal/handler/pathgetuserusername.go
+  - src/__tests__/mockserver/internal/handler/pathpostpet.go
+  - src/__tests__/mockserver/internal/handler/pathpostpetpetiduploadimage.go
+  - src/__tests__/mockserver/internal/handler/pathpoststoreorder.go
+  - src/__tests__/mockserver/internal/handler/pathpostuser.go
+  - src/__tests__/mockserver/internal/handler/pathpostusercreatewithlist.go
+  - src/__tests__/mockserver/internal/handler/pathputpet.go
+  - src/__tests__/mockserver/internal/handler/pathputuserusername.go
   - src/__tests__/mockserver/internal/handler/values/files.go
   - src/__tests__/mockserver/internal/logging/doc.go
   - src/__tests__/mockserver/internal/logging/formats.go
@@ -70,12 +110,35 @@ generatedFiles:
   - src/__tests__/mockserver/internal/logging/logger.go
   - src/__tests__/mockserver/internal/logging/oas_operation.go
   - src/__tests__/mockserver/internal/logging/oas_operation_call.go
-  - src/__tests__/mockserver/internal/sdk/models/components/error.go
+  - src/__tests__/mockserver/internal/sdk/models/components/apiresponse.go
+  - src/__tests__/mockserver/internal/sdk/models/components/category.go
   - src/__tests__/mockserver/internal/sdk/models/components/httpmetadata.go
+  - src/__tests__/mockserver/internal/sdk/models/components/order.go
   - src/__tests__/mockserver/internal/sdk/models/components/pet.go
-  - src/__tests__/mockserver/internal/sdk/models/operations/createpets.go
-  - src/__tests__/mockserver/internal/sdk/models/operations/listpets.go
-  - src/__tests__/mockserver/internal/sdk/models/operations/showpetbyid.go
+  - src/__tests__/mockserver/internal/sdk/models/components/security.go
+  - src/__tests__/mockserver/internal/sdk/models/components/tag.go
+  - src/__tests__/mockserver/internal/sdk/models/components/user.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/createuser.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/createuserswithlistinput.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/deleteorder.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/deletepet.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/deleteuser.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/findpetsbystatustypes.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/findpetsbytags.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/getinventory.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/getorderbyid.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/getpetbyids.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/getuserbyname.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/loginuser.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/logoutuser.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/mynewtest.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/petsstoremonday.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/placeorder.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/updateuser.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/uploadfile.go
+  - src/__tests__/mockserver/internal/sdk/models/sdkerrors/apierrorinvalidinput.go
+  - src/__tests__/mockserver/internal/sdk/models/sdkerrors/apierrornotfound.go
+  - src/__tests__/mockserver/internal/sdk/models/sdkerrors/apierrorunauthorized.go
   - src/__tests__/mockserver/internal/sdk/types/bigint.go
   - src/__tests__/mockserver/internal/sdk/types/date.go
   - src/__tests__/mockserver/internal/sdk/types/datetime.go
@@ -94,12 +157,30 @@ generatedFiles:
   - src/__tests__/mockserver/internal/server/templates/log/style.css.tmpl
   - src/__tests__/mockserver/internal/tracking/requesttracker.go
   - src/__tests__/mockserver/main.go
+  - src/__tests__/pet.test.ts
   - src/__tests__/pets.test.ts
+  - src/__tests__/store.test.ts
   - src/__tests__/testclient.ts
+  - src/__tests__/user.test.ts
   - src/core.ts
-  - src/funcs/petsCreatePets.ts
-  - src/funcs/petsListPets.ts
-  - src/funcs/petsShowPetById.ts
+  - src/funcs/petDeletePet.ts
+  - src/funcs/petFindPetsByStatusTypes.ts
+  - src/funcs/petFindPetsByTags.ts
+  - src/funcs/petGetPetByIDS.ts
+  - src/funcs/petMyNewTest.ts
+  - src/funcs/petPetsStoreMonday.ts
+  - src/funcs/petUploadFile.ts
+  - src/funcs/storeDeleteOrder.ts
+  - src/funcs/storeGetInventory.ts
+  - src/funcs/storeGetOrderById.ts
+  - src/funcs/storePlaceOrder.ts
+  - src/funcs/userCreateUser.ts
+  - src/funcs/userCreateUsersWithListInput.ts
+  - src/funcs/userDeleteUser.ts
+  - src/funcs/userGetUserByName.ts
+  - src/funcs/userLoginUser.ts
+  - src/funcs/userLogoutUser.ts
+  - src/funcs/userUpdateUser.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -119,19 +200,38 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
-  - src/models/components/error.ts
+  - src/models/components/apiresponse.ts
+  - src/models/components/category.ts
   - src/models/components/index.ts
+  - src/models/components/order.ts
   - src/models/components/pet.ts
+  - src/models/components/security.ts
+  - src/models/components/tag.ts
+  - src/models/components/user.ts
+  - src/models/errors/apierrorinvalidinput.ts
+  - src/models/errors/apierrornotfound.ts
+  - src/models/errors/apierrorunauthorized.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
+  - src/models/operations/deleteorder.ts
+  - src/models/operations/deletepet.ts
+  - src/models/operations/deleteuser.ts
+  - src/models/operations/findpetsbystatustypes.ts
+  - src/models/operations/findpetsbytags.ts
+  - src/models/operations/getorderbyid.ts
+  - src/models/operations/getpetbyids.ts
+  - src/models/operations/getuserbyname.ts
   - src/models/operations/index.ts
-  - src/models/operations/listpets.ts
-  - src/models/operations/showpetbyid.ts
+  - src/models/operations/loginuser.ts
+  - src/models/operations/updateuser.ts
+  - src/models/operations/uploadfile.ts
   - src/sdk/index.ts
-  - src/sdk/pets.ts
+  - src/sdk/pet.ts
   - src/sdk/sdk.ts
+  - src/sdk/store.ts
+  - src/sdk/user.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -142,32 +242,648 @@ generatedFiles:
   - src/types/streams.ts
   - tsconfig.json
 examples:
-  listPets:
-    speakeasy-default-list-pets:
+  petsStoreMonday:
+    speakeasy-default-pets-store-monday:
+      requestBody:
+        application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>"]}
       responses:
         "200":
-          application/json: [{"id": 767425, "name": "<value>"}]
-        default:
-          application/json: {"code": 606271, "message": "<value>"}
-  createPets:
-    speakeasy-default-create-pets:
+          application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>", "<value>"]}
+        "400":
+          application/json: {"status": 400, "error": "Bad request"}
+        "401":
+          application/json: {"status": 401, "error": "Unauthorized"}
+        "404":
+          application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
+  MyNewTest:
+    speakeasy-default-my-new-test:
       requestBody:
-        application/json: {"id": 596804, "name": "<value>"}
+        application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>", "<value>"]}
       responses:
-        default:
-          application/json: {"code": 589113, "message": "<value>"}
-  showPetById:
-    speakeasy-default-show-pet-by-id:
+        "200":
+          application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>"]}
+  findPetsByStatusTypes:
+    speakeasy-default-find-pets-by-status-types:
+      parameters:
+        query:
+          status: "available"
+      responses:
+        "200":
+          application/json: [{"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>", "<value>", "<value>"]}, {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>", "<value>"]}, {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>"]}]
+        "400":
+          application/json: {"status": 400, "error": "Bad request"}
+        "401":
+          application/json: {"status": 401, "error": "Unauthorized"}
+        "404":
+          application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
+  findPetsByTags:
+    speakeasy-default-find-pets-by-tags:
+      responses:
+        "200":
+          application/json: [{"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>", "<value>", "<value>"]}]
+        "400":
+          application/json: {"status": 400, "error": "Bad request"}
+        "401":
+          application/json: {"status": 401, "error": "Unauthorized"}
+        "404":
+          application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
+  getPetByIDS:
+    speakeasy-default-get-pet-by-IDS:
       parameters:
         path:
-          petId: "<id>"
+          petId: 137396
       responses:
         "200":
-          application/json: {"id": 763078, "name": "<value>"}
-        default:
-          application/json: {"code": 743784, "message": "<value>"}
+          application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>", "<value>", "<value>"]}
+        "400":
+          application/json: {"status": 400, "error": "Bad request"}
+        "401":
+          application/json: {"status": 401, "error": "Unauthorized"}
+        "404":
+          application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
+  deletePet:
+    speakeasy-default-delete-pet:
+      parameters:
+        path:
+          petId: 441876
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value>"]}
+        "400":
+          application/json: {"status": 400, "error": "Bad request"}
+        "401":
+          application/json: {"status": 401, "error": "Unauthorized"}
+        "404":
+          application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
+  uploadFile:
+    speakeasy-default-upload-file:
+      parameters:
+        path:
+          petId: 565380
+        query: {}
+  getInventory:
+    speakeasy-default-get-inventory:
+      responses:
+        "401":
+          application/json: {"status": 401, "error": "Unauthorized"}
+        "404":
+          application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
+  placeOrder:
+    speakeasy-default-place-order:
+      requestBody:
+        application/json: {"id": 10, "petId": 198772, "quantity": 7, "status": "approved"}
+      responses:
+        "200":
+          application/json: {"id": 10, "petId": 198772, "quantity": 7, "status": "approved"}
+        "401":
+          application/json: {"status": 401, "error": "Unauthorized"}
+        "404":
+          application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
+  getOrderById:
+    speakeasy-default-get-order-by-id:
+      parameters:
+        path:
+          orderId: 614993
+      responses:
+        "200":
+          application/json: {"id": 10, "petId": 198772, "quantity": 7, "status": "approved"}
+        "400":
+          application/json: {"status": 400, "error": "Bad request"}
+        "401":
+          application/json: {"status": 401, "error": "Unauthorized"}
+        "404":
+          application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
+  deleteOrder:
+    speakeasy-default-delete-order:
+      parameters:
+        path:
+          orderId: 127902
+      responses:
+        "200":
+          application/json: {"id": 10, "petId": 198772, "quantity": 7, "status": "approved"}
+        "400":
+          application/json: {"status": 400, "error": "Bad request"}
+        "401":
+          application/json: {"status": 401, "error": "Unauthorized"}
+        "404":
+          application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
+  createUser:
+    speakeasy-default-create-user:
+      requestBody:
+        application/json: {"id": 10, "username": "theUser", "firstName": "John", "lastName": "James", "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}
+      responses:
+        "200":
+          application/json: {"id": 10, "username": "theUser", "firstName": "John", "lastName": "James", "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}
+  createUsersWithListInput:
+    speakeasy-default-create-users-with-list-input:
+      requestBody:
+        application/json: [{"id": 10, "username": "theUser", "firstName": "John", "lastName": "James", "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}]
+      responses:
+        "200":
+          application/json: {"id": 10, "username": "theUser", "firstName": "John", "lastName": "James", "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}
+  loginUser:
+    speakeasy-default-login-user:
+      responses:
+        "400":
+          application/json: {"status": 400, "error": "Bad request"}
+        "401":
+          application/json: {"status": 401, "error": "Unauthorized"}
+        "404":
+          application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
+  logoutUser: {}
+  getUserByName:
+    speakeasy-default-get-user-by-name:
+      parameters:
+        path:
+          username: "Zachery_Lubowitz15"
+      responses:
+        "200":
+          application/json: {"id": 10, "username": "theUser", "firstName": "John", "lastName": "James", "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}
+        "400":
+          application/json: {"status": 400, "error": "Bad request"}
+        "401":
+          application/json: {"status": 401, "error": "Unauthorized"}
+        "404":
+          application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
+  updateUser:
+    speakeasy-default-update-user:
+      parameters:
+        path:
+          username: "Dandre_Hand41"
+      requestBody:
+        application/json: {"id": 10, "username": "theUser", "firstName": "John", "lastName": "James", "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}
+  deleteUser:
+    speakeasy-default-delete-user:
+      parameters:
+        path:
+          username: "Demetris_Schmitt"
+      responses:
+        "200":
+          application/json: {"id": 10, "username": "theUser", "firstName": "John", "lastName": "James", "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}
+        "400":
+          application/json: {"status": 400, "error": "Bad request"}
+        "401":
+          application/json: {"status": 401, "error": "Unauthorized"}
+        "404":
+          application/json: {"status": 404, "error": "Not Found", "code": "object_not_found"}
 examplesVersion: 1.0.0
 generatedTests:
   listPets: "2025-02-13T16:24:55-08:00"
   createPets: "2025-02-13T16:24:55-08:00"
   showPetById: "2025-02-13T16:24:55-08:00"
+  petsStoreMonday: "2025-12-22T01:16:16Z"
+  MyNewTest: "2025-12-22T01:16:16Z"
+  findPetsByStatusTypes: "2025-12-22T01:16:16Z"
+  findPetsByTags: "2025-12-22T01:16:16Z"
+  getPetByIDS: "2025-12-22T01:16:16Z"
+  deletePet: "2025-12-22T01:16:16Z"
+  uploadFile: "2025-12-22T01:16:16Z"
+  getInventory: "2025-12-22T01:16:16Z"
+  placeOrder: "2025-12-22T01:16:16Z"
+  getOrderById: "2025-12-22T01:16:16Z"
+  deleteOrder: "2025-12-22T01:16:16Z"
+  createUser: "2025-12-22T01:16:16Z"
+  createUsersWithListInput: "2025-12-22T01:16:16Z"
+  loginUser: "2025-12-22T01:16:16Z"
+  getUserByName: "2025-12-22T01:16:16Z"
+  deleteUser: "2025-12-22T01:16:16Z"
+  logoutUser: "2025-12-22T01:16:45Z"
+  updateUser: "2025-12-22T01:16:45Z"
+trackedFiles:
+  .gitattributes:
+    last_write_checksum: sha1:26d16d8297b104945139da8c25bd38feeaad3e25
+  .npmignore:
+    last_write_checksum: sha1:3d5eb92f81539175db1ff0280e0aefbdd701f200
+  FUNCTIONS.md:
+    last_write_checksum: sha1:f71d7de67d3d0a0121d2f97cfe5d6a30921edd36
+  RUNTIMES.md:
+    last_write_checksum: sha1:e45b854f02c357cbcfdb8c3663000e8339e16505
+  USAGE.md:
+    last_write_checksum: sha1:c2e091ad95faf15e8a1e1cf22e48e095d492d8e6
+  docs/lib/utils/retryconfig.md:
+    last_write_checksum: sha1:bc4454e196fcd219f5a78da690375a884f5ed07b
+  docs/models/components/apiresponse.md:
+    last_write_checksum: sha1:538f0a4b5919b0109eed4256ff2eccc9d7a452df
+  docs/models/components/category.md:
+    last_write_checksum: sha1:9e506a1bebd2f9e7c15508271fd092e8c4b4d467
+  docs/models/components/order.md:
+    last_write_checksum: sha1:cf3fc00e4d78100cf62382d6f2f7eb6cde92487b
+  docs/models/components/orderstatus.md:
+    last_write_checksum: sha1:4219ccfa6e7715398712275a7f5603780fc837f9
+  docs/models/components/pet.md:
+    last_write_checksum: sha1:3537703aa205862a21fcda48de84e674257ae687
+  docs/models/components/security.md:
+    last_write_checksum: sha1:0bbdfa405f2a2117c202f90cfe1547c9ed4515f2
+  docs/models/components/status.md:
+    last_write_checksum: sha1:89cc091901c4df073ec931a481083b3f45b3e02e
+  docs/models/components/tag.md:
+    last_write_checksum: sha1:5318608a0c056fbbb079663efa3f21943f1d49c6
+  docs/models/components/user.md:
+    last_write_checksum: sha1:85a447cfc97b8b9756ba03d5278cf032d17e83cc
+  docs/models/errors/apierrorinvalidinput.md:
+    last_write_checksum: sha1:2b6266f9712db900a50f833b94c147a0fde47e07
+  docs/models/errors/apierrornotfound.md:
+    last_write_checksum: sha1:f67050a897104268acccf3053e77463ca335a83b
+  docs/models/errors/apierrorunauthorized.md:
+    last_write_checksum: sha1:6a74ee0ab1d4567851ac381994c395678c0ecea1
+  docs/models/operations/deleteorderrequest.md:
+    last_write_checksum: sha1:de9e87a609d9e36c803a813f1f2d8b6b31d540a4
+  docs/models/operations/deletepetrequest.md:
+    last_write_checksum: sha1:1ca8d072ad87ac2eebcb5100bccd7b1287e21589
+  docs/models/operations/deleteuserrequest.md:
+    last_write_checksum: sha1:21d5c75e2576455abf1a4d18b1a65ad19bc78c9f
+  docs/models/operations/findpetsbystatustypesrequest.md:
+    last_write_checksum: sha1:1f08311f15c7e2bf4658a9dd803c86ea599a05c7
+  docs/models/operations/findpetsbytagsrequest.md:
+    last_write_checksum: sha1:d7d937885976fd852459c0f460c1c212499adb67
+  docs/models/operations/getorderbyidrequest.md:
+    last_write_checksum: sha1:0aafce3de826870deb85cda3a12790ac10494512
+  docs/models/operations/getpetbyidsrequest.md:
+    last_write_checksum: sha1:cf10e75939ac6dd429035eb4d737bd8ac094e9fc
+  docs/models/operations/getuserbynamerequest.md:
+    last_write_checksum: sha1:7a7902267dce9e168b487f65b4a8f8e63520c47a
+  docs/models/operations/loginuserrequest.md:
+    last_write_checksum: sha1:9549ad971be2ac08dee88306fd19e805f819626c
+  docs/models/operations/loginuserresponse.md:
+    last_write_checksum: sha1:63d2b463a001808dd17308ca115b501ce29c6070
+  docs/models/operations/status.md:
+    last_write_checksum: sha1:f4500373d7d97b4739b5bbbb7abb627e134cfdc8
+  docs/models/operations/updateuserrequest.md:
+    last_write_checksum: sha1:4bc727b42e3e6274c77d979c503ddbd952575e2c
+  docs/models/operations/uploadfilerequest.md:
+    last_write_checksum: sha1:9a3c68b5bb205fca150bc8fbb15258edde5bed77
+  docs/sdks/pet/README.md:
+    last_write_checksum: sha1:a110bf52f35a611c98350eb643bdabfb100aed31
+  docs/sdks/store/README.md:
+    last_write_checksum: sha1:22fa87c763166c99d184ef2b52808fc9bab63d0e
+  docs/sdks/user/README.md:
+    last_write_checksum: sha1:8b316ecd8d74799c21170f5d9aaae10aaf9afb4c
+  eslint.config.mjs:
+    last_write_checksum: sha1:9398f326377fe47f67af2df6eb6370750c0790b4
+  examples/.env.template:
+    last_write_checksum: sha1:1c9d7a5ecaab759fce1b0d9ef212734d6bf21207
+  examples/README.md:
+    last_write_checksum: sha1:d5f867d274ee60a7be35ce4ae2d5996729ec7034
+  examples/package.json:
+    last_write_checksum: sha1:32bbd55910ae1a8e506635f1bff94439b673d5ba
+  examples/petPetsStoreMonday.example.ts:
+    last_write_checksum: sha1:2bf704769a51cfffbd5fa65e47a07b3d4ef113d0
+  jsr.json:
+    last_write_checksum: sha1:295e016ddce888b7d0c1f81448e80d63abd35049
+  package.json:
+    last_write_checksum: sha1:a8b1422feb88551b3100c2d1c888d321e7f6334e
+  src/__tests__/assertions.ts:
+    last_write_checksum: sha1:f89afdb1173560667909423fa438e55e3f9ed1aa
+  src/__tests__/files.ts:
+    last_write_checksum: sha1:db877759506b01222db50fab21434463f0a941e9
+  src/__tests__/mockserver/.gitignore:
+    last_write_checksum: sha1:228e1b05712a973948fd771323a2140a3b355ff4
+  src/__tests__/mockserver/Dockerfile:
+    last_write_checksum: sha1:72b74bf83cc79b4436ffe1a33211198ea447f06a
+  src/__tests__/mockserver/Makefile:
+    last_write_checksum: sha1:f2619d7634d211c3c01dd68668635b0ebdbfc1ea
+  src/__tests__/mockserver/README.md:
+    last_write_checksum: sha1:aa2bb9124570a1c12a3c81d728100c305a59220c
+  src/__tests__/mockserver/go.mod:
+    last_write_checksum: sha1:44fa2062991ca9acb37a7ade5fb75d0b7731154a
+  src/__tests__/mockserver/go.sum:
+    last_write_checksum: sha1:d487c9e78318f86734588c530c3dfd01d02dd044
+  src/__tests__/mockserver/internal/handler/assert/contenttype.go:
+    last_write_checksum: sha1:2d059a68e53e70b269ddf897f8c6017f94434e18
+  src/__tests__/mockserver/internal/handler/assert/header.go:
+    last_write_checksum: sha1:a0866dfd740d218b5b94741ac92db4cdf5a2acd9
+  src/__tests__/mockserver/internal/handler/assert/parameter.go:
+    last_write_checksum: sha1:0df39c0981a929c99ae767201b628d8c9e31f288
+  src/__tests__/mockserver/internal/handler/assert/pointer.go:
+    last_write_checksum: sha1:48714196fb47649be28e8df031761038a9e10ee6
+  src/__tests__/mockserver/internal/handler/assert/security.go:
+    last_write_checksum: sha1:3cee6e3d2babea02486fd2df08eb00840f5ddea9
+  src/__tests__/mockserver/internal/handler/doc.go:
+    last_write_checksum: sha1:a49b83f9fc775d3cc6f558b0f52b2fc9cf04f863
+  src/__tests__/mockserver/internal/handler/generated_handler.go:
+    last_write_checksum: sha1:32101ddff940c59f43a805af303cf645a2bcca0d
+  src/__tests__/mockserver/internal/handler/generated_handlers.go:
+    last_write_checksum: sha1:527def1fde6dec82edb13a44ed4430628f3bab03
+  src/__tests__/mockserver/internal/handler/pathdeletepetpetid.go:
+    last_write_checksum: sha1:24e78d6f8cbca046e4551a108eece32333b3c36c
+  src/__tests__/mockserver/internal/handler/pathdeletestoreorderorderid.go:
+    last_write_checksum: sha1:a200faf137ab7fc8e2ba626c84b6b5c61113aef3
+  src/__tests__/mockserver/internal/handler/pathdeleteuserusername.go:
+    last_write_checksum: sha1:90885bfca58bf758e34362187e1060064f73e25c
+  src/__tests__/mockserver/internal/handler/pathgetpetfindbystatus.go:
+    last_write_checksum: sha1:81d8f0413df4366dee1bcca8ed3a8ad9bb29528b
+  src/__tests__/mockserver/internal/handler/pathgetpetfindbytags.go:
+    last_write_checksum: sha1:52374ff21da00c59c0ca3d79b515d1b1beb40443
+  src/__tests__/mockserver/internal/handler/pathgetpetpetid.go:
+    last_write_checksum: sha1:e0f8d048b25ae80b2b9b99398ead594400dd0522
+  src/__tests__/mockserver/internal/handler/pathgetstoreinventory.go:
+    last_write_checksum: sha1:b4f50aafb7baea29e7ec5d61b7a933c88c918e08
+  src/__tests__/mockserver/internal/handler/pathgetstoreorderorderid.go:
+    last_write_checksum: sha1:1443dfe7b332eec3ea67fff5c27e83dc286adc1a
+  src/__tests__/mockserver/internal/handler/pathgetuserlogin.go:
+    last_write_checksum: sha1:8a02400c568ef35312ccfffccb5aa6d555674c30
+  src/__tests__/mockserver/internal/handler/pathgetuserusername.go:
+    last_write_checksum: sha1:3f559d28825dfc32abe949fd7b4cb1558f389b93
+  src/__tests__/mockserver/internal/handler/pathpostpet.go:
+    last_write_checksum: sha1:d68ae30a5a44de2d6e2b7213ee290f1218daa6a3
+  src/__tests__/mockserver/internal/handler/pathpostpetpetiduploadimage.go:
+    last_write_checksum: sha1:ccd70516d484b60705b05c0ae68865e9f402fec7
+  src/__tests__/mockserver/internal/handler/pathpoststoreorder.go:
+    last_write_checksum: sha1:44f5b787a222e9e2e46b64be7a2307690411c421
+  src/__tests__/mockserver/internal/handler/pathpostuser.go:
+    last_write_checksum: sha1:34114e0c1324ae076a767394e89ee2223ad273f1
+  src/__tests__/mockserver/internal/handler/pathpostusercreatewithlist.go:
+    last_write_checksum: sha1:4a4a4e1554bc4902887e6477e00bafe047abd473
+  src/__tests__/mockserver/internal/handler/pathputpet.go:
+    last_write_checksum: sha1:be4e8316045c522fa4290ad6308e9708067f8966
+  src/__tests__/mockserver/internal/handler/values/files.go:
+    last_write_checksum: sha1:e1e9d78c165e2a35d165f120bd8dcd7b42c33a33
+  src/__tests__/mockserver/internal/logging/doc.go:
+    last_write_checksum: sha1:63a119620f179826356304b8205756248caa370e
+  src/__tests__/mockserver/internal/logging/formats.go:
+    last_write_checksum: sha1:e84e84e6e62a4dc3b9ad3a7f2a95eb77374f2fcd
+  src/__tests__/mockserver/internal/logging/http_file.go:
+    last_write_checksum: sha1:e948142b98821c23bd21c128e007e79a193114a2
+  src/__tests__/mockserver/internal/logging/http_logger.go:
+    last_write_checksum: sha1:7a2267a61cb1282405ed7f406f9bd95fbf796b5b
+  src/__tests__/mockserver/internal/logging/levels.go:
+    last_write_checksum: sha1:164f3aee47030d3534e4ef2df31192304e9ea97b
+  src/__tests__/mockserver/internal/logging/logger.go:
+    last_write_checksum: sha1:92027a7d11dd84831bc444aa2d018cbb7195542f
+  src/__tests__/mockserver/internal/logging/oas_operation.go:
+    last_write_checksum: sha1:af9187f31972ef308fb4bc82de73d6dd71b9fb64
+  src/__tests__/mockserver/internal/logging/oas_operation_call.go:
+    last_write_checksum: sha1:1ec2244b5fc171dfe7e4e339420b2b17f0df48c9
+  src/__tests__/mockserver/internal/sdk/models/components/apiresponse.go:
+    last_write_checksum: sha1:9c6e0b342a92cfb671be0560f9ba7e33ce880a2c
+  src/__tests__/mockserver/internal/sdk/models/components/category.go:
+    last_write_checksum: sha1:306c93d389a487f7ba5e28654357224369aa41b8
+  src/__tests__/mockserver/internal/sdk/models/components/httpmetadata.go:
+    last_write_checksum: sha1:9e4b58e3bb54db4360421109c2e169741499be16
+  src/__tests__/mockserver/internal/sdk/models/components/order.go:
+    last_write_checksum: sha1:27b55cb454f3e17df4cadaec7ba33b8fda2b7ea4
+  src/__tests__/mockserver/internal/sdk/models/components/pet.go:
+    last_write_checksum: sha1:b7e463df0b45418e1ed89be81a47d67ebf3acae1
+  src/__tests__/mockserver/internal/sdk/models/components/security.go:
+    last_write_checksum: sha1:bb56aac9e1c58ddc6ebcd3760efe632f34d33018
+  src/__tests__/mockserver/internal/sdk/models/components/tag.go:
+    last_write_checksum: sha1:ed44ac35009ebd75cc3b5b98f2aef236646184b8
+  src/__tests__/mockserver/internal/sdk/models/components/user.go:
+    last_write_checksum: sha1:3da0ad685f3a16fc873f6705e877bb32c5078d40
+  src/__tests__/mockserver/internal/sdk/models/operations/createuser.go:
+    last_write_checksum: sha1:63d1d169141a59d5973f345f1cb00136f8cbfa2b
+  src/__tests__/mockserver/internal/sdk/models/operations/createuserswithlistinput.go:
+    last_write_checksum: sha1:f1971c00f833b3f31ee7bdd740f9ceeec23d791e
+  src/__tests__/mockserver/internal/sdk/models/operations/deleteorder.go:
+    last_write_checksum: sha1:42ed756f64fe76f29fd6b526813bc62edf519fd8
+  src/__tests__/mockserver/internal/sdk/models/operations/deletepet.go:
+    last_write_checksum: sha1:ecebe65f8db85796f01aca8fc92b70b0eed8a559
+  src/__tests__/mockserver/internal/sdk/models/operations/deleteuser.go:
+    last_write_checksum: sha1:e760ebd88ea0b8cfcf2cb23ed846c62de02e9504
+  src/__tests__/mockserver/internal/sdk/models/operations/findpetsbystatustypes.go:
+    last_write_checksum: sha1:8801689b295a01d35c19cf5c735e0a376f4c5407
+  src/__tests__/mockserver/internal/sdk/models/operations/findpetsbytags.go:
+    last_write_checksum: sha1:da8d88814a0bbc5eba017b33164c1c58552390b6
+  src/__tests__/mockserver/internal/sdk/models/operations/getinventory.go:
+    last_write_checksum: sha1:7ed4e5911d04e0e8134aeabf58066dff1e8d2037
+  src/__tests__/mockserver/internal/sdk/models/operations/getorderbyid.go:
+    last_write_checksum: sha1:e3721f29e2cca18731e92927e4b29f9bcfc3c821
+  src/__tests__/mockserver/internal/sdk/models/operations/getpetbyids.go:
+    last_write_checksum: sha1:eb991c0d2b4a5650eb24b3ab98cb0e3e699ac81e
+  src/__tests__/mockserver/internal/sdk/models/operations/getuserbyname.go:
+    last_write_checksum: sha1:e07c6eb4cb73799a334af6dd18c78063ffc005d8
+  src/__tests__/mockserver/internal/sdk/models/operations/loginuser.go:
+    last_write_checksum: sha1:586bd17335af9994c1cf557c83f854a7ea220a54
+  src/__tests__/mockserver/internal/sdk/models/operations/logoutuser.go:
+    last_write_checksum: sha1:16dac109a2c95cfc046b4b1d411145207a2f0e78
+  src/__tests__/mockserver/internal/sdk/models/operations/mynewtest.go:
+    last_write_checksum: sha1:da15c46dd676c40fbfe9ef0e06903786914142a4
+  src/__tests__/mockserver/internal/sdk/models/operations/petsstoremonday.go:
+    last_write_checksum: sha1:e2066cf1f7207fef47ac81708599454b20d30dde
+  src/__tests__/mockserver/internal/sdk/models/operations/placeorder.go:
+    last_write_checksum: sha1:a3b795762bc0bc4112ca8e3b5cc2a8319cb2babb
+  src/__tests__/mockserver/internal/sdk/models/operations/updateuser.go:
+    last_write_checksum: sha1:c16dc9daf796fb45f80af9115a05ffc19b0e20b8
+  src/__tests__/mockserver/internal/sdk/models/operations/uploadfile.go:
+    last_write_checksum: sha1:53b5e1636c2cc3af0b4e08f5f0a87813b2d8b099
+  src/__tests__/mockserver/internal/sdk/models/sdkerrors/apierrorinvalidinput.go:
+    last_write_checksum: sha1:21fafbebbcd37e8b199aa13626ddd23848c93caa
+  src/__tests__/mockserver/internal/sdk/models/sdkerrors/apierrornotfound.go:
+    last_write_checksum: sha1:9475f4eab72180c98f0984171f0a06704a03925a
+  src/__tests__/mockserver/internal/sdk/models/sdkerrors/apierrorunauthorized.go:
+    last_write_checksum: sha1:fb29cc32dfc71d12d09c630d524da7e133655506
+  src/__tests__/mockserver/internal/sdk/types/bigint.go:
+    last_write_checksum: sha1:49b004005d0461fb04b846eca062b070b0360b31
+  src/__tests__/mockserver/internal/sdk/types/date.go:
+    last_write_checksum: sha1:3036a2e1ed15a1d484c093367eba000c38f384d0
+  src/__tests__/mockserver/internal/sdk/types/datetime.go:
+    last_write_checksum: sha1:196d050af6450669214e9ae4fd28e56263ae2b5d
+  src/__tests__/mockserver/internal/sdk/types/decimal.go:
+    last_write_checksum: sha1:54f1f8c0d89d6ef048805121f97c6937404c5d51
+  src/__tests__/mockserver/internal/sdk/types/jsonl/jsonl.go:
+    last_write_checksum: sha1:15fb778e0fa6c7b4c228431af3d03b9819b8fd94
+  src/__tests__/mockserver/internal/sdk/types/pointers.go:
+    last_write_checksum: sha1:fc2275ea006257ba9ba4ff6f2a2cdb6205371eef
+  src/__tests__/mockserver/internal/sdk/utils/json.go:
+    last_write_checksum: sha1:b89841fdc6e639b54aff2a09c77556a5b8188d48
+  src/__tests__/mockserver/internal/sdk/utils/reflect.go:
+    last_write_checksum: sha1:2e555f970ae33dd41130199d1b87c9864b485fdf
+  src/__tests__/mockserver/internal/sdk/utils/sort.go:
+    last_write_checksum: sha1:a9d390de086ad13841c7d154e97d314e6ae2d285
+  src/__tests__/mockserver/internal/server/doc.go:
+    last_write_checksum: sha1:71ca1bebc409ffcb7ed573f4bfc85f1d2cb76252
+  src/__tests__/mockserver/internal/server/generated_handlers.go:
+    last_write_checksum: sha1:dbaa2e7beedda2a3e0ef373939f0424577cb2666
+  src/__tests__/mockserver/internal/server/internal_handlers.go:
+    last_write_checksum: sha1:1c79af9ee45c9bde435f5acc711bc48c9f66315e
+  src/__tests__/mockserver/internal/server/server.go:
+    last_write_checksum: sha1:d97000314c64b937ff7a243cbc051c5591ab8722
+  src/__tests__/mockserver/internal/server/server_option.go:
+    last_write_checksum: sha1:f787e17525cbaed4d6881d02562da66a1deda9c0
+  src/__tests__/mockserver/internal/server/templates/log/index.html.tmpl:
+    last_write_checksum: sha1:7c3fc6e6b03d80e05bc586ade52ddcb8adaee148
+  src/__tests__/mockserver/internal/server/templates/log/operation.html.tmpl:
+    last_write_checksum: sha1:ab2894028c76b25dfe613d743a243bfd04fb279c
+  src/__tests__/mockserver/internal/server/templates/log/style.css.tmpl:
+    last_write_checksum: sha1:474c79a94fa7d2671135e078a71c51b11f38bfae
+  src/__tests__/mockserver/internal/tracking/requesttracker.go:
+    last_write_checksum: sha1:09963693aae5446c247cac171c284f2cdf7cfa4d
+  src/__tests__/mockserver/main.go:
+    last_write_checksum: sha1:1267817b54decac7af35c5db3f4d865eb628547d
+  src/__tests__/pet.test.ts:
+    last_write_checksum: sha1:4a391359939b4bb6baef5d72375cc26af04f16c6
+  src/__tests__/pets.test.ts:
+    last_write_checksum: sha1:8c27d09d98c8190f2b8b0df170c769aa2a2bfdc2
+  src/__tests__/store.test.ts:
+    last_write_checksum: sha1:9d71d33b0109da204e2d649d1901d8e2a06f79c3
+  src/__tests__/testclient.ts:
+    last_write_checksum: sha1:a62cc200f8a9f9c0310ce1b8ba6392d480ab5569
+  src/__tests__/user.test.ts:
+    last_write_checksum: sha1:2faf27c08001b891bb72fd84c04be06b42c31e12
+  src/core.ts:
+    last_write_checksum: sha1:5439056fff69ce94fadc2dbf1331ac4c77b73d59
+  src/funcs/petDeletePet.ts:
+    last_write_checksum: sha1:316da43e5aa85c2d977458ad7d94efee2c6a8fcb
+  src/funcs/petFindPetsByStatusTypes.ts:
+    last_write_checksum: sha1:59413c3d88850b30b7cd16204d0d6f3a634a3980
+  src/funcs/petFindPetsByTags.ts:
+    last_write_checksum: sha1:4ee66d7e183a4f5eb791fa3a66763e5b690871d2
+  src/funcs/petGetPetByIDS.ts:
+    last_write_checksum: sha1:e78d0b7c225110417202f14b1292de5d473beb07
+  src/funcs/petMyNewTest.ts:
+    last_write_checksum: sha1:d18ba07494939ba9219f32b7249fc22dc6b75649
+  src/funcs/petPetsStoreMonday.ts:
+    last_write_checksum: sha1:22efcb0eaa7fff128aa2041a40befe55f651dacd
+  src/funcs/petUploadFile.ts:
+    last_write_checksum: sha1:861214fb0634cd1d927bbcfc1433012b70dca934
+  src/funcs/storeDeleteOrder.ts:
+    last_write_checksum: sha1:b85df57dd56547a6aa4b4c73bdec11dd5d7524ff
+  src/funcs/storeGetInventory.ts:
+    last_write_checksum: sha1:b8ac4c9aa3da40b3864ea0e9b77807e27da8584f
+  src/funcs/storeGetOrderById.ts:
+    last_write_checksum: sha1:b2c9b80039728dcb391d529672aa2e3847a2fe9d
+  src/funcs/storePlaceOrder.ts:
+    last_write_checksum: sha1:fe4a90918eacf7e82c27dc6775d4432c20f702d1
+  src/funcs/userCreateUser.ts:
+    last_write_checksum: sha1:5ec7eb4736eb349582a207ba02610849a9816ec4
+  src/funcs/userCreateUsersWithListInput.ts:
+    last_write_checksum: sha1:5fac3d1315c0b1289c7403eb1b5472f59478e7a2
+  src/funcs/userDeleteUser.ts:
+    last_write_checksum: sha1:df9d6f41b4494c0084b805099685688cd146996d
+  src/funcs/userGetUserByName.ts:
+    last_write_checksum: sha1:1aaf9523e9a539c0dee4642185be8df572efc1cd
+  src/funcs/userLoginUser.ts:
+    last_write_checksum: sha1:3d2aee11e9dff0a388a108a5e0f56952077788f3
+  src/funcs/userLogoutUser.ts:
+    last_write_checksum: sha1:72205d0cb1c3929b536bd85504eb9fb067dc6e36
+  src/funcs/userUpdateUser.ts:
+    last_write_checksum: sha1:cf31d03f3dce572e07e25ead829ec0633107199e
+  src/hooks/hooks.ts:
+    last_write_checksum: sha1:9a569ea8f3177ddcdfe6cd903feaf5c2d2c36a9a
+  src/hooks/index.ts:
+    last_write_checksum: sha1:1a11c073a6cd792932218e1d4ed36b8567bad8ef
+  src/hooks/types.ts:
+    last_write_checksum: sha1:29372122898cc523fa47576f3f6608a28ec6080e
+  src/index.ts:
+    last_write_checksum: sha1:35c9cde3ae14b18b3f893a1afe8b6c44f8760f24
+  src/lib/base64.ts:
+    last_write_checksum: sha1:b0b12ddbd8625efb47c0e955a18641aeb10c6532
+  src/lib/config.ts:
+    last_write_checksum: sha1:bf4f91b9de907f9c5982f2fa1b151595c08c2774
+  src/lib/dlv.ts:
+    last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
+  src/lib/encodings.ts:
+    last_write_checksum: sha1:d20c131976ab8ac68b22bdde2b7ed84b5b873922
+  src/lib/files.ts:
+    last_write_checksum: sha1:d0f325f445b8d22e7d73baf052c585ec2dd24841
+  src/lib/http.ts:
+    last_write_checksum: sha1:797cbf16d3c7c4d62d3ba0eedb08617524938457
+  src/lib/is-plain-object.ts:
+    last_write_checksum: sha1:df687f25a9590b6fd95d39df41a652ae3fd4e517
+  src/lib/logger.ts:
+    last_write_checksum: sha1:0ec9d3a2a34c362746b767e4f9a746c055d57a7b
+  src/lib/matchers.ts:
+    last_write_checksum: sha1:501c9dd11617b0146f04388f0f6a6dab974422b1
+  src/lib/primitives.ts:
+    last_write_checksum: sha1:987869fc54790b9c22e9182099103d6aa7c67016
+  src/lib/retries.ts:
+    last_write_checksum: sha1:f3da74dffcbe2756c69393f8600205aa1dc06e68
+  src/lib/schemas.ts:
+    last_write_checksum: sha1:209cfaabfa7fc1c1310f97453215cb0755619c6e
+  src/lib/sdks.ts:
+    last_write_checksum: sha1:d7fb3ee14478f8121f389fa7b8827edd6f19e94a
+  src/lib/security.ts:
+    last_write_checksum: sha1:b7e79763bf98e4111806c0200655a7e0b0ec3a31
+  src/lib/url.ts:
+    last_write_checksum: sha1:d124050c7e755c0cce233b9e029afb584ff65201
+  src/models/components/apiresponse.ts:
+    last_write_checksum: sha1:1175af365f22db0acbe9df8c278ad70f8b1e0f34
+  src/models/components/category.ts:
+    last_write_checksum: sha1:a7b8b944376e393809926b6f5057f8d0c56470f1
+  src/models/components/index.ts:
+    last_write_checksum: sha1:d8da2d9c479205c17e4c05eeb7abfc92a79a8736
+  src/models/components/order.ts:
+    last_write_checksum: sha1:2cf28ad95a9876e53a0e28d261f83b713debc558
+  src/models/components/pet.ts:
+    last_write_checksum: sha1:a048436bb8feac62026b26d11e1aa9c441f74541
+  src/models/components/security.ts:
+    last_write_checksum: sha1:00ea2d4710bb67d1eed60c690cde61d5f1968730
+  src/models/components/tag.ts:
+    last_write_checksum: sha1:c5de51828db98550da0433cd6e9825e8117450a6
+  src/models/components/user.ts:
+    last_write_checksum: sha1:f3955027a096a33260585b97f714467f6b92f378
+  src/models/errors/apierrorinvalidinput.ts:
+    last_write_checksum: sha1:1bac7f0bc31e3037ee19fda7d0e8bc1f1491bcfa
+  src/models/errors/apierrornotfound.ts:
+    last_write_checksum: sha1:5ad5e9a0e2639e20430cbb3b197cf4ac814b0466
+  src/models/errors/apierrorunauthorized.ts:
+    last_write_checksum: sha1:d09d6eb6d0e40696e6d476b8cc9f8bb73bb19812
+  src/models/errors/httpclienterrors.ts:
+    last_write_checksum: sha1:994ced121c54fecd0af038ccfb7855fbfd3868ec
+  src/models/errors/index.ts:
+    last_write_checksum: sha1:7fb7fd7b80cefb33c0fc6ff4e31067d85ca04b26
+  src/models/errors/lendingsdkerror.ts:
+    last_write_checksum: sha1:6ded3e4a57d4b501f8defdadf8a3bac948f4285f
+  src/models/errors/responsevalidationerror.ts:
+    last_write_checksum: sha1:2535c87e5e95b473f3d9d38260cfa832b7c6b462
+  src/models/errors/sdkerror.ts:
+    last_write_checksum: sha1:824279dcd6dad903e68a7d13a84e9f0e8324c331
+  src/models/errors/sdkvalidationerror.ts:
+    last_write_checksum: sha1:a69da17627bcc32b820544608f3400423ea53f26
+  src/models/operations/deleteorder.ts:
+    last_write_checksum: sha1:ed0ac97f166121a0b604506984ad1852611eb956
+  src/models/operations/deletepet.ts:
+    last_write_checksum: sha1:ea6933595e271a39e4007cd8f375a5eec937dd47
+  src/models/operations/deleteuser.ts:
+    last_write_checksum: sha1:a3c681e539d4c7759f4c0a3e50ba9dee1b00769b
+  src/models/operations/findpetsbystatustypes.ts:
+    last_write_checksum: sha1:b285812be5d9ca0df5ed024b33f26ac6aa2a717c
+  src/models/operations/findpetsbytags.ts:
+    last_write_checksum: sha1:f8d02c937bcd1d1cd8d9470200dddd6ee869fb88
+  src/models/operations/getorderbyid.ts:
+    last_write_checksum: sha1:bae7f27815780ebe4179cfab64b6a39dce2976b6
+  src/models/operations/getpetbyids.ts:
+    last_write_checksum: sha1:f8c2a3306ae5f591ca3f1abd1c87478fa47ff056
+  src/models/operations/getuserbyname.ts:
+    last_write_checksum: sha1:11c39f3d5704241dd4a16883f08e7ecd25b1d77f
+  src/models/operations/index.ts:
+    last_write_checksum: sha1:b019db2e060ce2c0d1281869a3b08b2181d8a72f
+  src/models/operations/loginuser.ts:
+    last_write_checksum: sha1:93d32ab49f7f01ba269584e991f5c5f8d1fa2935
+  src/models/operations/updateuser.ts:
+    last_write_checksum: sha1:24c3c9178fc61634175e52446eb77f359855e550
+  src/models/operations/uploadfile.ts:
+    last_write_checksum: sha1:d677a3ed13035a83dbe9d7e45d728b42f43b576b
+  src/sdk/index.ts:
+    last_write_checksum: sha1:ed6d64f2a6135349aa8498b8d8cff9ba85c7fb8f
+  src/sdk/pet.ts:
+    last_write_checksum: sha1:1b2e802d63508a3c461fffde2678fea391fb46b2
+  src/sdk/sdk.ts:
+    last_write_checksum: sha1:2d5446d83ec756ab56cdcec7dd835b8007bbb622
+  src/sdk/store.ts:
+    last_write_checksum: sha1:2ecba01cfb60a8b58e2a517e8e552c78021f8bc6
+  src/sdk/user.ts:
+    last_write_checksum: sha1:b27d219a14d99c7bd31283e0d520c9531ea91377
+  src/types/async.ts:
+    last_write_checksum: sha1:3ff07b3feaf390ec1aeb18ff938e139c6c4a9585
+  src/types/blobs.ts:
+    last_write_checksum: sha1:cf45d78916671cb6345a11c97c633c64402bc27c
+  src/types/constdatetime.ts:
+    last_write_checksum: sha1:dfaaf9adfaf49808bd4c9dea0039f21b7088d9c0
+  src/types/enums.ts:
+    last_write_checksum: sha1:ee590453d2c87e33e89c633d37ee46907eca0e58
+  src/types/fp.ts:
+    last_write_checksum: sha1:d24994d58f37a1ca106847fcc6d2e976c6f1c093
+  src/types/index.ts:
+    last_write_checksum: sha1:bf43b3dccb960ca9ae9c5ab940da4786255881cd
+  src/types/operations.ts:
+    last_write_checksum: sha1:c49e724cfb1259296381cb57bc0fcdd2eae45865
+  src/types/rfcdate.ts:
+    last_write_checksum: sha1:8e5f382e02fe21c2f2e24deb1b7bbf8cddd3dd16
+  src/types/streams.ts:
+    last_write_checksum: sha1:cc9ced2dd34a76c3a1bd7784ccda1cc3b37ab9a9
+  src/types/unrecognized.ts:
+    last_write_checksum: sha1:d33ac686528492f4cdc0dbf81ed343b4afe020fe
+  tsconfig.json:
+    last_write_checksum: sha1:c3ec7996536cdb9a54319e7d1eb3b199b733d34c
