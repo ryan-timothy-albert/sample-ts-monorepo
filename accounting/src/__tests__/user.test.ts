@@ -7,9 +7,11 @@ import { AccountingSDK } from "../index.js";
 import { createTestHTTPClient } from "./testclient.js";
 
 test("User Create User", async () => {
+  const testHttpClient = createTestHTTPClient("createUser");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("createUser"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 
@@ -37,9 +39,11 @@ test("User Create User", async () => {
 });
 
 test("User Create Users With List Input", async () => {
+  const testHttpClient = createTestHTTPClient("createUsersWithListInput");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("createUsersWithListInput"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 
@@ -69,9 +73,11 @@ test("User Create Users With List Input", async () => {
 });
 
 test("User Login User", async () => {
+  const testHttpClient = createTestHTTPClient("loginUser");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("loginUser"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 
@@ -80,9 +86,11 @@ test("User Login User", async () => {
 });
 
 test("User Logout User", async () => {
+  const testHttpClient = createTestHTTPClient("logoutUser");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("logoutUser"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 
@@ -90,9 +98,11 @@ test("User Logout User", async () => {
 });
 
 test("User Get User By Name", async () => {
+  const testHttpClient = createTestHTTPClient("getUserByName");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("getUserByName"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 
@@ -113,9 +123,11 @@ test("User Get User By Name", async () => {
 });
 
 test("User Update User", async () => {
+  const testHttpClient = createTestHTTPClient("updateUser");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("updateUser"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 
@@ -135,9 +147,11 @@ test("User Update User", async () => {
 });
 
 test("User Delete User", async () => {
+  const testHttpClient = createTestHTTPClient("deleteUser");
+
   const accountingSDK = new AccountingSDK({
     serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
-    httpClient: createTestHTTPClient("deleteUser"),
+    httpClient: testHttpClient,
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 
