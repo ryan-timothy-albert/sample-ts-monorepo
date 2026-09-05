@@ -2,15 +2,54 @@
 
 package components
 
-type Pet struct {
-	ID   int64   `json:"id"`
-	Name string  `json:"name"`
-	Tag  *string `json:"tag,omitempty"`
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// PetStatus - pet status in the store
+type PetStatus string
+
+const (
+	PetStatusAvailable PetStatus = "available"
+	PetStatusPending   PetStatus = "pending"
+	PetStatusSold      PetStatus = "sold"
+)
+
+func (e PetStatus) ToPointer() *PetStatus {
+	return &e
+}
+func (e *PetStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "available":
+		fallthrough
+	case "pending":
+		fallthrough
+	case "sold":
+		*e = PetStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PetStatus: %v", v)
+	}
 }
 
-func (o *Pet) GetID() int64 {
+type Pet struct {
+	ID        *int64    `json:"id,omitempty"`
+	Name      string    `json:"name"`
+	Category  *Category `json:"category,omitempty"`
+	PhotoUrls []string  `json:"photoUrls"`
+	Tags      []Tag     `json:"tags,omitempty"`
+	// pet status in the store
+	Status *PetStatus `json:"status,omitempty"`
+}
+
+func (o *Pet) GetID() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.ID
 }
@@ -22,9 +61,30 @@ func (o *Pet) GetName() string {
 	return o.Name
 }
 
-func (o *Pet) GetTag() *string {
+func (o *Pet) GetCategory() *Category {
 	if o == nil {
 		return nil
 	}
-	return o.Tag
+	return o.Category
+}
+
+func (o *Pet) GetPhotoUrls() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.PhotoUrls
+}
+
+func (o *Pet) GetTags() []Tag {
+	if o == nil {
+		return nil
+	}
+	return o.Tags
+}
+
+func (o *Pet) GetStatus() *PetStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }
