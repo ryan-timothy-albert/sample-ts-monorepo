@@ -6,7 +6,7 @@
 import { GetUserByNameRequest } from "ryan-accounting/models/operations";
 
 let value: GetUserByNameRequest = {
-  username: "Hunter.Windler",
+  username: "Bethany86",
 };
 ```
 
