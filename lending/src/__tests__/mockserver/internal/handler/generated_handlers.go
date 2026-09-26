@@ -12,8 +12,21 @@ import (
 // GeneratedHandlers returns all generated handlers.
 func GeneratedHandlers(ctx context.Context, dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) []*GeneratedHandler {
 	return []*GeneratedHandler{
-		NewGeneratedHandler(ctx, http.MethodGet, "/pets", pathGetPets(dir, rt)),
-		NewGeneratedHandler(ctx, http.MethodGet, "/pets/{petId}", pathGetPetsPetID(dir, rt)),
-		NewGeneratedHandler(ctx, http.MethodPost, "/pets", pathPostPets(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodDelete, "/pet/{petId}", pathDeletePetPetID(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodDelete, "/store/order/{orderId}", pathDeleteStoreOrderOrderID(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodDelete, "/user/{username}", pathDeleteUserUsername(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodGet, "/pet/findByStatus", pathGetPetFindByStatus(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodGet, "/pet/findByTags", pathGetPetFindByTags(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodGet, "/pet/{petId}", pathGetPetPetID(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodGet, "/store/inventory", pathGetStoreInventory(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodGet, "/store/order/{orderId}", pathGetStoreOrderOrderID(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodGet, "/user/login", pathGetUserLogin(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodGet, "/user/{username}", pathGetUserUsername(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodPost, "/pet", pathPostPet(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodPost, "/pet/{petId}/uploadImage", pathPostPetPetIDUploadImage(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodPost, "/store/order", pathPostStoreOrder(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodPost, "/user", pathPostUser(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodPost, "/user/createWithList", pathPostUserCreateWithList(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodPut, "/pet", pathPutPet(dir, rt)),
 	}
 }
