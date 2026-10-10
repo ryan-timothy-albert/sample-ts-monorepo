@@ -4,11 +4,13 @@ package sdkerrors
 
 import (
 	"encoding/json"
+	"mockserver/internal/sdk/models/components"
 )
 
 type APIErrorInvalidInput struct {
-	Status int    `json:"status"`
-	Error_ string `json:"error"`
+	Status   int                     `json:"status"`
+	Error_   string                  `json:"error"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
 var _ error = &APIErrorInvalidInput{}
