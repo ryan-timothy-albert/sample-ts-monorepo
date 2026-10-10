@@ -7,7 +7,7 @@ Status values that need to be considered for filter
 ```typescript
 import { Status } from "ryan-accounting/models/operations";
 
-let value: Status = "sold";
+let value: Status = "pending";
 ```
 
 ## Values
