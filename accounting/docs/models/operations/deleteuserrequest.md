@@ -6,7 +6,7 @@
 import { DeleteUserRequest } from "ryan-accounting/models/operations";
 
 let value: DeleteUserRequest = {
-  username: "Orlando46",
+  username: "Natalia23",
 };
 ```
 
