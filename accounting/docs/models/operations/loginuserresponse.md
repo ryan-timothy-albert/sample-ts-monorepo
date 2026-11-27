@@ -8,7 +8,7 @@ import { LoginUserResponse } from "ryan-accounting/models/operations";
 let value: LoginUserResponse = {
   headers: {
     "key": [
-      "<value>",
+      "<value 1>",
     ],
   },
   result: "<value>",
