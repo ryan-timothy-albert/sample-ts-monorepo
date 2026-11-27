@@ -78,10 +78,7 @@ bun add ryan-accounting
 ### Yarn
 
 ```bash
-yarn add ryan-accounting zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add ryan-accounting
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -89,6 +86,26 @@ yarn add ryan-accounting zod
 ## Requirements
 
 For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
+
+### Lazy operation loading in Node.js
+
+The `/node` entry point and its lazy SDK classes are generated for every SDK. No `gen.yaml` flag is needed; Node.js applications opt in to loading operation functions on first use by changing their import:
+
+```typescript
+import { AccountingSDK } from "ryan-accounting/node";
+
+const sdk = new AccountingSDK();
+```
+
+The `/node` entry point keeps the same method signatures, pagination behaviour, and response helpers. Operation modules load through dynamic imports when a method is called. Models and error classes are shared with the standard entry points, rather than bundled into separate copies.
+
+The standard package entry point and SDK subpaths retain their static imports. Keep using those entry points in browser bundles, including IIFE and UMD builds, to avoid dynamic-import chunks. Custom root exports may still load additional modules.
+
+The Node SDK classes live in `src/sdk/*.lazy.ts`. Custom code regions in the standard SDK classes are not copied to these classes; apply any required customisations to their separate regions. Accept-header enums have the same values, but their enum objects are specific to each entry point.
+
+Generated model schemas are constructed synchronously and cached on first use with either entry point. Importing a model does not construct its schema; parsing or inspecting a schema does. This does not require changing the configured Zod version.
+
+`Object.freeze`, `Object.seal`, and `Object.preventExtensions` construct the schema and apply to the cached Zod object. Zod's own restrictions on frozen schemas still apply, including methods that install properties on first access.
 <!-- End Requirements [requirements] -->
 
 <!-- Start SDK Example Usage [usage] -->
@@ -112,11 +129,11 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -153,11 +170,11 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -172,8 +189,7 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-
-### [pet](docs/sdks/pet/README.md)
+### [Pet](docs/sdks/pet/README.md)
 
 * [petsStoreMonday](docs/sdks/pet/README.md#petsstoremonday) - Update an existing pet
 * [myNewTest](docs/sdks/pet/README.md#mynewtest) - Add a new pet to the store
@@ -183,14 +199,14 @@ run();
 * [deletePet](docs/sdks/pet/README.md#deletepet) - Deletes a pet
 * [uploadFile](docs/sdks/pet/README.md#uploadfile) - uploads an image
 
-### [store](docs/sdks/store/README.md)
+### [Store](docs/sdks/store/README.md)
 
 * [getInventory](docs/sdks/store/README.md#getinventory) - Returns pet inventories by status
 * [placeOrder](docs/sdks/store/README.md#placeorder) - Place an order for a pet
 * [getOrderById](docs/sdks/store/README.md#getorderbyid) - Find purchase order by ID
 * [deleteOrder](docs/sdks/store/README.md#deleteorder) - Delete purchase order by ID
 
-### [user](docs/sdks/user/README.md)
+### [User](docs/sdks/user/README.md)
 
 * [createUser](docs/sdks/user/README.md#createuser) - Create user
 * [createUsersWithListInput](docs/sdks/user/README.md#createuserswithlistinput) - Creates list of users with given input array
@@ -206,34 +222,29 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `petsStoreMonday` method may throw the following errors:
+[`AccountingSDKError`](./src/models/errors/accountingsdkerror.ts) is the base class for all HTTP error responses. It has the following properties:
 
-| Error Type                  | Status Code | Content Type     |
-| --------------------------- | ----------- | ---------------- |
-| errors.ApiErrorInvalidInput | 400         | application/json |
-| errors.ApiErrorUnauthorized | 401         | application/json |
-| errors.ApiErrorNotFound     | 404         | application/json |
-| errors.SDKError             | 4XX, 5XX    | \*/\*            |
+| Property            | Type       | Description                                                                             |
+| ------------------- | ---------- | --------------------------------------------------------------------------------------- |
+| `error.message`     | `string`   | Error message                                                                           |
+| `error.statusCode`  | `number`   | HTTP response status code eg `404`                                                      |
+| `error.headers`     | `Headers`  | HTTP response headers                                                                   |
+| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned.                                  |
+| `error.rawResponse` | `Response` | Raw HTTP response                                                                       |
+| `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
-If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
-
+### Example
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
-import {
-  ApiErrorInvalidInput,
-  ApiErrorNotFound,
-  ApiErrorUnauthorized,
-  SDKValidationError,
-} from "ryan-accounting/models/errors";
+import * as errors from "ryan-accounting/models/errors";
 
 const accountingSDK = new AccountingSDK({
   apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  let result;
   try {
-    result = await accountingSDK.pet.petsStoreMonday({
+    const result = await accountingSDK.pet.petsStoreMonday({
       id: 10,
       name: "doggie",
       category: {
@@ -241,40 +252,24 @@ async function run() {
         name: "Dogs",
       },
       photoUrls: [
-        "<value>",
+        "<value 1>",
+        "<value 2>",
       ],
     });
 
-    // Handle the result
     console.log(result);
-  } catch (err) {
-    switch (true) {
-      // The server response does not match the expected SDK schema
-      case (err instanceof SDKValidationError): {
-        // Pretty-print will provide a human-readable multi-line error message
-        console.error(err.pretty());
-        // Raw value may also be inspected
-        console.error(err.rawValue);
-        return;
-      }
-      case (err instanceof ApiErrorInvalidInput): {
-        // Handle err.data$: ApiErrorInvalidInputData
-        console.error(err);
-        return;
-      }
-      case (err instanceof ApiErrorUnauthorized): {
-        // Handle err.data$: ApiErrorUnauthorizedData
-        console.error(err);
-        return;
-      }
-      case (err instanceof ApiErrorNotFound): {
-        // Handle err.data$: ApiErrorNotFoundData
-        console.error(err);
-        return;
-      }
-      default: {
-        // Other errors such as network errors, see HTTPClientErrors for more details
-        throw err;
+  } catch (error) {
+    // The base class for HTTP error responses
+    if (error instanceof errors.AccountingSDKError) {
+      console.log(error.message);
+      console.log(error.statusCode);
+      console.log(error.body);
+      console.log(error.headers);
+
+      // Depending on the method different errors may be thrown
+      if (error instanceof errors.ApiErrorInvalidInput) {
+        console.log(error.data$.status); // number
+        console.log(error.data$.error); // string
       }
     }
   }
@@ -284,17 +279,31 @@ run();
 
 ```
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+### Error Classes
+**Primary error:**
+* [`AccountingSDKError`](./src/models/errors/accountingsdkerror.ts): The base class for HTTP error responses.
 
-In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `models/errors/httpclienterrors.ts` module:
+<details><summary>Less common errors (9)</summary>
 
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+<br />
+
+**Network errors:**
+* [`ConnectionError`](./src/models/errors/httpclienterrors.ts): HTTP client was unable to make a request to a server.
+* [`RequestTimeoutError`](./src/models/errors/httpclienterrors.ts): HTTP request timed out due to an AbortSignal signal.
+* [`RequestAbortedError`](./src/models/errors/httpclienterrors.ts): HTTP request was aborted by the client.
+* [`InvalidRequestError`](./src/models/errors/httpclienterrors.ts): Any input used to create a request is invalid.
+* [`UnexpectedClientError`](./src/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
+
+
+**Inherit from [`AccountingSDKError`](./src/models/errors/accountingsdkerror.ts)**:
+* [`ApiErrorUnauthorized`](./src/models/errors/apierrorunauthorized.ts): Unauthorized error. Status code `401`. Applicable to 12 of 18 methods.*
+* [`ApiErrorNotFound`](./src/models/errors/apierrornotfound.ts): Not Found error. Status code `404`. Applicable to 12 of 18 methods.*
+* [`ApiErrorInvalidInput`](./src/models/errors/apierrorinvalidinput.ts): . Status code `400`. Applicable to 10 of 18 methods.*
+* [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+
+</details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -303,11 +312,46 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 ### Server Variables
 
 The default server `https://{environment}.petstore.io` contains variables and is set to `https://prod.petstore.io` by default. To override default values, the following parameters are available when initializing the SDK client instance:
- * `environment: models.ServerEnvironment`
+
+| Variable      | Parameter                               | Supported Values                           | Default  | Description                                                   |
+| ------------- | --------------------------------------- | ------------------------------------------ | -------- | ------------------------------------------------------------- |
+| `environment` | `environment: models.ServerEnvironment` | - `"prod"`<br/>- `"staging"`<br/>- `"dev"` | `"prod"` | The environment name. Defaults to the production environment. |
+
+#### Example
+
+```typescript
+import { AccountingSDK } from "ryan-accounting";
+
+const accountingSDK = new AccountingSDK({
+  serverIdx: 0,
+  environment: "dev",
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await accountingSDK.pet.petsStoreMonday({
+    id: 10,
+    name: "doggie",
+    category: {
+      id: 1,
+      name: "Dogs",
+    },
+    photoUrls: [
+      "<value 1>",
+      "<value 2>",
+    ],
+  });
+
+  console.log(result);
+}
+
+run();
+
+```
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
+The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
 
@@ -325,11 +369,11 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -351,19 +395,23 @@ The `HTTPClient` constructor takes an optional `fetcher` argument that can be
 used to integrate a third-party HTTP client or when writing tests to mock out
 the HTTP client and feed in fixtures.
 
-The following example shows how to use the `"beforeRequest"` hook to to add a
-custom header and a timeout to requests and how to use the `"requestError"` hook
-to log errors:
+The following example shows how to:
+- route requests through a proxy server using [undici](https://www.npmjs.com/package/undici)'s ProxyAgent
+- use the `"beforeRequest"` hook to add a custom header and a timeout to requests
+- use the `"requestError"` hook to log errors
 
 ```typescript
 import { AccountingSDK } from "ryan-accounting";
+import { ProxyAgent } from "undici";
 import { HTTPClient } from "ryan-accounting/lib/http";
 
+const dispatcher = new ProxyAgent("http://proxy.example.com:8080");
+
 const httpClient = new HTTPClient({
-  // fetcher takes a function that has the same signature as native `fetch`.
-  fetcher: (request) => {
-    return fetch(request);
-  }
+  // 'fetcher' takes a function that has the same signature as native 'fetch'.
+  fetcher: (input, init) =>
+    // 'dispatcher' is specific to undici and not part of the standard Fetch API.
+    fetch(input, { ...init, dispatcher } as RequestInit),
 });
 
 httpClient.addHook("beforeRequest", (request) => {
@@ -383,7 +431,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new AccountingSDK({ httpClient });
+const sdk = new AccountingSDK({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -410,10 +458,9 @@ const accountingSDK = new AccountingSDK({
 
 async function run() {
   const result = await accountingSDK.pet.uploadFile({
-    petId: 565380,
+    petId: 150516,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -444,7 +491,8 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   }, {
     retries: {
@@ -459,7 +507,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -494,11 +541,11 @@ async function run() {
       name: "Dogs",
     },
     photoUrls: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
